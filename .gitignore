@@ -84,3 +84,4 @@ Thumbs.db
 # Data artifacts (keep folder structure, ignore contents)
 data/*
 !data/.gitkeep
+!data/projects.csv
