@@ -1,87 +1,77 @@
-# Byte-compiled / optimized / DLL files
+# ═══════════════════════════════════════════
+# TerraLens AI — .gitignore
+# ═══════════════════════════════════════════
+
+# ── Dependencies ──
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# ── Build outputs ──
+frontend/.next/
+frontend/out/
+frontend/build/
+.next/
+out/
+dist/
+build/
+
+# ── Environment & secrets ──
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# ── Python ──
 __pycache__/
 *.py[cod]
 *$py.class
-# C extensions
 *.so
-
-# Distribution / packaging
-.Python
-build/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtual environments
 .venv/
 venv/
 env/
-ENV/
+.Python
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-.coverage
-.coverage.*
-.cache/
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.pytest_cache/
-.hypothesis/
-
-# Type checkers / linters
-.mypy_cache/
-.pyre/
-.ruff_cache/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Logs
-*.log
-logs/
-
-# Local environment files and secrets
-.env
-.env.*
-!.env.example
-.streamlit/secrets.toml
-
-# Streamlit runtime/config local state
-.streamlit/*.pid
-.streamlit/*.log
-
-# IDE / Editor
+# ── IDE ──
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# OS files
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Data artifacts (keep folder structure, ignore contents)
-data/*
-!data/.gitkeep
-!data/projects.csv
+# ── Debug & logs ──
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ── Testing ──
+coverage/
+.nyc_output/
+
+# ── OS files ──
+*.log
+*.tmp
+*.bak
+*.orig
+
+# ── Large data files (keep in repo via LFS or exclude) ──
+# Uncomment below if GeoJSON files are too large for GitHub:
+# geoBoundaries-TUN-ADM3.geojson
+# frontend/public/data/geodata/adm3.geojson
+
+# ── Vercel ──
+.vercel
+
+# ── Turbopack ──
+.turbo
+
+terralens_logo.png
+design_terralens.md 
+tecnocasa-tn.svg

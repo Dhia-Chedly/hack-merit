@@ -1,0 +1,19 @@
+{
+  "models": {
+    "price_forecaster": "XGBoost Regressor",
+    "demand_forecaster": "XGBoost Regressor",
+    "risk_detector": "Isolation Forest"
+  },
+  "accuracy": {
+    "price_r2_score": 0.9993,
+    "demand_r2_score": 0.94
+  },
+  "feature_importances": {
+    "month_num": 0.00014798592019360512,
+    "population_density": 0.05876787751913071,
+    "urbanization_pct": 0.008982324972748756,
+    "unemployment_pct": 0.13323496282100677,
+    "base_price": 0.7988668084144592
+  },
+  "anomalies_detected": 4
+}

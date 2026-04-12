@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+:root {
+  --brand-navy: #0C2461;
+  --brand-teal: #1D9E75;
+  --brand-cyan: #2EC4D6;
+  --brand-cyan-light: #7AE3EC;
+  --cat-marketing: #2563EB;
+  --cat-marketing-tint: #EFF6FF;
+  --cat-forecast: #7C3AED;
+  --cat-forecast-tint: #F5F3FF;
+  --cat-risk: #DC2626;
+  --cat-risk-tint: #FEF2F2;
+  --surface-primary: #FFFFFF;
+  --surface-secondary: #F8FAFC;
+  --surface-tertiary: #F1F5F9;
+  --border-default: #E2E8F0;
+  --border-strong: #CBD5E1;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-tertiary: #94A3B8;
+  --text-inverse: #FFFFFF;
+  --semantic-success: #059669;
+  --semantic-success-bg: #ECFDF5;
+  --semantic-warning: #D97706;
+  --semantic-warning-bg: #FFFBEB;
+  --semantic-danger: #DC2626;
+  --semantic-danger-bg: #FEF2F2;
+  --semantic-info: #2563EB;
+  --semantic-info-bg: #EFF6FF;
+  --shadow-xs: 0 8px 18px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 12px 30px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 18px 44px rgba(15, 23, 42, 0.09);
+  --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
+  --shadow-xl: 0 34px 80px rgba(12, 36, 97, 0.16);
+  --transition-fast: 150ms ease-in;
+  --transition-default: 200ms ease-out;
+  --transition-medium: 250ms ease-out;
+  --transition-slow: 400ms ease-in-out;
+  --topbar-height: 94px;
+  --panel-radius: 26px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at top left, rgba(46, 196, 214, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.14), transparent 24%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(12, 36, 97, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 36, 97, 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+body {
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.01em;
+}
+
+.font-mono,
+.kpi-value {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.text-overline {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.8) transparent;
+}
+
+.panel-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.panel-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 999px;
+}
+
+.panel-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+.maplibregl-ctrl-group {
+  border-radius: 18px !important;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.maplibregl-ctrl-group button {
+  width: 38px !important;
+  height: 38px !important;
+}
+
+.maplibregl-ctrl-bottom-right {
+  right: 18px !important;
+  bottom: 18px !important;
+}
+
+.maplibregl-ctrl-attrib {
+  font-size: 10px !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-radius: 10px !important;
+  backdrop-filter: blur(10px);
+}
+
+.maplibregl-popup-content {
+  border-radius: 18px !important;
+  box-shadow: var(--shadow-lg) !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.maplibregl-popup-tip {
+  display: none !important;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes riseUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft var(--transition-medium) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight var(--transition-default) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-fast) forwards;
+}
+
+.animate-rise-up {
+  animation: riseUp 420ms var(--transition-medium) forwards;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-tertiary) 25%, var(--border-default) 50%, var(--surface-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-sm);
+}
+
+.panel-shell {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.metric-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92));
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  box-shadow: var(--shadow-xs);
+}
+
+.floating-chip {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --topbar-height: 136px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  html,
+  body {
+    overflow: auto;
+  }
+
+  :root {
+    --topbar-height: 148px;
+    --panel-radius: 22px;
+  }
+}

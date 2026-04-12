@@ -1,0 +1,3242 @@
+[
+  {
+    "governorate": "Tunis",
+    "month": "2024-01",
+    "predicted_price_sqm": 3797,
+    "demand_index": 89,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-02",
+    "predicted_price_sqm": 3759,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-03",
+    "predicted_price_sqm": 3796,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-04",
+    "predicted_price_sqm": 3769,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-05",
+    "predicted_price_sqm": 3742,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-06",
+    "predicted_price_sqm": 3778,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-07",
+    "predicted_price_sqm": 3756,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-08",
+    "predicted_price_sqm": 3783,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-09",
+    "predicted_price_sqm": 3807,
+    "demand_index": 93,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-10",
+    "predicted_price_sqm": 3837,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-11",
+    "predicted_price_sqm": 3858,
+    "demand_index": 93,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2024-12",
+    "predicted_price_sqm": 4228,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2025-01",
+    "predicted_price_sqm": 3797,
+    "demand_index": 89,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2025-02",
+    "predicted_price_sqm": 3759,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Tunis",
+    "month": "2025-03",
+    "predicted_price_sqm": 3796,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-01",
+    "predicted_price_sqm": 3833,
+    "demand_index": 85,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-02",
+    "predicted_price_sqm": 3823,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-03",
+    "predicted_price_sqm": 3794,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-04",
+    "predicted_price_sqm": 3754,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-05",
+    "predicted_price_sqm": 3753,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-06",
+    "predicted_price_sqm": 3761,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-07",
+    "predicted_price_sqm": 3779,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-08",
+    "predicted_price_sqm": 3762,
+    "demand_index": 95,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-09",
+    "predicted_price_sqm": 3777,
+    "demand_index": 91,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-10",
+    "predicted_price_sqm": 3764,
+    "demand_index": 96,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-11",
+    "predicted_price_sqm": 3782,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2024-12",
+    "predicted_price_sqm": 3793,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2025-01",
+    "predicted_price_sqm": 3746,
+    "demand_index": 85,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2025-02",
+    "predicted_price_sqm": 3774,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Ariana",
+    "month": "2025-03",
+    "predicted_price_sqm": 3722,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-01",
+    "predicted_price_sqm": 2834,
+    "demand_index": 81,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-02",
+    "predicted_price_sqm": 2859,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-03",
+    "predicted_price_sqm": 2843,
+    "demand_index": 86,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-04",
+    "predicted_price_sqm": 2848,
+    "demand_index": 86,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-05",
+    "predicted_price_sqm": 2834,
+    "demand_index": 87,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-06",
+    "predicted_price_sqm": 2851,
+    "demand_index": 87,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-07",
+    "predicted_price_sqm": 2847,
+    "demand_index": 87,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-08",
+    "predicted_price_sqm": 2847,
+    "demand_index": 87,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-09",
+    "predicted_price_sqm": 2847,
+    "demand_index": 86,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-10",
+    "predicted_price_sqm": 2854,
+    "demand_index": 85,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-11",
+    "predicted_price_sqm": 2858,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2024-12",
+    "predicted_price_sqm": 2858,
+    "demand_index": 86,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2025-01",
+    "predicted_price_sqm": 2834,
+    "demand_index": 81,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2025-02",
+    "predicted_price_sqm": 2859,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Ben Arous",
+    "month": "2025-03",
+    "predicted_price_sqm": 2843,
+    "demand_index": 86,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-01",
+    "predicted_price_sqm": 2670,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-02",
+    "predicted_price_sqm": 2677,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-03",
+    "predicted_price_sqm": 2669,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-04",
+    "predicted_price_sqm": 2669,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-05",
+    "predicted_price_sqm": 2663,
+    "demand_index": 66,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-06",
+    "predicted_price_sqm": 2666,
+    "demand_index": 66,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-07",
+    "predicted_price_sqm": 2666,
+    "demand_index": 66,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-08",
+    "predicted_price_sqm": 2666,
+    "demand_index": 66,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-09",
+    "predicted_price_sqm": 2670,
+    "demand_index": 66,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-10",
+    "predicted_price_sqm": 2670,
+    "demand_index": 66,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-11",
+    "predicted_price_sqm": 2668,
+    "demand_index": 55,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2024-12",
+    "predicted_price_sqm": 2668,
+    "demand_index": 54,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2025-01",
+    "predicted_price_sqm": 2669,
+    "demand_index": 61,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2025-02",
+    "predicted_price_sqm": 2677,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Manouba",
+    "month": "2025-03",
+    "predicted_price_sqm": 2669,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-01",
+    "predicted_price_sqm": 3105,
+    "demand_index": 78,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-02",
+    "predicted_price_sqm": 3118,
+    "demand_index": 78,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-03",
+    "predicted_price_sqm": 3162,
+    "demand_index": 81,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-04",
+    "predicted_price_sqm": 3187,
+    "demand_index": 80,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-05",
+    "predicted_price_sqm": 3169,
+    "demand_index": 81,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-06",
+    "predicted_price_sqm": 3176,
+    "demand_index": 80,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-07",
+    "predicted_price_sqm": 3184,
+    "demand_index": 79,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-08",
+    "predicted_price_sqm": 3184,
+    "demand_index": 79,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-09",
+    "predicted_price_sqm": 3181,
+    "demand_index": 79,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-10",
+    "predicted_price_sqm": 3187,
+    "demand_index": 75,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-11",
+    "predicted_price_sqm": 3193,
+    "demand_index": 75,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2024-12",
+    "predicted_price_sqm": 3188,
+    "demand_index": 78,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2025-01",
+    "predicted_price_sqm": 3174,
+    "demand_index": 78,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2025-02",
+    "predicted_price_sqm": 3185,
+    "demand_index": 78,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Nabeul",
+    "month": "2025-03",
+    "predicted_price_sqm": 3185,
+    "demand_index": 80,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-01",
+    "predicted_price_sqm": 3382,
+    "demand_index": 91,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-02",
+    "predicted_price_sqm": 3354,
+    "demand_index": 93,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-03",
+    "predicted_price_sqm": 3358,
+    "demand_index": 92,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-04",
+    "predicted_price_sqm": 3361,
+    "demand_index": 92,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-05",
+    "predicted_price_sqm": 3339,
+    "demand_index": 94,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-06",
+    "predicted_price_sqm": 3251,
+    "demand_index": 90,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-07",
+    "predicted_price_sqm": 3252,
+    "demand_index": 90,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-08",
+    "predicted_price_sqm": 3252,
+    "demand_index": 90,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-09",
+    "predicted_price_sqm": 3249,
+    "demand_index": 90,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-10",
+    "predicted_price_sqm": 3258,
+    "demand_index": 87,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-11",
+    "predicted_price_sqm": 3258,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2024-12",
+    "predicted_price_sqm": 3251,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2025-01",
+    "predicted_price_sqm": 3237,
+    "demand_index": 89,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2025-02",
+    "predicted_price_sqm": 3259,
+    "demand_index": 89,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Sousse",
+    "month": "2025-03",
+    "predicted_price_sqm": 3264,
+    "demand_index": 89,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-01",
+    "predicted_price_sqm": 2099,
+    "demand_index": 73,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-02",
+    "predicted_price_sqm": 2109,
+    "demand_index": 76,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-03",
+    "predicted_price_sqm": 2109,
+    "demand_index": 77,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-04",
+    "predicted_price_sqm": 2111,
+    "demand_index": 76,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-05",
+    "predicted_price_sqm": 2110,
+    "demand_index": 77,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-06",
+    "predicted_price_sqm": 2110,
+    "demand_index": 77,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-07",
+    "predicted_price_sqm": 2110,
+    "demand_index": 77,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-08",
+    "predicted_price_sqm": 2110,
+    "demand_index": 76,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-09",
+    "predicted_price_sqm": 2111,
+    "demand_index": 76,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-10",
+    "predicted_price_sqm": 2111,
+    "demand_index": 75,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-11",
+    "predicted_price_sqm": 2130,
+    "demand_index": 81,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2024-12",
+    "predicted_price_sqm": 2134,
+    "demand_index": 81,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2025-01",
+    "predicted_price_sqm": 2099,
+    "demand_index": 73,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2025-02",
+    "predicted_price_sqm": 2109,
+    "demand_index": 76,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Sfax",
+    "month": "2025-03",
+    "predicted_price_sqm": 2109,
+    "demand_index": 77,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-01",
+    "predicted_price_sqm": 2801,
+    "demand_index": 78,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-02",
+    "predicted_price_sqm": 2813,
+    "demand_index": 78,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-03",
+    "predicted_price_sqm": 2817,
+    "demand_index": 83,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-04",
+    "predicted_price_sqm": 2818,
+    "demand_index": 83,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-05",
+    "predicted_price_sqm": 2807,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-06",
+    "predicted_price_sqm": 2813,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-07",
+    "predicted_price_sqm": 2814,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-08",
+    "predicted_price_sqm": 2814,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-09",
+    "predicted_price_sqm": 2820,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-10",
+    "predicted_price_sqm": 2832,
+    "demand_index": 82,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-11",
+    "predicted_price_sqm": 2869,
+    "demand_index": 80,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2024-12",
+    "predicted_price_sqm": 2868,
+    "demand_index": 81,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2025-01",
+    "predicted_price_sqm": 2844,
+    "demand_index": 78,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2025-02",
+    "predicted_price_sqm": 2854,
+    "demand_index": 78,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Monastir",
+    "month": "2025-03",
+    "predicted_price_sqm": 2863,
+    "demand_index": 84,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-01",
+    "predicted_price_sqm": 1772,
+    "demand_index": 58,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-02",
+    "predicted_price_sqm": 1773,
+    "demand_index": 62,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-03",
+    "predicted_price_sqm": 1777,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-04",
+    "predicted_price_sqm": 1777,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-05",
+    "predicted_price_sqm": 1780,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-06",
+    "predicted_price_sqm": 1780,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-07",
+    "predicted_price_sqm": 1791,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-08",
+    "predicted_price_sqm": 1788,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-09",
+    "predicted_price_sqm": 1790,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-10",
+    "predicted_price_sqm": 1790,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-11",
+    "predicted_price_sqm": 1790,
+    "demand_index": 52,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2024-12",
+    "predicted_price_sqm": 1789,
+    "demand_index": 51,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2025-01",
+    "predicted_price_sqm": 1772,
+    "demand_index": 58,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2025-02",
+    "predicted_price_sqm": 1773,
+    "demand_index": 62,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Mahdia",
+    "month": "2025-03",
+    "predicted_price_sqm": 1777,
+    "demand_index": 63,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-01",
+    "predicted_price_sqm": 1160,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-02",
+    "predicted_price_sqm": 1162,
+    "demand_index": 41,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-03",
+    "predicted_price_sqm": 1159,
+    "demand_index": 41,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-04",
+    "predicted_price_sqm": 1159,
+    "demand_index": 43,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-05",
+    "predicted_price_sqm": 1159,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-06",
+    "predicted_price_sqm": 1159,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-07",
+    "predicted_price_sqm": 1159,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-08",
+    "predicted_price_sqm": 1159,
+    "demand_index": 40,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-09",
+    "predicted_price_sqm": 1159,
+    "demand_index": 39,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-10",
+    "predicted_price_sqm": 1159,
+    "demand_index": 41,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-11",
+    "predicted_price_sqm": 1159,
+    "demand_index": 40,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2024-12",
+    "predicted_price_sqm": 1160,
+    "demand_index": 40,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2025-01",
+    "predicted_price_sqm": 1160,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2025-02",
+    "predicted_price_sqm": 1162,
+    "demand_index": 41,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Kairouan",
+    "month": "2025-03",
+    "predicted_price_sqm": 1159,
+    "demand_index": 41,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-01",
+    "predicted_price_sqm": 905,
+    "demand_index": 38,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-02",
+    "predicted_price_sqm": 917,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-03",
+    "predicted_price_sqm": 929,
+    "demand_index": 35,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-04",
+    "predicted_price_sqm": 937,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-05",
+    "predicted_price_sqm": 936,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-06",
+    "predicted_price_sqm": 935,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-07",
+    "predicted_price_sqm": 935,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-08",
+    "predicted_price_sqm": 935,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-09",
+    "predicted_price_sqm": 935,
+    "demand_index": 32,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-10",
+    "predicted_price_sqm": 935,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-11",
+    "predicted_price_sqm": 935,
+    "demand_index": 32,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2024-12",
+    "predicted_price_sqm": 935,
+    "demand_index": 32,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2025-01",
+    "predicted_price_sqm": 938,
+    "demand_index": 37,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2025-02",
+    "predicted_price_sqm": 940,
+    "demand_index": 34,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Kasserine",
+    "month": "2025-03",
+    "predicted_price_sqm": 937,
+    "demand_index": 34,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-01",
+    "predicted_price_sqm": 856,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-02",
+    "predicted_price_sqm": 859,
+    "demand_index": 28,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-03",
+    "predicted_price_sqm": 859,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-04",
+    "predicted_price_sqm": 859,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-05",
+    "predicted_price_sqm": 860,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-06",
+    "predicted_price_sqm": 859,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-07",
+    "predicted_price_sqm": 859,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-08",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-09",
+    "predicted_price_sqm": 859,
+    "demand_index": 27,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-10",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-11",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2024-12",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2025-01",
+    "predicted_price_sqm": 861,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2025-02",
+    "predicted_price_sqm": 859,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Sidi Bouzid",
+    "month": "2025-03",
+    "predicted_price_sqm": 859,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-01",
+    "predicted_price_sqm": 1412,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-02",
+    "predicted_price_sqm": 1440,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-03",
+    "predicted_price_sqm": 1437,
+    "demand_index": 47,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-04",
+    "predicted_price_sqm": 1437,
+    "demand_index": 49,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-05",
+    "predicted_price_sqm": 1440,
+    "demand_index": 49,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-06",
+    "predicted_price_sqm": 1440,
+    "demand_index": 49,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-07",
+    "predicted_price_sqm": 1440,
+    "demand_index": 50,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-08",
+    "predicted_price_sqm": 1440,
+    "demand_index": 46,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-09",
+    "predicted_price_sqm": 1439,
+    "demand_index": 45,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-10",
+    "predicted_price_sqm": 1439,
+    "demand_index": 46,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-11",
+    "predicted_price_sqm": 1438,
+    "demand_index": 47,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2024-12",
+    "predicted_price_sqm": 1440,
+    "demand_index": 48,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2025-01",
+    "predicted_price_sqm": 1440,
+    "demand_index": 43,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2025-02",
+    "predicted_price_sqm": 1441,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Gabes",
+    "month": "2025-03",
+    "predicted_price_sqm": 1437,
+    "demand_index": 47,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-01",
+    "predicted_price_sqm": 1509,
+    "demand_index": 50,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-02",
+    "predicted_price_sqm": 1511,
+    "demand_index": 53,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-03",
+    "predicted_price_sqm": 1509,
+    "demand_index": 57,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-04",
+    "predicted_price_sqm": 1509,
+    "demand_index": 57,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-05",
+    "predicted_price_sqm": 1515,
+    "demand_index": 57,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-06",
+    "predicted_price_sqm": 1515,
+    "demand_index": 59,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-07",
+    "predicted_price_sqm": 1517,
+    "demand_index": 59,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-08",
+    "predicted_price_sqm": 1514,
+    "demand_index": 54,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-09",
+    "predicted_price_sqm": 1513,
+    "demand_index": 54,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-10",
+    "predicted_price_sqm": 1513,
+    "demand_index": 55,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-11",
+    "predicted_price_sqm": 1513,
+    "demand_index": 55,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2024-12",
+    "predicted_price_sqm": 1513,
+    "demand_index": 55,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2025-01",
+    "predicted_price_sqm": 1509,
+    "demand_index": 50,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2025-02",
+    "predicted_price_sqm": 1511,
+    "demand_index": 53,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Medenine",
+    "month": "2025-03",
+    "predicted_price_sqm": 1509,
+    "demand_index": 57,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-01",
+    "predicted_price_sqm": 701,
+    "demand_index": 17,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-02",
+    "predicted_price_sqm": 702,
+    "demand_index": 17,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-03",
+    "predicted_price_sqm": 702,
+    "demand_index": 17,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-04",
+    "predicted_price_sqm": 702,
+    "demand_index": 20,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-05",
+    "predicted_price_sqm": 703,
+    "demand_index": 22,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-06",
+    "predicted_price_sqm": 703,
+    "demand_index": 23,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-07",
+    "predicted_price_sqm": 703,
+    "demand_index": 21,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-08",
+    "predicted_price_sqm": 704,
+    "demand_index": 21,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-09",
+    "predicted_price_sqm": 704,
+    "demand_index": 21,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-10",
+    "predicted_price_sqm": 704,
+    "demand_index": 16,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-11",
+    "predicted_price_sqm": 704,
+    "demand_index": 20,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2024-12",
+    "predicted_price_sqm": 702,
+    "demand_index": 20,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2025-01",
+    "predicted_price_sqm": 701,
+    "demand_index": 17,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2025-02",
+    "predicted_price_sqm": 702,
+    "demand_index": 17,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Tataouine",
+    "month": "2025-03",
+    "predicted_price_sqm": 702,
+    "demand_index": 17,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-01",
+    "predicted_price_sqm": 1008,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-02",
+    "predicted_price_sqm": 1021,
+    "demand_index": 34,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-03",
+    "predicted_price_sqm": 1036,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-04",
+    "predicted_price_sqm": 1036,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-05",
+    "predicted_price_sqm": 1035,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-06",
+    "predicted_price_sqm": 1035,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-07",
+    "predicted_price_sqm": 1035,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-08",
+    "predicted_price_sqm": 1035,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-09",
+    "predicted_price_sqm": 1035,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-10",
+    "predicted_price_sqm": 1035,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-11",
+    "predicted_price_sqm": 1035,
+    "demand_index": 35,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2024-12",
+    "predicted_price_sqm": 1035,
+    "demand_index": 35,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2025-01",
+    "predicted_price_sqm": 1037,
+    "demand_index": 34,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2025-02",
+    "predicted_price_sqm": 1039,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Gafsa",
+    "month": "2025-03",
+    "predicted_price_sqm": 1036,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-01",
+    "predicted_price_sqm": 967,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-02",
+    "predicted_price_sqm": 969,
+    "demand_index": 32,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-03",
+    "predicted_price_sqm": 977,
+    "demand_index": 32,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-04",
+    "predicted_price_sqm": 977,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-05",
+    "predicted_price_sqm": 976,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-06",
+    "predicted_price_sqm": 975,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-07",
+    "predicted_price_sqm": 975,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-08",
+    "predicted_price_sqm": 975,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-09",
+    "predicted_price_sqm": 975,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-10",
+    "predicted_price_sqm": 975,
+    "demand_index": 36,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-11",
+    "predicted_price_sqm": 975,
+    "demand_index": 35,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2024-12",
+    "predicted_price_sqm": 975,
+    "demand_index": 34,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2025-01",
+    "predicted_price_sqm": 977,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2025-02",
+    "predicted_price_sqm": 979,
+    "demand_index": 32,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Tozeur",
+    "month": "2025-03",
+    "predicted_price_sqm": 977,
+    "demand_index": 32,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-01",
+    "predicted_price_sqm": 796,
+    "demand_index": 20,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-02",
+    "predicted_price_sqm": 797,
+    "demand_index": 24,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-03",
+    "predicted_price_sqm": 797,
+    "demand_index": 23,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-04",
+    "predicted_price_sqm": 797,
+    "demand_index": 25,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-05",
+    "predicted_price_sqm": 798,
+    "demand_index": 25,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-06",
+    "predicted_price_sqm": 798,
+    "demand_index": 25,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-07",
+    "predicted_price_sqm": 798,
+    "demand_index": 24,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-08",
+    "predicted_price_sqm": 799,
+    "demand_index": 23,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-09",
+    "predicted_price_sqm": 799,
+    "demand_index": 21,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-10",
+    "predicted_price_sqm": 799,
+    "demand_index": 20,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-11",
+    "predicted_price_sqm": 799,
+    "demand_index": 20,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2024-12",
+    "predicted_price_sqm": 798,
+    "demand_index": 18,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2025-01",
+    "predicted_price_sqm": 796,
+    "demand_index": 20,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2025-02",
+    "predicted_price_sqm": 797,
+    "demand_index": 24,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Kebili",
+    "month": "2025-03",
+    "predicted_price_sqm": 797,
+    "demand_index": 23,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-01",
+    "predicted_price_sqm": 1596,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-02",
+    "predicted_price_sqm": 1606,
+    "demand_index": 49,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-03",
+    "predicted_price_sqm": 1605,
+    "demand_index": 50,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-04",
+    "predicted_price_sqm": 1605,
+    "demand_index": 51,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-05",
+    "predicted_price_sqm": 1612,
+    "demand_index": 51,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-06",
+    "predicted_price_sqm": 1613,
+    "demand_index": 52,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-07",
+    "predicted_price_sqm": 1615,
+    "demand_index": 53,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-08",
+    "predicted_price_sqm": 1612,
+    "demand_index": 56,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-09",
+    "predicted_price_sqm": 1611,
+    "demand_index": 46,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-10",
+    "predicted_price_sqm": 1611,
+    "demand_index": 47,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-11",
+    "predicted_price_sqm": 1611,
+    "demand_index": 45,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2024-12",
+    "predicted_price_sqm": 1610,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2025-01",
+    "predicted_price_sqm": 1596,
+    "demand_index": 43,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2025-02",
+    "predicted_price_sqm": 1606,
+    "demand_index": 49,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Zaghouan",
+    "month": "2025-03",
+    "predicted_price_sqm": 1605,
+    "demand_index": 50,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-01",
+    "predicted_price_sqm": 2120,
+    "demand_index": 60,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-02",
+    "predicted_price_sqm": 2113,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-03",
+    "predicted_price_sqm": 2112,
+    "demand_index": 65,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-04",
+    "predicted_price_sqm": 2114,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-05",
+    "predicted_price_sqm": 2114,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-06",
+    "predicted_price_sqm": 2114,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-07",
+    "predicted_price_sqm": 2115,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-08",
+    "predicted_price_sqm": 2113,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-09",
+    "predicted_price_sqm": 2115,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-10",
+    "predicted_price_sqm": 2115,
+    "demand_index": 61,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-11",
+    "predicted_price_sqm": 2129,
+    "demand_index": 61,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2024-12",
+    "predicted_price_sqm": 2133,
+    "demand_index": 62,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2025-01",
+    "predicted_price_sqm": 2120,
+    "demand_index": 60,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2025-02",
+    "predicted_price_sqm": 2113,
+    "demand_index": 64,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Bizerte",
+    "month": "2025-03",
+    "predicted_price_sqm": 2112,
+    "demand_index": 65,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-01",
+    "predicted_price_sqm": 1109,
+    "demand_index": 38,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-02",
+    "predicted_price_sqm": 1111,
+    "demand_index": 42,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-03",
+    "predicted_price_sqm": 1108,
+    "demand_index": 42,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-04",
+    "predicted_price_sqm": 1108,
+    "demand_index": 43,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-05",
+    "predicted_price_sqm": 1109,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-06",
+    "predicted_price_sqm": 1110,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-07",
+    "predicted_price_sqm": 1109,
+    "demand_index": 44,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-08",
+    "predicted_price_sqm": 1109,
+    "demand_index": 40,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-09",
+    "predicted_price_sqm": 1109,
+    "demand_index": 39,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-10",
+    "predicted_price_sqm": 1108,
+    "demand_index": 40,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-11",
+    "predicted_price_sqm": 1108,
+    "demand_index": 40,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2024-12",
+    "predicted_price_sqm": 1109,
+    "demand_index": 39,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Beja",
+    "month": "2025-01",
+    "predicted_price_sqm": 1109,
+    "demand_index": 40,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Beja",
+    "month": "2025-02",
+    "predicted_price_sqm": 1111,
+    "demand_index": 42,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Beja",
+    "month": "2025-03",
+    "predicted_price_sqm": 1108,
+    "demand_index": 42,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-01",
+    "predicted_price_sqm": 1012,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-02",
+    "predicted_price_sqm": 1022,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-03",
+    "predicted_price_sqm": 1037,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-04",
+    "predicted_price_sqm": 1037,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-05",
+    "predicted_price_sqm": 1036,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-06",
+    "predicted_price_sqm": 1036,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-07",
+    "predicted_price_sqm": 1035,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-08",
+    "predicted_price_sqm": 1035,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-09",
+    "predicted_price_sqm": 1035,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-10",
+    "predicted_price_sqm": 1034,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-11",
+    "predicted_price_sqm": 1034,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2024-12",
+    "predicted_price_sqm": 1034,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2025-01",
+    "predicted_price_sqm": 1040,
+    "demand_index": 32,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2025-02",
+    "predicted_price_sqm": 1040,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Jendouba",
+    "month": "2025-03",
+    "predicted_price_sqm": 1037,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-01",
+    "predicted_price_sqm": 905,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-02",
+    "predicted_price_sqm": 917,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-03",
+    "predicted_price_sqm": 929,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-04",
+    "predicted_price_sqm": 937,
+    "demand_index": 34,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-05",
+    "predicted_price_sqm": 936,
+    "demand_index": 34,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-06",
+    "predicted_price_sqm": 935,
+    "demand_index": 34,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-07",
+    "predicted_price_sqm": 935,
+    "demand_index": 34,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-08",
+    "predicted_price_sqm": 935,
+    "demand_index": 33,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-09",
+    "predicted_price_sqm": 935,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-10",
+    "predicted_price_sqm": 935,
+    "demand_index": 32,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-11",
+    "predicted_price_sqm": 935,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2024-12",
+    "predicted_price_sqm": 935,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2025-01",
+    "predicted_price_sqm": 938,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2025-02",
+    "predicted_price_sqm": 940,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Le Kef",
+    "month": "2025-03",
+    "predicted_price_sqm": 937,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-01",
+    "predicted_price_sqm": 855,
+    "demand_index": 24,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-02",
+    "predicted_price_sqm": 859,
+    "demand_index": 26,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-03",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-04",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-05",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-06",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-07",
+    "predicted_price_sqm": 858,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-08",
+    "predicted_price_sqm": 859,
+    "demand_index": 24,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-09",
+    "predicted_price_sqm": 859,
+    "demand_index": 28,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-10",
+    "predicted_price_sqm": 859,
+    "demand_index": 31,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-11",
+    "predicted_price_sqm": 859,
+    "demand_index": 30,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2024-12",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": false
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2025-01",
+    "predicted_price_sqm": 860,
+    "demand_index": 26,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2025-02",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  },
+  {
+    "governorate": "Siliana",
+    "month": "2025-03",
+    "predicted_price_sqm": 859,
+    "demand_index": 29,
+    "velocity_index": 95,
+    "absorption_rate": 9,
+    "is_forecast": true
+  }
+]

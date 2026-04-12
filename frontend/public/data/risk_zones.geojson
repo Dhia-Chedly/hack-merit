@@ -1,0 +1,349 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Flood Zone",
+        "severity": "Critical",
+        "name": "Medjerda River Basin",
+        "description": "Major flood-prone zone along Medjerda river. Historical flooding events in 2003, 2009, 2015."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.65,
+              36.7
+            ],
+            [
+              9.75,
+              36.73
+            ],
+            [
+              9.85,
+              36.75
+            ],
+            [
+              9.9,
+              36.72
+            ],
+            [
+              9.8,
+              36.68
+            ],
+            [
+              9.7,
+              36.67
+            ],
+            [
+              9.65,
+              36.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Flood Zone",
+        "severity": "High",
+        "name": "Manouba Lowlands",
+        "description": "Low-lying agricultural land susceptible to Medjerda overflow."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.05,
+              36.8
+            ],
+            [
+              10.12,
+              36.82
+            ],
+            [
+              10.15,
+              36.8
+            ],
+            [
+              10.12,
+              36.78
+            ],
+            [
+              10.05,
+              36.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Seismic Zone",
+        "severity": "High",
+        "name": "Cap Bon Seismic Belt",
+        "description": "Active tectonic zone on the Cap Bon Peninsula. Moderate earthquake risk from African-Eurasian plate boundary."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.65,
+              36.75
+            ],
+            [
+              10.8,
+              36.82
+            ],
+            [
+              10.9,
+              36.78
+            ],
+            [
+              10.85,
+              36.7
+            ],
+            [
+              10.72,
+              36.68
+            ],
+            [
+              10.65,
+              36.75
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Construction Disruption",
+        "severity": "Medium",
+        "name": "Tunis Metro Extension RFR",
+        "description": "Rapid Rail Network (RFR) extension corridor. Expected construction 2025-2028."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.15,
+              36.81
+            ],
+            [
+              10.22,
+              36.83
+            ],
+            [
+              10.23,
+              36.82
+            ],
+            [
+              10.16,
+              36.8
+            ],
+            [
+              10.15,
+              36.81
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Industrial Pollution",
+        "severity": "Medium",
+        "name": "Ben Arous Industrial Zone",
+        "description": "Heavy industrial area with environmental concerns. Impact on residential property value."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.2,
+              36.72
+            ],
+            [
+              10.28,
+              36.74
+            ],
+            [
+              10.3,
+              36.72
+            ],
+            [
+              10.25,
+              36.7
+            ],
+            [
+              10.2,
+              36.72
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Coastal Erosion",
+        "severity": "High",
+        "name": "Hammamet-Nabeul Coast",
+        "description": "Accelerating coastal erosion threatening beachfront developments. 2-4m annual recession in some areas."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.55,
+              36.39
+            ],
+            [
+              10.65,
+              36.42
+            ],
+            [
+              10.7,
+              36.44
+            ],
+            [
+              10.72,
+              36.42
+            ],
+            [
+              10.67,
+              36.38
+            ],
+            [
+              10.57,
+              36.37
+            ],
+            [
+              10.55,
+              36.39
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Flood Zone",
+        "severity": "High",
+        "name": "Sousse Oued Hamdoun",
+        "description": "Recurrent urban flooding from Oued Hamdoun. Major episodes in 2018, 2020."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.58,
+              35.82
+            ],
+            [
+              10.63,
+              35.84
+            ],
+            [
+              10.65,
+              35.83
+            ],
+            [
+              10.62,
+              35.8
+            ],
+            [
+              10.58,
+              35.82
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Flood Zone",
+        "severity": "Medium",
+        "name": "Bizerte Coastal Flooding",
+        "description": "Low-lying coastal areas susceptible to storm surge and sea level rise."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.85,
+              37.26
+            ],
+            [
+              9.9,
+              37.28
+            ],
+            [
+              9.92,
+              37.27
+            ],
+            [
+              9.88,
+              37.25
+            ],
+            [
+              9.85,
+              37.26
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Flood Zone",
+        "severity": "Critical",
+        "name": "Gabes Oasis Flash Floods",
+        "description": "Flash flood risk from wadis. High damage potential in developed oasis periphery."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.05,
+              33.88
+            ],
+            [
+              10.12,
+              33.9
+            ],
+            [
+              10.14,
+              33.88
+            ],
+            [
+              10.08,
+              33.86
+            ],
+            [
+              10.05,
+              33.88
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
