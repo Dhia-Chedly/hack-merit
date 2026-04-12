@@ -10,6 +10,7 @@ from src.forecasting import (
     forecast_projects,
     forecast_summary_insights,
 )
+from src.risk import calculate_project_risk, risk_overview_metrics
 
 
 def configure_page() -> None:
@@ -108,6 +109,15 @@ def render_overview_metrics(metrics: dict[str, float | int]) -> None:
     )
 
 
+def render_risk_snapshot(project_risk_df: pd.DataFrame) -> None:
+    risk_metrics = risk_overview_metrics(project_risk_df)
+    col_1, col_2, col_3 = st.columns(3)
+
+    col_1.metric("High-Risk Projects", format_number(risk_metrics["high_risk_projects"]))
+    col_2.metric("Average Risk Score", f"{float(risk_metrics['average_risk_score']):.1f}")
+    col_3.metric("High-Risk Share", format_percentage(risk_metrics["high_risk_share"]))
+
+
 def render_city_charts(city_df: pd.DataFrame) -> None:
     st.subheader("Projected Performance by City")
     col_demand, col_sales = st.columns(2)
@@ -199,6 +209,9 @@ def render_project_forecast_table(project_df: pd.DataFrame) -> None:
             "current_sales",
             "unsold_inventory",
             "projected_sales_growth_rate",
+            "risk_score",
+            "risk_level",
+            "top_risk_drivers",
         ]
     ].copy()
 
@@ -212,6 +225,10 @@ def render_project_forecast_table(project_df: pd.DataFrame) -> None:
     display_df["projected_sales_growth_rate"] = display_df["projected_sales_growth_rate"].map(
         format_percentage
     )
+    display_df["risk_score"] = display_df["risk_score"].map(
+        lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
+    )
+    display_df["top_risk_drivers"] = display_df["top_risk_drivers"].fillna("N/A")
 
     st.dataframe(
         display_df.rename(
@@ -224,6 +241,9 @@ def render_project_forecast_table(project_df: pd.DataFrame) -> None:
                 "current_sales": "Current Sales",
                 "unsold_inventory": "Unsold Inventory",
                 "projected_sales_growth_rate": "Projected Sales Growth",
+                "risk_score": "Risk Score",
+                "risk_level": "Risk Level",
+                "top_risk_drivers": "Top Risk Drivers",
             }
         ),
         use_container_width=True,
@@ -349,6 +369,13 @@ def main() -> None:
 
     try:
         project_forecast_df = forecast_projects(filtered_df)
+        project_risk_df = calculate_project_risk(filtered_df)
+        join_keys = ["project_name", "city", "neighborhood", "property_type"]
+        project_forecast_df = project_forecast_df.merge(
+            project_risk_df[join_keys + ["risk_score", "risk_level", "top_risk_drivers"]],
+            on=join_keys,
+            how="left",
+        )
         city_summary_df = forecast_city_summary(project_forecast_df)
         overview_metrics = forecast_overview_metrics(project_forecast_df)
         insights = forecast_summary_insights(project_forecast_df, city_summary_df)
@@ -358,6 +385,8 @@ def main() -> None:
 
     st.caption(f"Projects included in forecast: {len(project_forecast_df):,}")
     render_overview_metrics(overview_metrics)
+    st.markdown("**Risk Snapshot**")
+    render_risk_snapshot(project_risk_df)
     st.divider()
     render_summary(insights)
     st.divider()

@@ -3,6 +3,7 @@ import pydeck as pdk
 import streamlit as st
 
 from src.data_loader import load_projects_data
+from src.risk import calculate_project_risk
 
 MAP_CENTER_LAT = 34.2
 MAP_CENTER_LON = 9.4
@@ -17,6 +18,18 @@ def load_map_data() -> pd.DataFrame | None:
         st.error(f"Unable to load project dataset: {error}")
         st.info("Please verify `data/projects.csv` and try again.")
         return None
+
+
+def add_risk_data(df: pd.DataFrame) -> pd.DataFrame | None:
+    try:
+        risk_df = calculate_project_risk(df)
+    except ValueError as error:
+        st.error(f"Unable to compute risk signals for map view: {error}")
+        return None
+
+    join_keys = ["project_name", "city", "neighborhood", "property_type"]
+    merge_columns = join_keys + ["risk_score", "risk_level", "top_risk_drivers"]
+    return df.merge(risk_df[merge_columns], on=join_keys, how="left")
 
 
 def render_sidebar_filters(df: pd.DataFrame) -> tuple[list[str], list[str]]:
@@ -70,6 +83,11 @@ def prepare_map_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     map_df["avg_price_display"] = map_df["avg_price"].map(
         lambda value: f"TND {float(value):,.0f}"
     )
+    map_df["risk_score_display"] = map_df["risk_score"].map(
+        lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
+    )
+    map_df["risk_level_display"] = map_df["risk_level"].fillna("N/A")
+    map_df["top_risk_drivers_display"] = map_df["top_risk_drivers"].fillna("N/A")
 
     return map_df
 
@@ -109,7 +127,10 @@ def build_map(map_df: pd.DataFrame) -> pdk.Deck:
         Reservations: {reservations_display}<br/>
         Sales: {sales_display}<br/>
         Unsold Inventory: {unsold_inventory_display}<br/>
-        Avg Price: {avg_price_display}
+        Avg Price: {avg_price_display}<br/>
+        Risk Score: {risk_score_display}<br/>
+        Risk Level: {risk_level_display}<br/>
+        Top Risk Drivers: {top_risk_drivers_display}
         """,
         "style": {
             "backgroundColor": "white",
@@ -140,6 +161,8 @@ def render_filtered_table(df: pd.DataFrame) -> None:
                 "sales",
                 "unsold_inventory",
                 "avg_price",
+                "risk_score",
+                "risk_level",
             ]
         ]
         .sort_values(by=["city", "project_name"])
@@ -154,6 +177,9 @@ def render_filtered_table(df: pd.DataFrame) -> None:
     table_df["avg_price"] = table_df["avg_price"].map(
         lambda value: f"TND {float(value):,.0f}"
     )
+    table_df["risk_score"] = table_df["risk_score"].map(
+        lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
+    )
 
     st.dataframe(
         table_df.rename(
@@ -166,6 +192,8 @@ def render_filtered_table(df: pd.DataFrame) -> None:
                 "sales": "Sales",
                 "unsold_inventory": "Unsold Inventory",
                 "avg_price": "Avg Price",
+                "risk_score": "Risk Score",
+                "risk_level": "Risk Level",
             }
         ),
         use_container_width=True,
@@ -186,8 +214,12 @@ def main() -> None:
     if projects_df is None:
         return
 
-    selected_cities, selected_property_types = render_sidebar_filters(projects_df)
-    filtered_df = apply_filters(projects_df, selected_cities, selected_property_types)
+    projects_with_risk_df = add_risk_data(projects_df)
+    if projects_with_risk_df is None:
+        return
+
+    selected_cities, selected_property_types = render_sidebar_filters(projects_with_risk_df)
+    filtered_df = apply_filters(projects_with_risk_df, selected_cities, selected_property_types)
 
     if filtered_df.empty:
         st.warning(
