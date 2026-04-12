@@ -1,7 +1,17 @@
 import pandas as pd
+import plotly.express as px
 import pydeck as pdk
 import streamlit as st
 
+from src.dashboard_ui import (
+    apply_dashboard_theme,
+    dashboard_panel,
+    render_kpi_cards,
+    render_page_hero,
+    render_sidebar_block,
+    render_source_chip,
+    style_plotly_figure,
+)
 from src.data_loader import load_projects_data_with_metadata
 from src.decision_support import calculate_project_recommendations
 from src.presentation import (
@@ -14,11 +24,17 @@ from src.presentation import (
 MAP_CENTER_LAT = 34.2
 MAP_CENTER_LON = 9.4
 MAP_INITIAL_ZOOM = 5.8
-MAP_HEIGHT = 560
+MAP_HEIGHT = 540
+MAP_STYLE_DARK = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
 
 
 def configure_page() -> None:
-    st.set_page_config(page_title=full_page_title("Map Explorer"), layout="wide")
+    st.set_page_config(
+        page_title=full_page_title("Map Explorer"),
+        layout="wide",
+        initial_sidebar_state="expanded",
+    )
+    apply_dashboard_theme()
 
 
 def source_display_name(source: str) -> str:
@@ -57,18 +73,14 @@ def add_decision_data(df: pd.DataFrame) -> pd.DataFrame | None:
 
 
 def render_header() -> None:
-    st.title("Map Explorer")
-    st.markdown(
-        """
-        Explore project concentration and commercial signals across Tunisia.
-        Marker size reflects **lead volume**, while tooltips combine current performance,
-        risk, and recommended action.
-        """
+    render_page_hero(
+        "Map Explorer",
+        "Explore project concentration and commercial signals across Tunisia. Marker size reflects lead volume, while tooltips combine performance, risk, and recommended action.",
     )
 
 
 def render_sidebar_filters(df: pd.DataFrame) -> tuple[list[str], list[str]]:
-    st.sidebar.header("Filters")
+    render_sidebar_block("Map Controls", "Refine the geospatial view by market and asset type.")
 
     city_options = sorted_options(df, "city")
     property_type_options = sorted_options(df, "property_type")
@@ -92,20 +104,22 @@ def apply_filters(
 
 
 def render_map_summary(filtered_df: pd.DataFrame) -> None:
-    st.subheader("Filtered Portfolio Snapshot")
-    columns = st.columns(5)
-
-    columns[0].metric("Projects Displayed", format_number(len(filtered_df)))
-    columns[1].metric("Total Leads", format_number(filtered_df["leads"].sum()))
-    columns[2].metric("Total Sales", format_number(filtered_df["sales"].sum()))
-    columns[3].metric("Unsold Inventory", format_number(filtered_df["unsold_inventory"].sum()))
-    columns[4].metric("Average Price", format_currency(filtered_df["avg_price"].mean()))
+    cards = [
+        {"label": "Projects Displayed", "value": format_number(len(filtered_df)), "subtext": "Visible projects on the map"},
+        {"label": "Total Leads", "value": format_number(filtered_df["leads"].sum()), "subtext": "Demand volume in current map scope"},
+        {"label": "Total Sales", "value": format_number(filtered_df["sales"].sum()), "subtext": "Completed transactions in scope"},
+        {
+            "label": "Unsold Inventory",
+            "value": format_number(filtered_df["unsold_inventory"].sum()),
+            "subtext": f"Average price: {format_currency(filtered_df['avg_price'].mean())}",
+        },
+    ]
+    render_kpi_cards(cards, columns=4)
 
 
 def prepare_map_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     map_df = df.copy()
 
-    # Size markers by leads so high-demand projects stand out clearly.
     map_df["marker_radius"] = (
         map_df["leads"].clip(lower=1).pow(0.5).mul(250).clip(lower=2500, upper=12000)
     )
@@ -115,16 +129,12 @@ def prepare_map_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         lambda value: f"{int(value):,}"
     )
     map_df["visits_display"] = map_df["visits"].map(lambda value: f"{int(value):,}")
-    map_df["reservations_display"] = map_df["reservations"].map(
-        lambda value: f"{int(value):,}"
-    )
+    map_df["reservations_display"] = map_df["reservations"].map(lambda value: f"{int(value):,}")
     map_df["sales_display"] = map_df["sales"].map(lambda value: f"{int(value):,}")
     map_df["unsold_inventory_display"] = map_df["unsold_inventory"].map(
         lambda value: f"{int(value):,}"
     )
-    map_df["avg_price_display"] = map_df["avg_price"].map(
-        lambda value: format_currency(value)
-    )
+    map_df["avg_price_display"] = map_df["avg_price"].map(lambda value: format_currency(value))
     map_df["risk_score_display"] = map_df["risk_score"].map(
         lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
     )
@@ -145,8 +155,8 @@ def build_map(map_df: pd.DataFrame) -> pdk.Deck:
         data=map_df,
         get_position=["longitude", "latitude"],
         get_radius="marker_radius",
-        get_fill_color=[15, 98, 254, 180],
-        get_line_color=[255, 255, 255, 180],
+        get_fill_color=[43, 151, 255, 185],
+        get_line_color=[223, 241, 255, 180],
         line_width_min_pixels=1,
         pickable=True,
         stroked=True,
@@ -183,8 +193,8 @@ def build_map(map_df: pd.DataFrame) -> pdk.Deck:
         Priority Score: {priority_score_display}
         """,
         "style": {
-            "backgroundColor": "white",
-            "color": "#1f2937",
+            "backgroundColor": "#08172f",
+            "color": "#e7f2ff",
             "fontSize": "12px",
         },
     }
@@ -193,66 +203,63 @@ def build_map(map_df: pd.DataFrame) -> pdk.Deck:
         layers=[layer],
         initial_view_state=view_state,
         tooltip=tooltip,
-        map_style="light",
+        map_style=MAP_STYLE_DARK,
         map_provider="carto",
     )
 
 
-def render_filtered_table(df: pd.DataFrame) -> None:
-    st.subheader("Filtered Project Table")
-    table_df = (
-        df[
-            [
-                "project_name",
-                "city",
-                "neighborhood",
-                "property_type",
-                "leads",
-                "sales",
-                "unsold_inventory",
-                "avg_price",
-                "risk_level",
-                "risk_score",
-                "recommended_action",
-                "priority_score",
-            ]
-        ]
-        .sort_values(by=["city", "project_name"])
-        .reset_index(drop=True)
-    )
+def render_filtered_project_charts(df: pd.DataFrame) -> None:
+    col_demand, col_risk = st.columns(2)
 
-    table_df["leads"] = table_df["leads"].map(format_number)
-    table_df["sales"] = table_df["sales"].map(format_number)
-    table_df["unsold_inventory"] = table_df["unsold_inventory"].map(format_number)
-    table_df["avg_price"] = table_df["avg_price"].map(format_currency)
-    table_df["risk_score"] = table_df["risk_score"].map(
-        lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
-    )
-    table_df["priority_score"] = table_df["priority_score"].map(
-        lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
-    )
+    with col_demand:
+        top_demand_projects = df.nlargest(min(12, len(df)), "leads")
+        demand_fig = px.bar(
+            top_demand_projects.sort_values("leads", ascending=True),
+            x="leads",
+            y="project_name",
+            orientation="h",
+            color="city",
+            text="leads",
+            labels={"leads": "Leads", "project_name": "Project", "city": "City"},
+            hover_data={
+                "property_type": True,
+                "sales": ":,.0f",
+                "unsold_inventory": ":,.0f",
+                "recommended_action": True,
+            },
+            title="Top Projects by Lead Volume",
+        )
+        demand_fig.update_traces(texttemplate="%{x:,.0f}", textposition="outside")
+        style_plotly_figure(demand_fig, height=360)
+        st.plotly_chart(demand_fig, use_container_width=True)
 
-    st.dataframe(
-        table_df.rename(
-            columns={
-                "project_name": "Project",
-                "city": "City",
-                "neighborhood": "Neighborhood",
-                "property_type": "Property Type",
-                "leads": "Leads",
+    with col_risk:
+        risk_fig = px.scatter(
+            df,
+            x="sales",
+            y="unsold_inventory",
+            size="avg_price",
+            color="recommended_action",
+            symbol="risk_level",
+            hover_name="project_name",
+            hover_data={
+                "city": True,
+                "property_type": True,
+                "leads": ":,.0f",
+                "risk_score": ":.1f",
+                "priority_score": ":.1f",
+            },
+            labels={
                 "sales": "Sales",
                 "unsold_inventory": "Unsold Inventory",
                 "avg_price": "Average Price",
-                "risk_level": "Risk Level",
-                "risk_score": "Risk Score",
                 "recommended_action": "Recommended Action",
-                "priority_score": "Priority Score",
-            }
-        ),
-        use_container_width=True,
-        hide_index=True,
-        height=360,
-    )
+                "risk_level": "Risk Level",
+            },
+            title="Sales vs Inventory with Risk and Action Context",
+        )
+        style_plotly_figure(risk_fig, height=360)
+        st.plotly_chart(risk_fig, use_container_width=True)
 
 
 def main() -> None:
@@ -272,23 +279,25 @@ def main() -> None:
     filtered_df = apply_filters(projects_with_decision_df, selected_cities, selected_property_types)
 
     if filtered_df.empty:
-        st.warning(
-            "No projects match the selected filters. Adjust city or property type selections."
-        )
+        st.warning("No projects match the selected filters. Adjust city or property type selections.")
         return
 
-    st.caption(
-        f"Projects shown on map: {len(filtered_df):,} | Source: {source_display_name(data_source)} (`{source_path}`)"
+    render_source_chip(
+        f"Source: {source_display_name(data_source)} | {len(filtered_df):,} rows | {source_path}"
     )
-    render_map_summary(filtered_df)
-    st.divider()
 
-    map_df = prepare_map_dataframe(filtered_df)
-    st.pydeck_chart(build_map(map_df), use_container_width=True, height=MAP_HEIGHT)
-    st.caption("Tip: hover over a marker to inspect demand, conversion, risk, and recommended action.")
-    st.divider()
+    with dashboard_panel("Map KPI Snapshot", "Key metrics for the filtered geospatial scope."):
+        render_map_summary(filtered_df)
 
-    render_filtered_table(filtered_df)
+    with dashboard_panel("Interactive Project Map", "Hover markers to inspect project-level funnel and risk signals."):
+        map_df = prepare_map_dataframe(filtered_df)
+        st.pydeck_chart(build_map(map_df), use_container_width=True, height=MAP_HEIGHT)
+
+    with dashboard_panel(
+        "Filtered Project Signals",
+        "Visual comparison of demand leaders and inventory pressure for visible projects.",
+    ):
+        render_filtered_project_charts(filtered_df)
 
 
 if __name__ == "__main__":

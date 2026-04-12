@@ -2,6 +2,15 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from src.dashboard_ui import (
+    apply_dashboard_theme,
+    dashboard_panel,
+    render_kpi_cards,
+    render_page_hero,
+    render_sidebar_block,
+    render_source_chip,
+    style_plotly_figure,
+)
 from src.data_loader import load_projects_data_with_metadata
 from src.kpis import (
     calculate_marketing_kpis,
@@ -20,7 +29,12 @@ from src.presentation import (
 
 
 def configure_page() -> None:
-    st.set_page_config(page_title=full_page_title("Marketing Intelligence"), layout="wide")
+    st.set_page_config(
+        page_title=full_page_title("Marketing Intelligence"),
+        layout="wide",
+        initial_sidebar_state="expanded",
+    )
+    apply_dashboard_theme()
 
 
 def source_display_name(source: str) -> str:
@@ -40,7 +54,7 @@ def load_marketing_data() -> tuple[pd.DataFrame, str, str] | None:
 
 
 def render_sidebar_filters(df: pd.DataFrame) -> tuple[list[str], list[str]]:
-    st.sidebar.header("Filters")
+    render_sidebar_block("Marketing Controls", "Filter analysis by city and property type.")
 
     city_options = sorted_options(df, "city")
     property_type_options = sorted_options(df, "property_type")
@@ -51,7 +65,6 @@ def render_sidebar_filters(df: pd.DataFrame) -> tuple[list[str], list[str]]:
         options=property_type_options,
         default=property_type_options,
     )
-
     return selected_cities, selected_property_types
 
 
@@ -64,92 +77,53 @@ def apply_filters(
 
 
 def render_header() -> None:
-    st.title("Marketing Intelligence")
-    st.markdown(
-        """
-        Evaluate acquisition quality and funnel efficiency to understand where marketing spend
-        is producing stronger qualified demand across cities and projects.
-        """
+    render_page_hero(
+        "Marketing Intelligence",
+        "Evaluate acquisition quality and funnel efficiency to reveal where spend is producing stronger qualified demand.",
     )
 
 
 def render_summary_metrics(metrics: dict[str, float | int], project_count: int) -> None:
-    st.subheader("Marketing KPI Overview")
-    row_1 = st.columns(4)
-    row_2 = st.columns(3)
-    row_3 = st.columns(3)
-
-    row_1[0].metric("Projects in Scope", format_number(project_count))
-    row_1[1].metric("Total Ad Spend", format_currency(metrics["total_ad_spend"]))
-    row_1[2].metric("Total Leads", format_number(metrics["total_leads"]))
-    row_1[3].metric("Qualified Leads", format_number(metrics["total_qualified_leads"]))
-
-    row_2[0].metric("Cost per Lead", format_currency(metrics["cost_per_lead"]))
-    row_2[1].metric("Cost per Qualified Lead", format_currency(metrics["cost_per_qualified_lead"]))
-    row_2[2].metric("Qualified Lead Rate", format_percentage(metrics["qualified_lead_rate"]))
-
-    row_3[0].metric("Lead to Visit Rate", format_percentage(metrics["lead_to_visit_rate"]))
-    row_3[1].metric("Visit to Reservation Rate", format_percentage(metrics["visit_to_reservation_rate"]))
-    row_3[2].metric("Reservation to Sale Rate", format_percentage(metrics["reservation_to_sale_rate"]))
-
-
-def _format_breakdown_table(df: pd.DataFrame, group_column: str) -> pd.DataFrame:
-    context_columns = [
-        column
-        for column in ["city", "neighborhood", "property_type"]
-        if column in df.columns and column != group_column
+    cards = [
+        {"label": "Projects in Scope", "value": format_number(project_count), "subtext": "Filtered project portfolio"},
+        {
+            "label": "Total Ad Spend",
+            "value": format_currency(metrics["total_ad_spend"]),
+            "subtext": "Aggregate paid investment",
+        },
+        {"label": "Total Leads", "value": format_number(metrics["total_leads"]), "subtext": "Acquisition volume"},
+        {
+            "label": "Qualified Leads",
+            "value": format_number(metrics["total_qualified_leads"]),
+            "delta": format_percentage(metrics["qualified_lead_rate"]),
+            "subtext": "Lead qualification rate",
+        },
+        {
+            "label": "Cost per Lead",
+            "value": format_currency(metrics["cost_per_lead"]),
+            "subtext": "Spend efficiency at top funnel",
+        },
+        {
+            "label": "Cost per Qualified Lead",
+            "value": format_currency(metrics["cost_per_qualified_lead"]),
+            "subtext": "Quality-adjusted acquisition cost",
+        },
+        {
+            "label": "Lead to Visit Rate",
+            "value": format_percentage(metrics["lead_to_visit_rate"]),
+            "delta": format_percentage(metrics["visit_to_reservation_rate"]),
+            "subtext": "Visit-to-reservation rate",
+        },
+        {
+            "label": "Reservation to Sale Rate",
+            "value": format_percentage(metrics["reservation_to_sale_rate"]),
+            "subtext": "Closing effectiveness",
+        },
     ]
-    metric_columns = [
-        "ad_spend",
-        "leads",
-        "qualified_leads",
-        "qualified_lead_rate",
-        "cost_per_lead",
-        "cost_per_qualified_lead",
-        "lead_to_visit_rate",
-        "visit_to_reservation_rate",
-        "reservation_to_sale_rate",
-        "marketing_performance",
-    ]
-    selected_columns = [column for column in [group_column] + context_columns + metric_columns if column in df.columns]
-    table_df = df[selected_columns].copy()
-
-    for column in ["ad_spend", "cost_per_lead", "cost_per_qualified_lead"]:
-        if column in table_df.columns:
-            table_df[column] = table_df[column].map(format_currency)
-    for column in ["leads", "qualified_leads"]:
-        if column in table_df.columns:
-            table_df[column] = table_df[column].map(format_number)
-    for column in [
-        "qualified_lead_rate",
-        "lead_to_visit_rate",
-        "visit_to_reservation_rate",
-        "reservation_to_sale_rate",
-    ]:
-        if column in table_df.columns:
-            table_df[column] = table_df[column].map(format_percentage)
-
-    renamed_columns = {
-        "project_name": "Project",
-        "city": "City",
-        "neighborhood": "Neighborhood",
-        "property_type": "Property Type",
-        "ad_spend": "Ad Spend",
-        "leads": "Leads",
-        "qualified_leads": "Qualified Leads",
-        "qualified_lead_rate": "Qualified Lead Rate",
-        "cost_per_lead": "Cost per Lead",
-        "cost_per_qualified_lead": "Cost per Qualified Lead",
-        "lead_to_visit_rate": "Lead to Visit Rate",
-        "visit_to_reservation_rate": "Visit to Reservation Rate",
-        "reservation_to_sale_rate": "Reservation to Sale Rate",
-        "marketing_performance": "Marketing Performance",
-    }
-    return table_df.rename(columns=renamed_columns)
+    render_kpi_cards(cards, columns=4)
 
 
 def render_business_summary(insights: dict[str, object]) -> None:
-    st.subheader("Strategic Summary")
     strongest_city = insights.get("strongest_city")
     weakest_city = insights.get("weakest_city")
     strongest_project = insights.get("strongest_project")
@@ -183,12 +157,11 @@ def render_business_summary(insights: dict[str, object]) -> None:
             f"with performance band **{weakest_project['marketing_performance']}**."
         )
     if isinstance(observations, list):
-        for observation in observations[:2]:
+        for observation in observations[:3]:
             st.markdown(f"- {observation}")
 
 
 def render_quality_bar_charts(city_df: pd.DataFrame, project_df: pd.DataFrame) -> None:
-    st.subheader("Lead Quality Rankings")
     top_n_city = min(5, len(city_df))
     top_n_project = min(8, len(project_df))
 
@@ -208,7 +181,7 @@ def render_quality_bar_charts(city_df: pd.DataFrame, project_df: pd.DataFrame) -
         )
         fig_city_top.update_traces(texttemplate="%{x:.1%}", textposition="outside")
         fig_city_top.update_xaxes(tickformat=".0%")
-        fig_city_top.update_layout(margin=dict(l=0, r=0, t=50, b=0), height=340)
+        style_plotly_figure(fig_city_top, height=360)
         st.plotly_chart(fig_city_top, use_container_width=True)
 
     with col_city_bottom:
@@ -223,7 +196,7 @@ def render_quality_bar_charts(city_df: pd.DataFrame, project_df: pd.DataFrame) -
         )
         fig_city_bottom.update_traces(texttemplate="%{x:.1%}", textposition="outside")
         fig_city_bottom.update_xaxes(tickformat=".0%")
-        fig_city_bottom.update_layout(margin=dict(l=0, r=0, t=50, b=0), height=340)
+        style_plotly_figure(fig_city_bottom, height=360)
         st.plotly_chart(fig_city_bottom, use_container_width=True)
 
     project_top = project_df.nlargest(top_n_project, "qualified_lead_rate").copy()
@@ -242,7 +215,7 @@ def render_quality_bar_charts(city_df: pd.DataFrame, project_df: pd.DataFrame) -
         )
         fig_project_top.update_traces(texttemplate="%{x:.1%}", textposition="outside")
         fig_project_top.update_xaxes(tickformat=".0%")
-        fig_project_top.update_layout(margin=dict(l=0, r=0, t=50, b=0), height=380)
+        style_plotly_figure(fig_project_top, height=360)
         st.plotly_chart(fig_project_top, use_container_width=True)
 
     with col_project_bottom:
@@ -257,12 +230,11 @@ def render_quality_bar_charts(city_df: pd.DataFrame, project_df: pd.DataFrame) -
         )
         fig_project_bottom.update_traces(texttemplate="%{x:.1%}", textposition="outside")
         fig_project_bottom.update_xaxes(tickformat=".0%")
-        fig_project_bottom.update_layout(margin=dict(l=0, r=0, t=50, b=0), height=380)
+        style_plotly_figure(fig_project_bottom, height=360)
         st.plotly_chart(fig_project_bottom, use_container_width=True)
 
 
 def render_quality_vs_conversion_chart(project_df: pd.DataFrame) -> None:
-    st.subheader("Lead Quality vs Close Conversion")
     comparison_fig = px.scatter(
         project_df,
         x="qualified_lead_rate",
@@ -282,81 +254,112 @@ def render_quality_vs_conversion_chart(project_df: pd.DataFrame) -> None:
             "qualified_lead_rate": "Qualified Lead Rate",
             "reservation_to_sale_rate": "Reservation to Sale Rate",
         },
-        title="Projects closer to the top-right combine stronger lead quality and closing conversion",
+        title="Projects closer to the top-right combine stronger lead quality and close conversion",
     )
     comparison_fig.update_xaxes(tickformat=".0%")
     comparison_fig.update_yaxes(tickformat=".0%")
-    comparison_fig.update_layout(margin=dict(l=0, r=0, t=60, b=0), height=460)
+    style_plotly_figure(comparison_fig, height=420)
     st.plotly_chart(comparison_fig, use_container_width=True)
 
 
 def render_project_ranking(project_df: pd.DataFrame) -> None:
-    st.subheader("Project Marketing Ranking")
-    ranking_table = _format_breakdown_table(project_df, "project_name")
-    desired_columns = [
-        "Project",
-        "City",
-        "Property Type",
-        "Leads",
-        "Qualified Leads",
-        "Qualified Lead Rate",
-        "Cost per Qualified Lead",
-        "Lead to Visit Rate",
-        "Visit to Reservation Rate",
-        "Reservation to Sale Rate",
-        "Marketing Performance",
-    ]
-    available_columns = [column for column in desired_columns if column in ranking_table.columns]
-    st.dataframe(
-        ranking_table[available_columns],
-        use_container_width=True,
-        hide_index=True,
-        height=380,
-    )
+    col_efficiency, col_extremes = st.columns(2)
 
-    st.markdown("**Cost Efficiency Extremes (Cost per Qualified Lead)**")
+    with col_efficiency:
+        efficiency_fig = px.scatter(
+            project_df,
+            x="cost_per_qualified_lead",
+            y="qualified_lead_rate",
+            size="leads",
+            color="marketing_performance",
+            hover_name="project_name",
+            hover_data={
+                "city": True,
+                "property_type": True,
+                "lead_to_visit_rate": ":.1%",
+                "visit_to_reservation_rate": ":.1%",
+                "reservation_to_sale_rate": ":.1%",
+            },
+            labels={
+                "cost_per_qualified_lead": "Cost per Qualified Lead",
+                "qualified_lead_rate": "Qualified Lead Rate",
+                "marketing_performance": "Performance Band",
+                "leads": "Leads",
+            },
+            title="Lead Quality vs Cost Efficiency by Project",
+        )
+        efficiency_fig.update_yaxes(tickformat=".0%")
+        style_plotly_figure(efficiency_fig, height=390)
+        st.plotly_chart(efficiency_fig, use_container_width=True)
+
     best_cpql = project_df.nsmallest(min(5, len(project_df)), "cost_per_qualified_lead")
     worst_cpql = project_df.nlargest(min(5, len(project_df)), "cost_per_qualified_lead")
-    col_best, col_worst = st.columns(2)
-
-    compact_columns = ["Project", "City", "Qualified Lead Rate", "Cost per Qualified Lead", "Leads"]
-    with col_best:
-        st.markdown("Lowest Cost per Qualified Lead")
-        st.dataframe(
-            _format_breakdown_table(best_cpql, "project_name")[compact_columns],
-            use_container_width=True,
-            hide_index=True,
-            height=210,
+    cpql_extremes = pd.concat(
+        [
+            best_cpql.assign(efficiency_band="Most Efficient"),
+            worst_cpql.assign(efficiency_band="Needs Attention"),
+        ],
+        ignore_index=True,
+    ).drop_duplicates(subset=["project_name"])
+    with col_extremes:
+        extreme_fig = px.bar(
+            cpql_extremes.sort_values("cost_per_qualified_lead", ascending=True),
+            x="cost_per_qualified_lead",
+            y="project_name",
+            orientation="h",
+            color="efficiency_band",
+            text="cost_per_qualified_lead",
+            hover_data={
+                "city": True,
+                "qualified_lead_rate": ":.1%",
+                "leads": ":,.0f",
+            },
+            labels={
+                "cost_per_qualified_lead": "Cost per Qualified Lead",
+                "project_name": "Project",
+                "efficiency_band": "Efficiency Band",
+            },
+            title="Cost per Qualified Lead Extremes",
         )
-    with col_worst:
-        st.markdown("Highest Cost per Qualified Lead")
-        st.dataframe(
-            _format_breakdown_table(worst_cpql, "project_name")[compact_columns],
-            use_container_width=True,
-            hide_index=True,
-            height=210,
-        )
+        extreme_fig.update_traces(texttemplate="TND %{x:,.0f}", textposition="outside")
+        style_plotly_figure(extreme_fig, height=390)
+        st.plotly_chart(extreme_fig, use_container_width=True)
 
 
 def render_city_and_type_breakdowns(city_df: pd.DataFrame, property_type_df: pd.DataFrame) -> None:
-    st.subheader("Breakdown Tables")
     col_city, col_type = st.columns(2)
     with col_city:
-        st.markdown("**City Performance**")
-        st.dataframe(
-            _format_breakdown_table(city_df, "city"),
-            use_container_width=True,
-            hide_index=True,
-            height=320,
+        city_fig = px.treemap(
+            city_df,
+            path=[px.Constant("Cities"), "city"],
+            values="leads",
+            color="qualified_lead_rate",
+            color_continuous_scale="Tealgrn",
+            hover_data={
+                "cost_per_qualified_lead": ":,.0f",
+                "lead_to_visit_rate": ":.1%",
+                "reservation_to_sale_rate": ":.1%",
+            },
+            title="City Demand and Lead-Quality Mix",
         )
+        style_plotly_figure(city_fig, height=380)
+        st.plotly_chart(city_fig, use_container_width=True)
+
     with col_type:
-        st.markdown("**Property Type Performance**")
-        st.dataframe(
-            _format_breakdown_table(property_type_df, "property_type"),
-            use_container_width=True,
-            hide_index=True,
-            height=320,
+        type_fig = px.sunburst(
+            property_type_df,
+            path=[px.Constant("Property Types"), "property_type", "marketing_performance"],
+            values="leads",
+            color="reservation_to_sale_rate",
+            color_continuous_scale="Blues",
+            hover_data={
+                "cost_per_qualified_lead": ":,.0f",
+                "qualified_lead_rate": ":.1%",
+            },
+            title="Property Type Conversion Profile",
         )
+        style_plotly_figure(type_fig, height=380)
+        st.plotly_chart(type_fig, use_container_width=True)
 
 
 def main() -> None:
@@ -384,20 +387,27 @@ def main() -> None:
         st.error(f"Unable to compute marketing intelligence metrics: {error}")
         return
 
-    st.caption(
-        f"Projects included in analysis: {len(filtered_df):,} | Source: {source_display_name(data_source)} (`{source_path}`)"
+    render_source_chip(
+        f"Source: {source_display_name(data_source)} | {len(filtered_df):,} rows | {source_path}"
     )
-    render_summary_metrics(marketing_metrics, project_count=len(filtered_df))
-    st.divider()
-    render_business_summary(insights)
-    st.divider()
-    render_quality_bar_charts(city_df, project_df)
-    st.divider()
-    render_quality_vs_conversion_chart(project_df)
-    st.divider()
-    render_project_ranking(project_df)
-    st.divider()
-    render_city_and_type_breakdowns(city_df, property_type_df)
+
+    with dashboard_panel("Marketing KPI Overview", "Acquisition quality and conversion efficiency at a glance."):
+        render_summary_metrics(marketing_metrics, project_count=len(filtered_df))
+
+    with dashboard_panel("Strategic Marketing Summary", "Narrative highlights to support fast decision-making."):
+        render_business_summary(insights)
+
+    with dashboard_panel("Lead Quality Rankings", "Best and weakest performers by city and project lead quality."):
+        render_quality_bar_charts(city_df, project_df)
+
+    with dashboard_panel("Lead Quality vs Close Conversion", "Quality and closing conversion relationship by project."):
+        render_quality_vs_conversion_chart(project_df)
+
+    with dashboard_panel("Project Marketing Ranking", "Detailed project-level ranking and cost-efficiency extremes."):
+        render_project_ranking(project_df)
+
+    with dashboard_panel("Breakdowns by City and Property Type", "Aggregated views for market and product-mix analysis."):
+        render_city_and_type_breakdowns(city_df, property_type_df)
 
 
 if __name__ == "__main__":

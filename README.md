@@ -17,6 +17,8 @@ The app is built as a modular Streamlit product with reusable business logic in 
 - Forecasting page with explainable projected demand and sales
 - Risk analysis page with project and city risk breakdowns
 - Decision support page with ranked recommended actions and priority scoring
+- AI Insights page for executive narratives generated from compact dashboard context
+- AI Chatbot page for conversational Q&A grounded in portfolio data
 
 ## Data Layers
 - `data/raw/`: synthetic operational tables (projects, campaigns, leads, visits, sales)
@@ -47,8 +49,13 @@ The app is built as a modular Streamlit product with reusable business logic in 
 │   ├── 2_Marketing_Intelligence.py
 │   ├── 3_Forecasting.py
 │   ├── 4_Risk_Analysis.py
-│   └── 5_Decision_Support.py
+│   ├── 5_Decision_Support.py
+│   ├── 6_AI_Insights.py
+│   └── 7_AI_Chatbot.py
 ├── src/
+│   ├── gemini_client.py
+│   ├── insights_engine.py
+│   ├── chatbot.py
 │   ├── data_loader.py
 │   ├── kpis.py
 │   ├── forecasting.py
@@ -73,6 +80,15 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+3. Configure Gemini API key (required for AI pages).
+
+```bash
+export GEMINI_API_KEY="your_api_key_here"
+```
+
+`GOOGLE_API_KEY` is also supported as an alternative environment variable.
+The app also auto-loads a project-root `.env` file if present.
+
 ## Run the Streamlit App
 ```bash
 streamlit run app.py
@@ -80,6 +96,31 @@ streamlit run app.py
 
 Then open the local Streamlit URL shown in the terminal.
 The app auto-selects `data/curated/project_metrics.csv` when available and falls back to `data/projects.csv`.
+
+## AI Features (Gemini)
+The app includes two Gemini-powered pages:
+
+1. `6_AI_Insights.py`
+- Generates concise BI outputs from compact dashboard context:
+  - 3 key insights
+  - 2 main risks
+  - 2 recommended actions
+- Includes additional one-click briefs:
+  - Explain Top Risks
+  - Summarize City Performance
+
+2. `7_AI_Chatbot.py`
+- Conversational assistant for questions about KPIs, cities, forecasts, risk, and recommendations.
+- Uses recent chat history + compact dashboard context.
+- Responds only from provided context and states when data is insufficient.
+
+### Gemini Integration Notes
+- SDK: `google-genai`
+- API key source: `GEMINI_API_KEY` or `GOOGLE_API_KEY`
+- Model selection is centralized in `src/gemini_client.py` via `GEMINI_MODEL_NAME`
+- Prompts and compact context construction live in:
+  - `src/insights_engine.py`
+  - `src/chatbot.py`
 
 ## Run the ETL Pipeline
 From the project root:

@@ -2,6 +2,15 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from src.dashboard_ui import (
+    apply_dashboard_theme,
+    dashboard_panel,
+    render_kpi_cards,
+    render_page_hero,
+    render_sidebar_block,
+    render_source_chip,
+    style_plotly_figure,
+)
 from src.data_loader import load_projects_data_with_metadata
 from src.decision_support import (
     DECISION_ACTIONS,
@@ -12,16 +21,16 @@ from src.decision_support import (
     decision_summary_insights,
     decision_support_assumptions,
 )
-from src.presentation import (
-    format_number,
-    format_percentage,
-    full_page_title,
-    sorted_options,
-)
+from src.presentation import format_number, full_page_title, sorted_options
 
 
 def configure_page() -> None:
-    st.set_page_config(page_title=full_page_title("Decision Support"), layout="wide")
+    st.set_page_config(
+        page_title=full_page_title("Decision Support"),
+        layout="wide",
+        initial_sidebar_state="expanded",
+    )
+    apply_dashboard_theme()
 
 
 def source_display_name(source: str) -> str:
@@ -41,14 +50,26 @@ def load_decision_data() -> tuple[pd.DataFrame, str, str] | None:
         return None
 
 
+def render_header() -> None:
+    render_page_hero(
+        "Decision Support",
+        "Convert performance, forecast, and risk signals into clear project-level actions with explainable reasoning and priority scoring.",
+    )
+
+
 def render_sidebar_filters(
     df: pd.DataFrame,
 ) -> tuple[list[str], list[str], list[str], list[str]]:
-    st.sidebar.header("Filters")
+    render_sidebar_block(
+        "Decision Controls",
+        "Refine recommendations by city, asset type, action type, and risk level.",
+    )
 
     city_options = sorted_options(df, "city")
     property_type_options = sorted_options(df, "property_type")
-    action_options = [action for action in DECISION_ACTIONS if action in df["recommended_action"].unique()]
+    action_options = [
+        action for action in DECISION_ACTIONS if action in df["recommended_action"].unique()
+    ]
     risk_options = [level for level in ["High", "Medium", "Low"] if level in df["risk_level"].unique()]
 
     selected_cities = st.sidebar.multiselect("Cities", options=city_options, default=city_options)
@@ -84,16 +105,6 @@ def apply_filters(
     return filtered_df.copy()
 
 
-def render_header() -> None:
-    st.title("Decision Support")
-    st.markdown(
-        """
-        Translate current performance, forecast momentum, and risk exposure into clear
-        action priorities for each project.
-        """
-    )
-
-
 def render_assumptions() -> None:
     with st.expander("Recommendation Methodology", expanded=False):
         for assumption in decision_support_assumptions():
@@ -101,20 +112,38 @@ def render_assumptions() -> None:
 
 
 def render_summary_metrics(metrics: dict[str, float | int]) -> None:
-    st.subheader("Decision Overview")
-    columns = st.columns(5)
-    columns[0].metric("Projects in Scope", format_number(metrics["project_count"]))
-    columns[1].metric("High-Priority Opportunities", format_number(metrics["high_priority_opportunities"]))
-    columns[2].metric(
-        "Projects Needing Intervention",
-        format_number(metrics["projects_needing_intervention"]),
-    )
-    columns[3].metric("Urgent Interventions", format_number(metrics["urgent_interventions"]))
-    columns[4].metric("Average Priority Score", f"{float(metrics['average_priority_score']):.1f}")
+    cards = [
+        {
+            "label": "Projects in Scope",
+            "value": format_number(metrics["project_count"]),
+            "subtext": "Filtered portfolio under decision analysis",
+        },
+        {
+            "label": "High-Priority Opportunities",
+            "value": format_number(metrics["high_priority_opportunities"]),
+            "subtext": "Projects suited for growth investment",
+        },
+        {
+            "label": "Projects Needing Intervention",
+            "value": format_number(metrics["projects_needing_intervention"]),
+            "subtext": "Assets requiring corrective action",
+        },
+        {
+            "label": "Urgent Interventions",
+            "value": format_number(metrics["urgent_interventions"]),
+            "subtext": "Interventions with high urgency score",
+        },
+        {
+            "label": "Average Priority Score",
+            "value": f"{float(metrics['average_priority_score']):.1f}",
+            "delta": format_number(metrics["urgent_interventions"]),
+            "subtext": "Urgent interventions",
+        },
+    ]
+    render_kpi_cards(cards, columns=5)
 
 
 def render_summary(insights: dict[str, object]) -> None:
-    st.subheader("Strategic Summary")
     top_opportunity = insights.get("top_opportunity_project")
     at_risk_project = insights.get("most_at_risk_project")
     most_common_action = insights.get("most_common_action")
@@ -142,7 +171,6 @@ def render_summary(insights: dict[str, object]) -> None:
 
 
 def render_charts(action_df: pd.DataFrame, city_df: pd.DataFrame, project_df: pd.DataFrame) -> None:
-    st.subheader("Recommendation Analytics")
     col_actions, col_priority = st.columns(2)
 
     with col_actions:
@@ -157,7 +185,7 @@ def render_charts(action_df: pd.DataFrame, city_df: pd.DataFrame, project_df: pd
             color="average_priority_score",
             color_continuous_scale="Blues",
         )
-        action_fig.update_layout(margin=dict(l=0, r=0, t=50, b=0), height=390)
+        style_plotly_figure(action_fig, height=370)
         st.plotly_chart(action_fig, use_container_width=True)
 
     with col_priority:
@@ -179,7 +207,7 @@ def render_charts(action_df: pd.DataFrame, city_df: pd.DataFrame, project_df: pd
             text="priority_score",
         )
         priority_fig.update_traces(texttemplate="%{x:.1f}", textposition="outside")
-        priority_fig.update_layout(margin=dict(l=0, r=0, t=50, b=0), height=390)
+        style_plotly_figure(priority_fig, height=370)
         st.plotly_chart(priority_fig, use_container_width=True)
 
     city_fig = px.bar(
@@ -200,95 +228,117 @@ def render_charts(action_df: pd.DataFrame, city_df: pd.DataFrame, project_df: pd
             "top_action_share": ":.1%",
         },
     )
-    city_fig.update_layout(margin=dict(l=0, r=0, t=50, b=0), height=390)
+    style_plotly_figure(city_fig, height=370)
     st.plotly_chart(city_fig, use_container_width=True)
 
 
-def render_recommendation_table(df: pd.DataFrame) -> None:
-    st.subheader("Ranked Recommendations")
-    table_df = df[
-        [
-            "project_name",
-            "city",
-            "recommended_action",
-            "recommendation_reason",
-            "expected_impact",
-            "confidence_level",
-            "priority_score",
-            "risk_level",
-            "projected_demand_score",
-            "projected_sales",
-            "unsold_inventory",
-        ]
-    ].copy()
+def render_recommendation_charts(df: pd.DataFrame) -> None:
+    col_priority, col_action = st.columns(2)
 
-    table_df["priority_score"] = table_df["priority_score"].map(lambda value: f"{float(value):.1f}")
-    table_df["projected_demand_score"] = table_df["projected_demand_score"].map(
-        lambda value: f"{float(value):.1f}"
-    )
-    table_df["projected_sales"] = table_df["projected_sales"].map(format_number)
-    table_df["unsold_inventory"] = table_df["unsold_inventory"].map(format_number)
-
-    st.dataframe(
-        table_df.rename(
-            columns={
-                "project_name": "Project",
-                "city": "City",
-                "recommended_action": "Recommended Action",
-                "recommendation_reason": "Reason",
-                "expected_impact": "Expected Impact",
-                "confidence_level": "Confidence",
-                "priority_score": "Priority Score",
-                "risk_level": "Risk Level",
+    with col_priority:
+        priority_fig = px.scatter(
+            df,
+            x="projected_demand_score",
+            y="priority_score",
+            size="unsold_inventory",
+            color="recommended_action",
+            symbol="risk_level",
+            hover_name="project_name",
+            hover_data={
+                "city": True,
+                "projected_sales": ":,.0f",
+                "confidence_level": True,
+            },
+            labels={
                 "projected_demand_score": "Projected Demand Score",
-                "projected_sales": "Projected Sales",
+                "priority_score": "Priority Score",
                 "unsold_inventory": "Unsold Inventory",
-            }
-        ),
-        use_container_width=True,
-        hide_index=True,
-        height=390,
-    )
+                "recommended_action": "Recommended Action",
+                "risk_level": "Risk Level",
+            },
+            title="Priority vs Demand by Project",
+        )
+        style_plotly_figure(priority_fig, height=380)
+        st.plotly_chart(priority_fig, use_container_width=True)
+
+    with col_action:
+        action_flow = px.sunburst(
+            df,
+            path=[px.Constant("Portfolio"), "city", "recommended_action"],
+            values="priority_score",
+            color="risk_score",
+            color_continuous_scale="Plasma",
+            hover_data={
+                "projected_sales": ":,.0f",
+                "unsold_inventory": ":,.0f",
+            },
+            title="Action Distribution by City and Priority Weight",
+        )
+        style_plotly_figure(action_flow, height=380)
+        st.plotly_chart(action_flow, use_container_width=True)
 
 
-def render_city_breakdown_table(city_df: pd.DataFrame) -> None:
-    st.subheader("City Decision Breakdown")
-    table_df = city_df.copy()
-    for column in [
-        "project_count",
-        "high_priority_projects",
-        "projects_needing_intervention",
-        "high_risk_projects",
-    ]:
-        table_df[column] = table_df[column].map(format_number)
-    table_df["average_priority_score"] = table_df["average_priority_score"].map(
-        lambda value: f"{float(value):.1f}"
-    )
-    table_df["top_action_share"] = table_df["top_action_share"].map(format_percentage)
+def render_city_breakdown_charts(city_df: pd.DataFrame) -> None:
+    col_volume, col_focus = st.columns(2)
 
-    st.dataframe(
-        table_df.rename(
-            columns={
-                "city": "City",
-                "project_count": "Projects",
-                "average_priority_score": "Average Priority Score",
+    with col_volume:
+        city_metric_df = city_df.melt(
+            id_vars="city",
+            value_vars=[
+                "high_priority_projects",
+                "projects_needing_intervention",
+                "high_risk_projects",
+            ],
+            var_name="metric",
+            value_name="metric_value",
+        )
+        city_metric_df["metric"] = city_metric_df["metric"].replace(
+            {
                 "high_priority_projects": "High Priority Projects",
                 "projects_needing_intervention": "Projects Needing Intervention",
                 "high_risk_projects": "High-Risk Projects",
-                "top_recommended_action": "Top Recommended Action",
-                "top_action_share": "Top Action Share",
             }
-        ),
-        use_container_width=True,
-        hide_index=True,
-        height=320,
-    )
+        )
+        city_fig = px.bar(
+            city_metric_df,
+            x="city",
+            y="metric_value",
+            color="metric",
+            barmode="group",
+            labels={"city": "City", "metric_value": "Projects", "metric": "Metric"},
+            title="City Action Volume by Strategic Metric",
+        )
+        style_plotly_figure(city_fig, height=350)
+        st.plotly_chart(city_fig, use_container_width=True)
+
+    with col_focus:
+        focus_fig = px.scatter(
+            city_df,
+            x="top_action_share",
+            y="average_priority_score",
+            size="project_count",
+            color="top_recommended_action",
+            hover_name="city",
+            hover_data={
+                "high_priority_projects": True,
+                "projects_needing_intervention": True,
+            },
+            labels={
+                "top_action_share": "Top Action Share",
+                "average_priority_score": "Average Priority Score",
+                "project_count": "Projects",
+                "top_recommended_action": "Top Recommended Action",
+            },
+            title="City Focus Map: Action Concentration vs Priority",
+        )
+        focus_fig.update_xaxes(tickformat=".0%")
+        style_plotly_figure(focus_fig, height=350)
+        st.plotly_chart(focus_fig, use_container_width=True)
 
 
 def main() -> None:
     configure_page()
     render_header()
-    render_assumptions()
 
     load_result = load_decision_data()
     if load_result is None:
@@ -314,18 +364,33 @@ def main() -> None:
     metrics = decision_overview_metrics(filtered_df)
     insights = decision_summary_insights(filtered_df)
 
-    st.caption(
-        f"Projects included in decision support: {len(filtered_df):,} | Source: {source_display_name(data_source)} (`{source_path}`)"
+    render_source_chip(
+        f"Source: {source_display_name(data_source)} | {len(filtered_df):,} rows | {source_path}"
     )
-    render_summary_metrics(metrics)
-    st.divider()
-    render_summary(insights)
-    st.divider()
-    render_charts(action_df, city_df, filtered_df)
-    st.divider()
-    render_recommendation_table(filtered_df)
-    st.divider()
-    render_city_breakdown_table(city_df)
+
+    with dashboard_panel("Decision KPI Overview", "Action urgency and opportunity concentration at a glance."):
+        render_summary_metrics(metrics)
+
+    with dashboard_panel("Recommendation Methodology", "Transparent rule-based logic used to generate actions."):
+        render_assumptions()
+
+    with dashboard_panel("Strategic Decision Summary", "Top opportunities, intervention priorities, and portfolio signals."):
+        render_summary(insights)
+
+    with dashboard_panel("Recommendation Analytics", "Action mix, top priority projects, and city opportunity concentration."):
+        render_charts(action_df, city_df, filtered_df)
+
+    with dashboard_panel(
+        "Recommendation Signals",
+        "Project-level recommendation dynamics replacing static ranked tables.",
+    ):
+        render_recommendation_charts(filtered_df)
+
+    with dashboard_panel(
+        "City Decision Breakdown",
+        "City-level action concentration and strategic workload visuals.",
+    ):
+        render_city_breakdown_charts(city_df)
 
 
 if __name__ == "__main__":

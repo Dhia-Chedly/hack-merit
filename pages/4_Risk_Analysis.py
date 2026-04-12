@@ -2,13 +2,17 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from src.data_loader import load_projects_data_with_metadata
-from src.presentation import (
-    format_number,
-    format_percentage,
-    full_page_title,
-    sorted_options,
+from src.dashboard_ui import (
+    apply_dashboard_theme,
+    dashboard_panel,
+    render_kpi_cards,
+    render_page_hero,
+    render_sidebar_block,
+    render_source_chip,
+    style_plotly_figure,
 )
+from src.data_loader import load_projects_data_with_metadata
+from src.presentation import format_number, format_percentage, full_page_title, sorted_options
 from src.risk import (
     calculate_project_risk,
     risk_city_breakdown,
@@ -19,7 +23,12 @@ from src.risk import (
 
 
 def configure_page() -> None:
-    st.set_page_config(page_title=full_page_title("Risk Analysis"), layout="wide")
+    st.set_page_config(
+        page_title=full_page_title("Risk Analysis"),
+        layout="wide",
+        initial_sidebar_state="expanded",
+    )
+    apply_dashboard_theme()
 
 
 def source_display_name(source: str) -> str:
@@ -39,12 +48,21 @@ def load_risk_data() -> tuple[pd.DataFrame, str, str] | None:
         return None
 
 
+def render_header() -> None:
+    render_page_hero(
+        "Risk Analysis",
+        "Identify underperforming projects and market exposure using an interpretable score combining lead quality, conversion efficiency, inventory pressure, and forecast weakness.",
+    )
+
+
 def render_sidebar_filters(df: pd.DataFrame) -> tuple[list[str], list[str], list[str]]:
-    st.sidebar.header("Filters")
+    render_sidebar_block("Risk Controls", "Adjust city, asset type, and risk segment focus.")
 
     city_options = sorted_options(df, "city")
     property_type_options = sorted_options(df, "property_type")
-    risk_level_options = [level for level in ["High", "Medium", "Low"] if level in df["risk_level"].unique()]
+    risk_level_options = [
+        level for level in ["High", "Medium", "Low"] if level in df["risk_level"].unique()
+    ]
 
     selected_cities = st.sidebar.multiselect("Cities", options=city_options, default=city_options)
     selected_property_types = st.sidebar.multiselect(
@@ -72,16 +90,6 @@ def apply_filters(
     return filtered_df.copy()
 
 
-def render_header() -> None:
-    st.title("Risk Analysis")
-    st.markdown(
-        """
-        Identify projects and cities with elevated commercial risk using a transparent score
-        based on lead quality, conversion efficiency, inventory pressure, and forecast weakness.
-        """
-    )
-
-
 def render_assumptions() -> None:
     with st.expander("Risk Scoring Methodology", expanded=False):
         for assumption in risk_scoring_assumptions():
@@ -89,20 +97,38 @@ def render_assumptions() -> None:
 
 
 def render_summary_metrics(metrics: dict[str, float | int]) -> None:
-    st.subheader("Risk Overview")
-    columns = st.columns(5)
-
-    columns[0].metric("Projects in Scope", format_number(metrics["project_count"]))
-    columns[1].metric("High-Risk Projects", format_number(metrics["high_risk_projects"]))
-    columns[2].metric("Medium-Risk Projects", format_number(metrics["medium_risk_projects"]))
-    columns[3].metric("Low-Risk Projects", format_number(metrics["low_risk_projects"]))
-    columns[4].metric("Average Risk Score", f"{float(metrics['average_risk_score']):.1f}")
-    st.caption(f"High-risk share: {format_percentage(metrics['high_risk_share'])}")
+    cards = [
+        {
+            "label": "Projects in Scope",
+            "value": format_number(metrics["project_count"]),
+            "subtext": "Projects included after sidebar filters",
+        },
+        {
+            "label": "High-Risk Projects",
+            "value": format_number(metrics["high_risk_projects"]),
+            "delta": format_percentage(metrics["high_risk_share"]),
+            "subtext": "Share of portfolio",
+        },
+        {
+            "label": "Medium-Risk Projects",
+            "value": format_number(metrics["medium_risk_projects"]),
+            "subtext": "Projects needing active monitoring",
+        },
+        {
+            "label": "Low-Risk Projects",
+            "value": format_number(metrics["low_risk_projects"]),
+            "subtext": "Projects with healthier commercial profile",
+        },
+        {
+            "label": "Average Risk Score",
+            "value": f"{float(metrics['average_risk_score']):.1f}",
+            "subtext": "Portfolio risk intensity score (0-100)",
+        },
+    ]
+    render_kpi_cards(cards, columns=5)
 
 
 def render_summary(insights: dict[str, object]) -> None:
-    st.subheader("Strategic Summary")
-
     highest_risk_city = insights.get("highest_risk_city")
     highest_risk_project = insights.get("highest_risk_project")
     common_drivers = insights.get("most_common_risk_drivers", [])
@@ -129,7 +155,6 @@ def render_summary(insights: dict[str, object]) -> None:
 
 
 def render_risk_charts(project_df: pd.DataFrame, city_df: pd.DataFrame) -> None:
-    st.subheader("Risk Hotspots")
     col_projects, col_cities = st.columns(2)
 
     with col_projects:
@@ -142,9 +167,8 @@ def render_risk_charts(project_df: pd.DataFrame, city_df: pd.DataFrame) -> None:
             y="project_name",
             orientation="h",
             color="risk_level",
-            color_discrete_map={"High": "#d62728", "Medium": "#ff7f0e", "Low": "#2ca02c"},
+            color_discrete_map={"High": "#ff5a6f", "Medium": "#ffb347", "Low": "#32c7a1"},
             labels={"risk_score": "Risk Score", "project_name": "Project", "risk_level": "Risk Level"},
-            title="Highest-Risk Projects",
             hover_data={
                 "city": True,
                 "projected_sales": ":,.0f",
@@ -152,9 +176,10 @@ def render_risk_charts(project_df: pd.DataFrame, city_df: pd.DataFrame) -> None:
                 "projected_demand_score": ":.1f",
             },
             text="risk_score",
+            title="Highest-Risk Projects",
         )
         fig_projects.update_traces(texttemplate="%{x:.1f}", textposition="outside")
-        fig_projects.update_layout(margin=dict(l=0, r=0, t=50, b=0), height=420)
+        style_plotly_figure(fig_projects, height=380)
         st.plotly_chart(fig_projects, use_container_width=True)
 
     with col_cities:
@@ -170,110 +195,113 @@ def render_risk_charts(project_df: pd.DataFrame, city_df: pd.DataFrame) -> None:
                 "city": "City",
                 "high_risk_share": "High-Risk Share",
             },
-            title="City Risk Exposure",
             hover_data={
                 "high_risk_projects": True,
                 "project_count": True,
                 "average_projected_demand_score": ":.1f",
             },
             text="average_risk_score",
+            title="City Risk Exposure",
         )
         fig_cities.update_traces(texttemplate="%{x:.1f}", textposition="outside")
-        fig_cities.update_layout(margin=dict(l=0, r=0, t=50, b=0), height=420)
+        style_plotly_figure(fig_cities, height=380)
         st.plotly_chart(fig_cities, use_container_width=True)
 
 
-def render_project_ranking_table(project_df: pd.DataFrame) -> None:
-    st.subheader("Project Risk Ranking")
-    table_df = project_df[
-        [
-            "project_name",
-            "city",
-            "property_type",
-            "risk_level",
-            "risk_score",
-            "top_risk_drivers",
-            "current_sales",
-            "projected_sales",
-            "unsold_inventory",
-            "projected_demand_score",
-        ]
-    ].copy()
+def render_project_risk_patterns(project_df: pd.DataFrame) -> None:
+    col_scatter, col_box = st.columns(2)
 
-    table_df["risk_score"] = table_df["risk_score"].map(lambda value: f"{float(value):.1f}")
-    table_df["current_sales"] = table_df["current_sales"].map(format_number)
-    table_df["projected_sales"] = table_df["projected_sales"].map(format_number)
-    table_df["unsold_inventory"] = table_df["unsold_inventory"].map(format_number)
-    table_df["projected_demand_score"] = table_df["projected_demand_score"].map(
-        lambda value: f"{float(value):.1f}"
-    )
-
-    st.dataframe(
-        table_df.rename(
-            columns={
-                "project_name": "Project",
-                "city": "City",
-                "property_type": "Property Type",
-                "risk_level": "Risk Level",
-                "risk_score": "Risk Score",
-                "top_risk_drivers": "Top Risk Drivers",
-                "current_sales": "Current Sales",
-                "projected_sales": "Projected Sales",
-                "unsold_inventory": "Unsold Inventory",
+    with col_scatter:
+        risk_scatter = px.scatter(
+            project_df,
+            x="projected_demand_score",
+            y="risk_score",
+            size="unsold_inventory",
+            color="risk_level",
+            hover_name="project_name",
+            hover_data={
+                "city": True,
+                "projected_sales": ":,.0f",
+                "current_sales": ":,.0f",
+                "top_risk_drivers": True,
+            },
+            labels={
                 "projected_demand_score": "Projected Demand Score",
+                "risk_score": "Risk Score",
+                "unsold_inventory": "Unsold Inventory",
+                "risk_level": "Risk Level",
+            },
+            title="Project Risk vs Forecast Demand",
+        )
+        risk_scatter.update_yaxes(range=[0, 100])
+        style_plotly_figure(risk_scatter, height=380)
+        st.plotly_chart(risk_scatter, use_container_width=True)
+
+    with col_box:
+        inventory_box = px.box(
+            project_df,
+            x="risk_level",
+            y="unsold_inventory",
+            color="risk_level",
+            points="all",
+            category_orders={"risk_level": ["Low", "Medium", "High"]},
+            labels={"risk_level": "Risk Level", "unsold_inventory": "Unsold Inventory"},
+            title="Inventory Pressure by Risk Level",
+        )
+        style_plotly_figure(inventory_box, height=380)
+        st.plotly_chart(inventory_box, use_container_width=True)
+
+
+def render_city_breakdown_charts(city_df: pd.DataFrame) -> None:
+    col_stack, col_mix = st.columns(2)
+
+    with col_stack:
+        risk_mix = city_df.melt(
+            id_vars="city",
+            value_vars=["high_risk_projects", "medium_risk_projects", "low_risk_projects"],
+            var_name="risk_bucket",
+            value_name="project_count",
+        )
+        risk_mix["risk_bucket"] = risk_mix["risk_bucket"].replace(
+            {
+                "high_risk_projects": "High Risk",
+                "medium_risk_projects": "Medium Risk",
+                "low_risk_projects": "Low Risk",
             }
-        ),
-        use_container_width=True,
-        hide_index=True,
-        height=380,
-    )
+        )
+        risk_mix_fig = px.bar(
+            risk_mix,
+            x="city",
+            y="project_count",
+            color="risk_bucket",
+            barmode="stack",
+            labels={"city": "City", "project_count": "Projects", "risk_bucket": "Risk Segment"},
+            title="Risk Segment Mix by City",
+        )
+        style_plotly_figure(risk_mix_fig, height=350)
+        st.plotly_chart(risk_mix_fig, use_container_width=True)
 
-
-def render_city_breakdown_table(city_df: pd.DataFrame) -> None:
-    st.subheader("City Risk Breakdown")
-    table_df = city_df.copy()
-    for column in [
-        "project_count",
-        "high_risk_projects",
-        "medium_risk_projects",
-        "low_risk_projects",
-        "total_unsold_inventory",
-        "total_projected_sales",
-    ]:
-        table_df[column] = table_df[column].map(format_number)
-    table_df["average_risk_score"] = table_df["average_risk_score"].map(
-        lambda value: f"{float(value):.1f}"
-    )
-    table_df["high_risk_share"] = table_df["high_risk_share"].map(format_percentage)
-    table_df["average_projected_demand_score"] = table_df["average_projected_demand_score"].map(
-        lambda value: f"{float(value):.1f}"
-    )
-
-    st.dataframe(
-        table_df.rename(
-            columns={
-                "city": "City",
-                "project_count": "Projects",
-                "average_risk_score": "Average Risk Score",
-                "high_risk_projects": "High-Risk Projects",
-                "medium_risk_projects": "Medium-Risk Projects",
-                "low_risk_projects": "Low-Risk Projects",
-                "high_risk_share": "High-Risk Share",
-                "total_unsold_inventory": "Total Unsold Inventory",
-                "total_projected_sales": "Total Projected Sales",
-                "average_projected_demand_score": "Average Projected Demand Score",
-            }
-        ),
-        use_container_width=True,
-        hide_index=True,
-        height=320,
-    )
+    with col_mix:
+        risk_treemap = px.treemap(
+            city_df,
+            path=[px.Constant("Cities"), "city"],
+            values="project_count",
+            color="average_risk_score",
+            color_continuous_scale="OrRd",
+            hover_data={
+                "high_risk_share": ":.1%",
+                "total_unsold_inventory": ":,.0f",
+                "average_projected_demand_score": ":.1f",
+            },
+            title="City Risk Concentration and Exposure",
+        )
+        style_plotly_figure(risk_treemap, height=350)
+        st.plotly_chart(risk_treemap, use_container_width=True)
 
 
 def main() -> None:
     configure_page()
     render_header()
-    render_assumptions()
 
     load_result = load_risk_data()
     if load_result is None:
@@ -297,18 +325,33 @@ def main() -> None:
     overview_metrics = risk_overview_metrics(filtered_risk_df)
     insights = risk_summary_insights(filtered_risk_df, city_risk_df)
 
-    st.caption(
-        f"Projects included in risk analysis: {len(filtered_risk_df):,} | Source: {source_display_name(data_source)} (`{source_path}`)"
+    render_source_chip(
+        f"Source: {source_display_name(data_source)} | {len(filtered_risk_df):,} rows | {source_path}"
     )
-    render_summary_metrics(overview_metrics)
-    st.divider()
-    render_summary(insights)
-    st.divider()
-    render_risk_charts(filtered_risk_df, city_risk_df)
-    st.divider()
-    render_project_ranking_table(filtered_risk_df)
-    st.divider()
-    render_city_breakdown_table(city_risk_df)
+
+    with dashboard_panel("Risk KPI Overview", "Portfolio-level exposure and segment count distribution."):
+        render_summary_metrics(overview_metrics)
+
+    with dashboard_panel("Risk Scoring Methodology", "Transparent assumptions behind the risk score."):
+        render_assumptions()
+
+    with dashboard_panel("Strategic Risk Summary", "Top risk hotspots and notable portfolio observations."):
+        render_summary(insights)
+
+    with dashboard_panel("Risk Hotspots", "Highest-risk projects and city-level exposure profile."):
+        render_risk_charts(filtered_risk_df, city_risk_df)
+
+    with dashboard_panel(
+        "Project Risk Patterns",
+        "Visual project risk diagnostics replacing static ranking tables.",
+    ):
+        render_project_risk_patterns(filtered_risk_df)
+
+    with dashboard_panel(
+        "City Risk Breakdown",
+        "City-level risk segment mix and concentration visuals.",
+    ):
+        render_city_breakdown_charts(city_risk_df)
 
 
 if __name__ == "__main__":
