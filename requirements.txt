@@ -4,3 +4,4 @@ pydeck
 plotly
 scikit-learn
 google-genai
+duckdb

@@ -35,7 +35,7 @@ def configure_page() -> None:
 
 
 def source_display_name(source: str) -> str:
-    return "Curated project metrics" if source == "curated" else "Legacy projects dataset"
+    return source
 
 
 def load_dashboard_data() -> tuple[pd.DataFrame, str, str] | None:

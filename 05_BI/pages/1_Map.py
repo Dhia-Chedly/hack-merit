@@ -25,7 +25,7 @@ MAP_CENTER_LAT = 34.2
 MAP_CENTER_LON = 9.4
 MAP_INITIAL_ZOOM = 5.8
 MAP_HEIGHT = 540
-MAP_STYLE_DARK = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
+MAP_STYLE = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
 
 
 def configure_page() -> None:
@@ -155,8 +155,8 @@ def build_map(map_df: pd.DataFrame) -> pdk.Deck:
         data=map_df,
         get_position=["longitude", "latitude"],
         get_radius="marker_radius",
-        get_fill_color=[43, 151, 255, 185],
-        get_line_color=[223, 241, 255, 180],
+        get_fill_color=[232, 116, 97, 200],
+        get_line_color=[43, 45, 49, 160],
         line_width_min_pixels=1,
         pickable=True,
         stroked=True,
@@ -193,8 +193,8 @@ def build_map(map_df: pd.DataFrame) -> pdk.Deck:
         Priority Score: {priority_score_display}
         """,
         "style": {
-            "backgroundColor": "#08172f",
-            "color": "#e7f2ff",
+            "backgroundColor": "#2b2d31",
+            "color": "#e4e5e7",
             "fontSize": "12px",
         },
     }
@@ -203,7 +203,7 @@ def build_map(map_df: pd.DataFrame) -> pdk.Deck:
         layers=[layer],
         initial_view_state=view_state,
         tooltip=tooltip,
-        map_style=MAP_STYLE_DARK,
+        map_style=MAP_STYLE,
         map_provider="carto",
     )
 

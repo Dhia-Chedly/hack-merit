@@ -27,7 +27,7 @@ def _load_project_dotenv() -> None:
     This lightweight loader avoids an extra dependency and only sets variables
     that are not already defined in the environment.
     """
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = Path(__file__).resolve().parent.parent.parent
     dotenv_path = project_root / ".env"
     if not dotenv_path.exists():
         return
