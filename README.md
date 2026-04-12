@@ -8,7 +8,7 @@ Tunisia Real-Estate Demand Intelligence is a hackathon-ready MVP that helps comm
 - identify underperforming projects through transparent risk scoring
 - translate analytics into clear project-level actions
 
-The app is built as a modular Streamlit product with reusable business logic in `src/` and presentation pages in `pages/`.
+The app is built as a modular Streamlit product with reusable business logic in `src/`, UI pages in `pages/`, and a layered ETL pipeline in `etl/`.
 
 ## Core Features
 - Executive overview homepage with KPI snapshot and immediate signals
@@ -18,12 +18,30 @@ The app is built as a modular Streamlit product with reusable business logic in 
 - Risk analysis page with project and city risk breakdowns
 - Decision support page with ranked recommended actions and priority scoring
 
+## Data Layers
+- `data/raw/`: synthetic operational tables (projects, campaigns, leads, visits, sales)
+- `data/processed/`: cleaned and validated tables with enforced business rules
+- `data/curated/`: analytics-ready tables for dashboarding, forecasting, and risk inputs
+
 ## Project Structure
 ```text
 .
 ├── app.py
 ├── data/
+│   ├── raw/
+│   ├── processed/
+│   ├── curated/
 │   └── projects.csv
+├── etl/
+│   ├── config.py
+│   ├── generate_projects.py
+│   ├── generate_campaigns.py
+│   ├── generate_leads.py
+│   ├── generate_visits.py
+│   ├── generate_sales.py
+│   ├── clean_raw_data.py
+│   ├── build_curated_tables.py
+│   └── run_pipeline.py
 ├── pages/
 │   ├── 1_Map.py
 │   ├── 2_Marketing_Intelligence.py
@@ -41,15 +59,6 @@ The app is built as a modular Streamlit product with reusable business logic in 
 └── README.md
 ```
 
-## Data and Logic
-- Dataset: `data/projects.csv`
-- Scope: mock project-level data for Tunisian cities (for demo use)
-- Data validation: required columns and numeric checks in `src/data_loader.py`
-- KPI and marketing metrics: `src/kpis.py`
-- Forecasting (explainable heuristic layer): `src/forecasting.py`
-- Risk scoring (weighted normalized components): `src/risk.py`
-- Decision support (rule-based recommendations): `src/decision_support.py`
-
 ## Setup
 1. Create and activate a virtual environment.
 
@@ -64,22 +73,43 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Run the App
+## Run the Streamlit App
 ```bash
 streamlit run app.py
 ```
 
 Then open the local Streamlit URL shown in the terminal.
+The app auto-selects `data/curated/project_metrics.csv` when available and falls back to `data/projects.csv`.
 
-## Page Guide
-- `Overview` (`app.py`): landing dashboard with portfolio KPIs, quick recommendations, and top risk alerts.
-- `Map`: geospatial view of projects with city and property filters plus rich project tooltips.
-- `Marketing Intelligence`: lead quality, conversion efficiency, and cost-efficiency comparisons.
-- `Forecasting`: projected demand/sales metrics and city/project forecast summaries.
-- `Risk Analysis`: risk score rankings, city risk exposure, and driver-level interpretation.
-- `Decision Support`: prioritized action recommendations with confidence, rationale, and expected impact.
+## Run the ETL Pipeline
+From the project root:
+
+```bash
+python etl/run_pipeline.py
+```
+
+This executes:
+1. Raw synthetic generation
+2. Cleaning and validation
+3. Curated table construction
+
+## ETL Script Guide
+- `etl/config.py`: reusable assumptions for Tunisian city profiles, neighborhood geographies, channel behavior, conversion rules, quality tiers, and date range.
+- `etl/generate_projects.py`: creates project master data with realistic city/property pricing patterns.
+- `etl/generate_campaigns.py`: generates channel-level spend/impressions/clicks/leads with business relationships.
+- `etl/generate_leads.py`: creates lead-level records tied to campaign performance and lead quality dynamics.
+- `etl/generate_visits.py`: simulates visit and reservation behavior from lead quality, intent, and price pressure.
+- `etl/generate_sales.py`: simulates transactions and sale prices from reservation pipeline strength.
+- `etl/clean_raw_data.py`: standardizes types/dates, validates IDs and joins, enforces funnel constraints, and writes processed tables.
+- `etl/build_curated_tables.py`: builds analytics-ready tables:
+  - `project_metrics.csv`
+  - `city_metrics.csv`
+  - `project_timeseries.csv`
+  - `forecast_base.csv`
+  - `risk_base.csv`
+- `etl/run_pipeline.py`: orchestrates the full ETL flow with clear progress logs and row counts.
 
 ## Notes
-- This MVP is intentionally transparent and explainable for demo storytelling.
-- Forecasting, risk, and recommendations are rule/heuristic based (not heavy ML pipelines).
-- The structure is designed for easy extension in future phases.
+- The synthetic generation is deterministic and relationship-driven (not independent random columns).
+- Forecasting, risk, and recommendations in the app remain transparent and explainable for demo storytelling.
+- The ETL and app structure are designed for extension in future phases.

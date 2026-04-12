@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from src.data_loader import load_projects_data
+from src.data_loader import load_projects_data_with_metadata
 from src.forecasting import (
     forecast_assumptions,
     forecast_city_summary,
@@ -24,12 +24,19 @@ def configure_page() -> None:
     st.set_page_config(page_title=full_page_title("Forecasting"), layout="wide")
 
 
-def load_forecasting_data() -> pd.DataFrame | None:
+def source_display_name(source: str) -> str:
+    return "Curated project metrics" if source == "curated" else "Legacy projects dataset"
+
+
+def load_forecasting_data() -> tuple[pd.DataFrame, str, str] | None:
     try:
-        return load_projects_data()
+        projects_df, source, source_path = load_projects_data_with_metadata()
+        return projects_df, source, str(source_path)
     except (FileNotFoundError, ValueError, RuntimeError) as error:
         st.error(f"Unable to load project dataset: {error}")
-        st.info("Please verify `data/projects.csv` and try again.")
+        st.info(
+            "Please verify `data/curated/project_metrics.csv` or `data/projects.csv` and try again."
+        )
         return None
 
 
@@ -329,9 +336,10 @@ def main() -> None:
     render_header()
     render_assumptions()
 
-    projects_df = load_forecasting_data()
-    if projects_df is None:
+    load_result = load_forecasting_data()
+    if load_result is None:
         return
+    projects_df, data_source, source_path = load_result
 
     selected_cities, selected_property_types = render_sidebar_filters(projects_df)
     filtered_df = apply_filters(projects_df, selected_cities, selected_property_types)
@@ -355,7 +363,9 @@ def main() -> None:
         st.error(f"Unable to compute forecasts: {error}")
         return
 
-    st.caption(f"Projects included in forecast: {len(project_forecast_df):,}")
+    st.caption(
+        f"Projects included in forecast: {len(project_forecast_df):,} | Source: {source_display_name(data_source)} (`{source_path}`)"
+    )
     render_overview_metrics(overview_metrics)
     render_risk_snapshot(project_risk_df)
     st.divider()

@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from src.data_loader import load_projects_data
+from src.data_loader import load_projects_data_with_metadata
 from src.presentation import (
     format_number,
     format_percentage,
@@ -22,13 +22,20 @@ def configure_page() -> None:
     st.set_page_config(page_title=full_page_title("Risk Analysis"), layout="wide")
 
 
-def load_risk_data() -> pd.DataFrame | None:
+def source_display_name(source: str) -> str:
+    return "Curated project metrics" if source == "curated" else "Legacy projects dataset"
+
+
+def load_risk_data() -> tuple[pd.DataFrame, str, str] | None:
     try:
-        projects_df = load_projects_data()
-        return calculate_project_risk(projects_df)
+        projects_df, source, source_path = load_projects_data_with_metadata()
+        risk_df = calculate_project_risk(projects_df)
+        return risk_df, source, str(source_path)
     except (FileNotFoundError, ValueError, RuntimeError) as error:
         st.error(f"Unable to load risk analysis data: {error}")
-        st.info("Please verify `data/projects.csv` and supporting calculation modules.")
+        st.info(
+            "Please verify `data/curated/project_metrics.csv` or `data/projects.csv` and supporting calculation modules."
+        )
         return None
 
 
@@ -268,9 +275,10 @@ def main() -> None:
     render_header()
     render_assumptions()
 
-    project_risk_df = load_risk_data()
-    if project_risk_df is None:
+    load_result = load_risk_data()
+    if load_result is None:
         return
+    project_risk_df, data_source, source_path = load_result
 
     selected_cities, selected_property_types, selected_risk_levels = render_sidebar_filters(
         project_risk_df
@@ -289,7 +297,9 @@ def main() -> None:
     overview_metrics = risk_overview_metrics(filtered_risk_df)
     insights = risk_summary_insights(filtered_risk_df, city_risk_df)
 
-    st.caption(f"Projects included in risk analysis: {len(filtered_risk_df):,}")
+    st.caption(
+        f"Projects included in risk analysis: {len(filtered_risk_df):,} | Source: {source_display_name(data_source)} (`{source_path}`)"
+    )
     render_summary_metrics(overview_metrics)
     st.divider()
     render_summary(insights)

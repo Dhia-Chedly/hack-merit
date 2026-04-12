@@ -2,7 +2,7 @@ import pandas as pd
 import pydeck as pdk
 import streamlit as st
 
-from src.data_loader import load_projects_data
+from src.data_loader import load_projects_data_with_metadata
 from src.decision_support import calculate_project_recommendations
 from src.presentation import (
     format_currency,
@@ -21,12 +21,19 @@ def configure_page() -> None:
     st.set_page_config(page_title=full_page_title("Map Explorer"), layout="wide")
 
 
-def load_map_data() -> pd.DataFrame | None:
+def source_display_name(source: str) -> str:
+    return "Curated project metrics" if source == "curated" else "Legacy projects dataset"
+
+
+def load_map_data() -> tuple[pd.DataFrame, str, str] | None:
     try:
-        return load_projects_data()
+        projects_df, source, source_path = load_projects_data_with_metadata()
+        return projects_df, source, str(source_path)
     except (FileNotFoundError, ValueError, RuntimeError) as error:
         st.error(f"Unable to load project dataset: {error}")
-        st.info("Please verify `data/projects.csv` and try again.")
+        st.info(
+            "Please verify `data/curated/project_metrics.csv` or `data/projects.csv` and try again."
+        )
         return None
 
 
@@ -252,9 +259,10 @@ def main() -> None:
     configure_page()
     render_header()
 
-    projects_df = load_map_data()
-    if projects_df is None:
+    load_result = load_map_data()
+    if load_result is None:
         return
+    projects_df, data_source, source_path = load_result
 
     projects_with_decision_df = add_decision_data(projects_df)
     if projects_with_decision_df is None:
@@ -269,7 +277,9 @@ def main() -> None:
         )
         return
 
-    st.caption(f"Projects shown on map: {len(filtered_df):,}")
+    st.caption(
+        f"Projects shown on map: {len(filtered_df):,} | Source: {source_display_name(data_source)} (`{source_path}`)"
+    )
     render_map_summary(filtered_df)
     st.divider()
 

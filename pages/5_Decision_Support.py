@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from src.data_loader import load_projects_data
+from src.data_loader import load_projects_data_with_metadata
 from src.decision_support import (
     DECISION_ACTIONS,
     calculate_project_recommendations,
@@ -24,13 +24,20 @@ def configure_page() -> None:
     st.set_page_config(page_title=full_page_title("Decision Support"), layout="wide")
 
 
-def load_decision_data() -> pd.DataFrame | None:
+def source_display_name(source: str) -> str:
+    return "Curated project metrics" if source == "curated" else "Legacy projects dataset"
+
+
+def load_decision_data() -> tuple[pd.DataFrame, str, str] | None:
     try:
-        projects_df = load_projects_data()
-        return calculate_project_recommendations(projects_df)
+        projects_df, source, source_path = load_projects_data_with_metadata()
+        decision_df = calculate_project_recommendations(projects_df)
+        return decision_df, source, str(source_path)
     except (FileNotFoundError, ValueError, RuntimeError) as error:
         st.error(f"Unable to load decision support data: {error}")
-        st.info("Please verify `data/projects.csv` and decision support modules.")
+        st.info(
+            "Please verify `data/curated/project_metrics.csv` or `data/projects.csv` and decision support modules."
+        )
         return None
 
 
@@ -283,9 +290,10 @@ def main() -> None:
     render_header()
     render_assumptions()
 
-    decision_df = load_decision_data()
-    if decision_df is None:
+    load_result = load_decision_data()
+    if load_result is None:
         return
+    decision_df, data_source, source_path = load_result
 
     selected_cities, selected_property_types, selected_actions, selected_risk_levels = (
         render_sidebar_filters(decision_df)
@@ -306,7 +314,9 @@ def main() -> None:
     metrics = decision_overview_metrics(filtered_df)
     insights = decision_summary_insights(filtered_df)
 
-    st.caption(f"Projects included in decision support: {len(filtered_df):,}")
+    st.caption(
+        f"Projects included in decision support: {len(filtered_df):,} | Source: {source_display_name(data_source)} (`{source_path}`)"
+    )
     render_summary_metrics(metrics)
     st.divider()
     render_summary(insights)

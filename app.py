@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from src.data_loader import load_projects_data
+from src.data_loader import load_projects_data_with_metadata
 from src.decision_support import calculate_project_recommendations
 from src.kpis import calculate_kpis
 from src.presentation import (
@@ -21,12 +21,19 @@ def configure_page() -> None:
     )
 
 
-def load_dashboard_data() -> pd.DataFrame | None:
+def source_display_name(source: str) -> str:
+    return "Curated project metrics" if source == "curated" else "Legacy projects dataset"
+
+
+def load_dashboard_data() -> tuple[pd.DataFrame, str, str] | None:
     try:
-        return load_projects_data()
+        projects_df, source, source_path = load_projects_data_with_metadata()
+        return projects_df, source, str(source_path)
     except (FileNotFoundError, ValueError, RuntimeError) as error:
         st.error(f"Unable to load project dataset: {error}")
-        st.info("Please verify `data/projects.csv` and try again.")
+        st.info(
+            "Please verify `data/curated/project_metrics.csv` or `data/projects.csv` and try again."
+        )
         return None
 
 
@@ -160,9 +167,11 @@ def render_home_highlights(projects_df: pd.DataFrame) -> None:
         st.dataframe(risks_table, use_container_width=True, hide_index=True, height=180)
 
 
-def render_data_preview(projects_df: pd.DataFrame) -> None:
+def render_data_preview(projects_df: pd.DataFrame, data_source: str, source_path: str) -> None:
     st.subheader("Data Coverage Preview")
-    st.caption(f"Rows loaded from `data/projects.csv`: **{len(projects_df):,}**")
+    st.caption(
+        f"Rows loaded: **{len(projects_df):,}** | Source: **{source_display_name(data_source)}** (`{source_path}`)"
+    )
 
     preview_columns = [
         "project_name",
@@ -206,9 +215,10 @@ def main() -> None:
     configure_page()
     render_home()
 
-    projects_df = load_dashboard_data()
-    if projects_df is None:
+    load_result = load_dashboard_data()
+    if load_result is None:
         return
+    projects_df, data_source, source_path = load_result
 
     render_kpi_section(projects_df)
     st.divider()
@@ -216,7 +226,7 @@ def main() -> None:
     st.divider()
     render_home_highlights(projects_df)
     st.divider()
-    render_data_preview(projects_df)
+    render_data_preview(projects_df, data_source, source_path)
 
 
 if __name__ == "__main__":
