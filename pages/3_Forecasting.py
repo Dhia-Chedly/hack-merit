@@ -10,14 +10,18 @@ from src.forecasting import (
     forecast_projects,
     forecast_summary_insights,
 )
+from src.presentation import (
+    format_number,
+    format_percentage,
+    format_score,
+    full_page_title,
+    sorted_options,
+)
 from src.risk import calculate_project_risk, risk_overview_metrics
 
 
 def configure_page() -> None:
-    st.set_page_config(
-        page_title="Forecasting | Tunisia Real-Estate",
-        layout="wide",
-    )
+    st.set_page_config(page_title=full_page_title("Forecasting"), layout="wide")
 
 
 def load_forecasting_data() -> pd.DataFrame | None:
@@ -32,16 +36,12 @@ def load_forecasting_data() -> pd.DataFrame | None:
 def render_sidebar_filters(df: pd.DataFrame) -> tuple[list[str], list[str]]:
     st.sidebar.header("Filters")
 
-    city_options = sorted(df["city"].dropna().unique().tolist())
-    property_type_options = sorted(df["property_type"].dropna().unique().tolist())
+    city_options = sorted_options(df, "city")
+    property_type_options = sorted_options(df, "property_type")
 
-    selected_cities = st.sidebar.multiselect(
-        "City",
-        options=city_options,
-        default=city_options,
-    )
+    selected_cities = st.sidebar.multiselect("Cities", options=city_options, default=city_options)
     selected_property_types = st.sidebar.multiselect(
-        "Property Type",
+        "Property Types",
         options=property_type_options,
         default=property_type_options,
     )
@@ -57,30 +57,18 @@ def apply_filters(
     return filtered_df.copy()
 
 
-def format_number(value: float | int) -> str:
-    return f"{float(value):,.0f}"
-
-
-def format_percentage(value: float | int) -> str:
-    return f"{float(value):.1%}"
-
-
-def format_score(value: float | int) -> str:
-    return f"{float(value):.1f}/100"
-
-
 def render_header() -> None:
-    st.title("Forecasting Layer")
+    st.title("Forecasting")
     st.markdown(
         """
-        This page estimates what is likely to happen next for project demand and sales
-        using transparent, explainable forecasting heuristics built for an MVP demo.
+        Estimate near-term demand and sales momentum using explainable MVP heuristics.
+        This view helps teams anticipate where performance is likely to accelerate or slow down.
         """
     )
 
 
 def render_assumptions() -> None:
-    with st.expander("Forecasting Methodology and Assumptions", expanded=False):
+    with st.expander("Forecast Methodology", expanded=False):
         for assumption in forecast_assumptions():
             st.markdown(f"- {assumption}")
 
@@ -101,25 +89,73 @@ def render_overview_metrics(metrics: dict[str, float | int]) -> None:
         delta=f"{format_percentage(metrics['sales_growth_rate'])} vs current",
     )
     columns[3].metric(
-        "Avg Projected Demand Score",
+        "Average Projected Demand",
         format_score(metrics["average_projected_demand_score"]),
     )
-    columns[4].metric(
-        "High Opportunity Projects", format_number(metrics["high_opportunity_projects"])
-    )
+    columns[4].metric("High Opportunity Projects", format_number(metrics["high_opportunity_projects"]))
 
 
 def render_risk_snapshot(project_risk_df: pd.DataFrame) -> None:
+    st.markdown("**Risk Snapshot (from Current + Forecast Signals)**")
     risk_metrics = risk_overview_metrics(project_risk_df)
     col_1, col_2, col_3 = st.columns(3)
-
     col_1.metric("High-Risk Projects", format_number(risk_metrics["high_risk_projects"]))
     col_2.metric("Average Risk Score", f"{float(risk_metrics['average_risk_score']):.1f}")
     col_3.metric("High-Risk Share", format_percentage(risk_metrics["high_risk_share"]))
 
 
+def render_summary(insights: dict[str, object]) -> None:
+    st.subheader("Strategic Summary")
+
+    strongest_city = insights.get("strongest_city")
+    strongest_project = insights.get("strongest_project")
+    slowdown_cities = insights.get("slowdown_cities", [])
+    slowdown_projects = insights.get("slowdown_projects", [])
+    observations = insights.get("observations", [])
+
+    if isinstance(strongest_city, dict):
+        st.markdown(
+            "- Strongest forecasted city: "
+            f"**{strongest_city['city']}** with projected demand score "
+            f"**{strongest_city['projected_demand_score']:.1f}** and projected sales growth "
+            f"of **{format_percentage(strongest_city['projected_sales_growth_rate'])}**."
+        )
+    if isinstance(strongest_project, dict):
+        st.markdown(
+            "- Strongest forecasted project: "
+            f"**{strongest_project['project_name']} ({strongest_project['city']})** with projected "
+            f"demand score **{strongest_project['projected_demand_score']:.1f}** and projected sales "
+            f"of **{format_number(strongest_project['projected_sales'])}**."
+        )
+    if isinstance(slowdown_cities, list) and slowdown_cities:
+        city_notes = ", ".join(
+            [
+                (
+                    f"{entry['city']} ({entry['projected_demand_score']:.1f} score, "
+                    f"{format_percentage(entry['projected_sales_growth_rate'])} sales growth)"
+                )
+                for entry in slowdown_cities[:2]
+            ]
+        )
+        st.markdown(f"- Cities that may slow down: {city_notes}.")
+    if isinstance(slowdown_projects, list) and slowdown_projects:
+        project_notes = ", ".join(
+            [
+                (
+                    f"{entry['project_name']} ({entry['city']}, "
+                    f"{entry['projected_demand_score']:.1f} score)"
+                )
+                for entry in slowdown_projects[:2]
+            ]
+        )
+        st.markdown(f"- Projects that may slow down: {project_notes}.")
+    if isinstance(observations, list):
+        for observation in observations[:2]:
+            st.markdown(f"- {observation}")
+
+
 def render_city_charts(city_df: pd.DataFrame) -> None:
-    st.subheader("Projected Performance by City")
+    st.subheader("City Outlook")
     col_demand, col_sales = st.columns(2)
 
     with col_demand:
@@ -129,10 +165,7 @@ def render_city_charts(city_df: pd.DataFrame) -> None:
             y="city",
             orientation="h",
             text="projected_demand_score",
-            labels={
-                "projected_demand_score": "Projected Demand Score",
-                "city": "City",
-            },
+            labels={"projected_demand_score": "Projected Demand Score", "city": "City"},
             title="Projected Demand Score by City",
         )
         demand_fig.update_traces(texttemplate="%{x:.1f}", textposition="outside")
@@ -147,10 +180,7 @@ def render_city_charts(city_df: pd.DataFrame) -> None:
             value_name="sales",
         )
         sales_compare["series"] = sales_compare["series"].replace(
-            {
-                "current_sales": "Current Sales",
-                "projected_sales": "Projected Sales",
-            }
+            {"current_sales": "Current Sales", "projected_sales": "Projected Sales"}
         )
         sales_fig = px.bar(
             sales_compare,
@@ -165,13 +195,12 @@ def render_city_charts(city_df: pd.DataFrame) -> None:
         st.plotly_chart(sales_fig, use_container_width=True)
 
 
-def render_project_charts(project_df: pd.DataFrame) -> None:
+def render_project_chart(project_df: pd.DataFrame) -> None:
     st.subheader("Top Opportunity Projects")
     top_projects = project_df.nlargest(min(10, len(project_df)), "projected_demand_score")
 
-    chart_df = top_projects.sort_values("projected_demand_score", ascending=True)
     project_fig = px.bar(
-        chart_df,
+        top_projects.sort_values("projected_demand_score", ascending=True),
         x="projected_demand_score",
         y="project_name",
         orientation="h",
@@ -197,7 +226,7 @@ def render_project_charts(project_df: pd.DataFrame) -> None:
 
 
 def render_project_forecast_table(project_df: pd.DataFrame) -> None:
-    st.subheader("Project-Level Forecast Table")
+    st.subheader("Project Forecast Table")
 
     display_df = project_df[
         [
@@ -206,11 +235,11 @@ def render_project_forecast_table(project_df: pd.DataFrame) -> None:
             "projected_leads",
             "projected_sales",
             "projected_demand_score",
+            "projected_sales_growth_rate",
             "current_sales",
             "unsold_inventory",
-            "projected_sales_growth_rate",
-            "risk_score",
             "risk_level",
+            "risk_score",
             "top_risk_drivers",
         ]
     ].copy()
@@ -220,11 +249,11 @@ def render_project_forecast_table(project_df: pd.DataFrame) -> None:
     display_df["projected_demand_score"] = display_df["projected_demand_score"].map(
         lambda value: f"{float(value):.1f}"
     )
-    display_df["current_sales"] = display_df["current_sales"].map(format_number)
-    display_df["unsold_inventory"] = display_df["unsold_inventory"].map(format_number)
     display_df["projected_sales_growth_rate"] = display_df["projected_sales_growth_rate"].map(
         format_percentage
     )
+    display_df["current_sales"] = display_df["current_sales"].map(format_number)
+    display_df["unsold_inventory"] = display_df["unsold_inventory"].map(format_number)
     display_df["risk_score"] = display_df["risk_score"].map(
         lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
     )
@@ -238,23 +267,23 @@ def render_project_forecast_table(project_df: pd.DataFrame) -> None:
                 "projected_leads": "Projected Leads",
                 "projected_sales": "Projected Sales",
                 "projected_demand_score": "Projected Demand Score",
+                "projected_sales_growth_rate": "Projected Sales Growth",
                 "current_sales": "Current Sales",
                 "unsold_inventory": "Unsold Inventory",
-                "projected_sales_growth_rate": "Projected Sales Growth",
-                "risk_score": "Risk Score",
                 "risk_level": "Risk Level",
+                "risk_score": "Risk Score",
                 "top_risk_drivers": "Top Risk Drivers",
             }
         ),
         use_container_width=True,
         hide_index=True,
+        height=390,
     )
 
 
 def render_city_forecast_table(city_df: pd.DataFrame) -> None:
     st.subheader("City Forecast Summary")
     display_df = city_df.copy()
-
     for column in [
         "project_count",
         "current_leads",
@@ -264,7 +293,6 @@ def render_city_forecast_table(city_df: pd.DataFrame) -> None:
         "unsold_inventory",
     ]:
         display_df[column] = display_df[column].map(format_number)
-
     display_df["projected_demand_score"] = display_df["projected_demand_score"].map(
         lambda value: f"{float(value):.1f}"
     )
@@ -292,61 +320,8 @@ def render_city_forecast_table(city_df: pd.DataFrame) -> None:
         ),
         use_container_width=True,
         hide_index=True,
+        height=320,
     )
-
-
-def render_summary(insights: dict[str, object]) -> None:
-    st.subheader("Forecast Summary")
-
-    strongest_city = insights.get("strongest_city")
-    strongest_project = insights.get("strongest_project")
-    slowdown_cities = insights.get("slowdown_cities", [])
-    slowdown_projects = insights.get("slowdown_projects", [])
-    observations = insights.get("observations", [])
-
-    if isinstance(strongest_city, dict):
-        st.markdown(
-            "- Strongest forecasted city: "
-            f"**{strongest_city['city']}** with projected demand score "
-            f"**{strongest_city['projected_demand_score']:.1f}** and projected sales growth "
-            f"of **{format_percentage(strongest_city['projected_sales_growth_rate'])}**."
-        )
-
-    if isinstance(strongest_project, dict):
-        st.markdown(
-            "- Strongest forecasted project: "
-            f"**{strongest_project['project_name']} ({strongest_project['city']})** with projected "
-            f"demand score **{strongest_project['projected_demand_score']:.1f}** and projected sales "
-            f"of **{format_number(strongest_project['projected_sales'])}**."
-        )
-
-    if isinstance(slowdown_cities, list) and slowdown_cities:
-        city_notes = ", ".join(
-            [
-                (
-                    f"{entry['city']} ({entry['projected_demand_score']:.1f} score, "
-                    f"{format_percentage(entry['projected_sales_growth_rate'])} sales growth)"
-                )
-                for entry in slowdown_cities[:2]
-            ]
-        )
-        st.markdown(f"- Cities that may slow down: {city_notes}.")
-
-    if isinstance(slowdown_projects, list) and slowdown_projects:
-        project_notes = ", ".join(
-            [
-                (
-                    f"{entry['project_name']} ({entry['city']}, "
-                    f"{entry['projected_demand_score']:.1f} score)"
-                )
-                for entry in slowdown_projects[:2]
-            ]
-        )
-        st.markdown(f"- Projects that may slow down: {project_notes}.")
-
-    if isinstance(observations, list):
-        for observation in observations[:2]:
-            st.markdown(f"- {observation}")
 
 
 def main() -> None:
@@ -360,11 +335,8 @@ def main() -> None:
 
     selected_cities, selected_property_types = render_sidebar_filters(projects_df)
     filtered_df = apply_filters(projects_df, selected_cities, selected_property_types)
-
     if filtered_df.empty:
-        st.warning(
-            "No projects match the selected filters. Adjust city or property type selections."
-        )
+        st.warning("No projects match the selected filters. Adjust the filters and try again.")
         return
 
     try:
@@ -385,14 +357,13 @@ def main() -> None:
 
     st.caption(f"Projects included in forecast: {len(project_forecast_df):,}")
     render_overview_metrics(overview_metrics)
-    st.markdown("**Risk Snapshot**")
     render_risk_snapshot(project_risk_df)
     st.divider()
     render_summary(insights)
     st.divider()
     render_city_charts(city_summary_df)
     st.divider()
-    render_project_charts(project_forecast_df)
+    render_project_chart(project_forecast_df)
     st.divider()
     render_project_forecast_table(project_forecast_df)
     st.divider()

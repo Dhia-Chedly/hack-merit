@@ -3,12 +3,22 @@ import pydeck as pdk
 import streamlit as st
 
 from src.data_loader import load_projects_data
-from src.risk import calculate_project_risk
+from src.decision_support import calculate_project_recommendations
+from src.presentation import (
+    format_currency,
+    format_number,
+    full_page_title,
+    sorted_options,
+)
 
 MAP_CENTER_LAT = 34.2
 MAP_CENTER_LON = 9.4
 MAP_INITIAL_ZOOM = 5.8
 MAP_HEIGHT = 560
+
+
+def configure_page() -> None:
+    st.set_page_config(page_title=full_page_title("Map Explorer"), layout="wide")
 
 
 def load_map_data() -> pd.DataFrame | None:
@@ -20,31 +30,45 @@ def load_map_data() -> pd.DataFrame | None:
         return None
 
 
-def add_risk_data(df: pd.DataFrame) -> pd.DataFrame | None:
+def add_decision_data(df: pd.DataFrame) -> pd.DataFrame | None:
     try:
-        risk_df = calculate_project_risk(df)
+        decision_df = calculate_project_recommendations(df)
     except ValueError as error:
-        st.error(f"Unable to compute risk signals for map view: {error}")
+        st.error(f"Unable to compute decision signals for the map view: {error}")
         return None
 
     join_keys = ["project_name", "city", "neighborhood", "property_type"]
-    merge_columns = join_keys + ["risk_score", "risk_level", "top_risk_drivers"]
-    return df.merge(risk_df[merge_columns], on=join_keys, how="left")
+    merge_columns = join_keys + [
+        "risk_score",
+        "risk_level",
+        "top_risk_drivers",
+        "recommended_action",
+        "confidence_level",
+        "priority_score",
+    ]
+    return df.merge(decision_df[merge_columns], on=join_keys, how="left")
+
+
+def render_header() -> None:
+    st.title("Map Explorer")
+    st.markdown(
+        """
+        Explore project concentration and commercial signals across Tunisia.
+        Marker size reflects **lead volume**, while tooltips combine current performance,
+        risk, and recommended action.
+        """
+    )
 
 
 def render_sidebar_filters(df: pd.DataFrame) -> tuple[list[str], list[str]]:
     st.sidebar.header("Filters")
 
-    city_options = sorted(df["city"].dropna().unique().tolist())
-    property_type_options = sorted(df["property_type"].dropna().unique().tolist())
+    city_options = sorted_options(df, "city")
+    property_type_options = sorted_options(df, "property_type")
 
-    selected_cities = st.sidebar.multiselect(
-        "City",
-        options=city_options,
-        default=city_options,
-    )
+    selected_cities = st.sidebar.multiselect("Cities", options=city_options, default=city_options)
     selected_property_types = st.sidebar.multiselect(
-        "Property Type",
+        "Property Types",
         options=property_type_options,
         default=property_type_options,
     )
@@ -60,10 +84,21 @@ def apply_filters(
     return filtered_df.copy()
 
 
+def render_map_summary(filtered_df: pd.DataFrame) -> None:
+    st.subheader("Filtered Portfolio Snapshot")
+    columns = st.columns(5)
+
+    columns[0].metric("Projects Displayed", format_number(len(filtered_df)))
+    columns[1].metric("Total Leads", format_number(filtered_df["leads"].sum()))
+    columns[2].metric("Total Sales", format_number(filtered_df["sales"].sum()))
+    columns[3].metric("Unsold Inventory", format_number(filtered_df["unsold_inventory"].sum()))
+    columns[4].metric("Average Price", format_currency(filtered_df["avg_price"].mean()))
+
+
 def prepare_map_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     map_df = df.copy()
 
-    # Size markers by leads so high-demand projects stand out clearly on the map.
+    # Size markers by leads so high-demand projects stand out clearly.
     map_df["marker_radius"] = (
         map_df["leads"].clip(lower=1).pow(0.5).mul(250).clip(lower=2500, upper=12000)
     )
@@ -81,13 +116,18 @@ def prepare_map_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         lambda value: f"{int(value):,}"
     )
     map_df["avg_price_display"] = map_df["avg_price"].map(
-        lambda value: f"TND {float(value):,.0f}"
+        lambda value: format_currency(value)
     )
     map_df["risk_score_display"] = map_df["risk_score"].map(
         lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
     )
     map_df["risk_level_display"] = map_df["risk_level"].fillna("N/A")
     map_df["top_risk_drivers_display"] = map_df["top_risk_drivers"].fillna("N/A")
+    map_df["recommended_action_display"] = map_df["recommended_action"].fillna("N/A")
+    map_df["confidence_display"] = map_df["confidence_level"].fillna("N/A")
+    map_df["priority_score_display"] = map_df["priority_score"].map(
+        lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
+    )
 
     return map_df
 
@@ -130,7 +170,10 @@ def build_map(map_df: pd.DataFrame) -> pdk.Deck:
         Avg Price: {avg_price_display}<br/>
         Risk Score: {risk_score_display}<br/>
         Risk Level: {risk_level_display}<br/>
-        Top Risk Drivers: {top_risk_drivers_display}
+        Top Risk Drivers: {top_risk_drivers_display}<br/>
+        Recommended Action: {recommended_action_display}<br/>
+        Confidence: {confidence_display}<br/>
+        Priority Score: {priority_score_display}
         """,
         "style": {
             "backgroundColor": "white",
@@ -149,7 +192,7 @@ def build_map(map_df: pd.DataFrame) -> pdk.Deck:
 
 
 def render_filtered_table(df: pd.DataFrame) -> None:
-    st.subheader("Filtered Project List")
+    st.subheader("Filtered Project Table")
     table_df = (
         df[
             [
@@ -161,23 +204,24 @@ def render_filtered_table(df: pd.DataFrame) -> None:
                 "sales",
                 "unsold_inventory",
                 "avg_price",
-                "risk_score",
                 "risk_level",
+                "risk_score",
+                "recommended_action",
+                "priority_score",
             ]
         ]
         .sort_values(by=["city", "project_name"])
         .reset_index(drop=True)
     )
 
-    table_df["leads"] = table_df["leads"].map(lambda value: f"{int(value):,}")
-    table_df["sales"] = table_df["sales"].map(lambda value: f"{int(value):,}")
-    table_df["unsold_inventory"] = table_df["unsold_inventory"].map(
-        lambda value: f"{int(value):,}"
-    )
-    table_df["avg_price"] = table_df["avg_price"].map(
-        lambda value: f"TND {float(value):,.0f}"
-    )
+    table_df["leads"] = table_df["leads"].map(format_number)
+    table_df["sales"] = table_df["sales"].map(format_number)
+    table_df["unsold_inventory"] = table_df["unsold_inventory"].map(format_number)
+    table_df["avg_price"] = table_df["avg_price"].map(format_currency)
     table_df["risk_score"] = table_df["risk_score"].map(
+        lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
+    )
+    table_df["priority_score"] = table_df["priority_score"].map(
         lambda value: f"{float(value):.1f}" if pd.notna(value) else "N/A"
     )
 
@@ -191,48 +235,48 @@ def render_filtered_table(df: pd.DataFrame) -> None:
                 "leads": "Leads",
                 "sales": "Sales",
                 "unsold_inventory": "Unsold Inventory",
-                "avg_price": "Avg Price",
-                "risk_score": "Risk Score",
+                "avg_price": "Average Price",
                 "risk_level": "Risk Level",
+                "risk_score": "Risk Score",
+                "recommended_action": "Recommended Action",
+                "priority_score": "Priority Score",
             }
         ),
         use_container_width=True,
         hide_index=True,
+        height=360,
     )
 
 
 def main() -> None:
-    st.title("Project Map Explorer")
-    st.markdown(
-        """
-        Explore project distribution across Tunisia and filter by city and property type.
-        Marker size is based on **leads**, helping you quickly spot high-demand projects.
-        """
-    )
+    configure_page()
+    render_header()
 
     projects_df = load_map_data()
     if projects_df is None:
         return
 
-    projects_with_risk_df = add_risk_data(projects_df)
-    if projects_with_risk_df is None:
+    projects_with_decision_df = add_decision_data(projects_df)
+    if projects_with_decision_df is None:
         return
 
-    selected_cities, selected_property_types = render_sidebar_filters(projects_with_risk_df)
-    filtered_df = apply_filters(projects_with_risk_df, selected_cities, selected_property_types)
+    selected_cities, selected_property_types = render_sidebar_filters(projects_with_decision_df)
+    filtered_df = apply_filters(projects_with_decision_df, selected_cities, selected_property_types)
 
     if filtered_df.empty:
         st.warning(
             "No projects match the selected filters. Adjust city or property type selections."
         )
-        st.subheader("Filtered Project List")
-        st.dataframe(filtered_df, use_container_width=True, hide_index=True)
         return
 
     st.caption(f"Projects shown on map: {len(filtered_df):,}")
+    render_map_summary(filtered_df)
+    st.divider()
 
     map_df = prepare_map_dataframe(filtered_df)
     st.pydeck_chart(build_map(map_df), use_container_width=True, height=MAP_HEIGHT)
+    st.caption("Tip: hover over a marker to inspect demand, conversion, risk, and recommended action.")
+    st.divider()
 
     render_filtered_table(filtered_df)
 

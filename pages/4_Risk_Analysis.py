@@ -3,6 +3,12 @@ import plotly.express as px
 import streamlit as st
 
 from src.data_loader import load_projects_data
+from src.presentation import (
+    format_number,
+    format_percentage,
+    full_page_title,
+    sorted_options,
+)
 from src.risk import (
     calculate_project_risk,
     risk_city_breakdown,
@@ -13,7 +19,7 @@ from src.risk import (
 
 
 def configure_page() -> None:
-    st.set_page_config(page_title="Risk Analysis | Tunisia Real-Estate", layout="wide")
+    st.set_page_config(page_title=full_page_title("Risk Analysis"), layout="wide")
 
 
 def load_risk_data() -> pd.DataFrame | None:
@@ -29,22 +35,21 @@ def load_risk_data() -> pd.DataFrame | None:
 def render_sidebar_filters(df: pd.DataFrame) -> tuple[list[str], list[str], list[str]]:
     st.sidebar.header("Filters")
 
-    city_options = sorted(df["city"].dropna().unique().tolist())
-    property_type_options = sorted(df["property_type"].dropna().unique().tolist())
+    city_options = sorted_options(df, "city")
+    property_type_options = sorted_options(df, "property_type")
     risk_level_options = [level for level in ["High", "Medium", "Low"] if level in df["risk_level"].unique()]
 
-    selected_cities = st.sidebar.multiselect("City", options=city_options, default=city_options)
+    selected_cities = st.sidebar.multiselect("Cities", options=city_options, default=city_options)
     selected_property_types = st.sidebar.multiselect(
-        "Property Type",
+        "Property Types",
         options=property_type_options,
         default=property_type_options,
     )
     selected_risk_levels = st.sidebar.multiselect(
-        "Risk Level",
+        "Risk Levels",
         options=risk_level_options,
         default=risk_level_options,
     )
-
     return selected_cities, selected_property_types, selected_risk_levels
 
 
@@ -60,20 +65,12 @@ def apply_filters(
     return filtered_df.copy()
 
 
-def format_number(value: float | int) -> str:
-    return f"{float(value):,.0f}"
-
-
-def format_percentage(value: float | int) -> str:
-    return f"{float(value):.1%}"
-
-
 def render_header() -> None:
     st.title("Risk Analysis")
     st.markdown(
         """
-        This layer identifies projects and zones exposed to commercial underperformance risk,
-        combining lead quality, funnel conversion, inventory pressure, and forecast weakness.
+        Identify projects and cities with elevated commercial risk using a transparent score
+        based on lead quality, conversion efficiency, inventory pressure, and forecast weakness.
         """
     )
 
@@ -92,8 +89,36 @@ def render_summary_metrics(metrics: dict[str, float | int]) -> None:
     columns[1].metric("High-Risk Projects", format_number(metrics["high_risk_projects"]))
     columns[2].metric("Medium-Risk Projects", format_number(metrics["medium_risk_projects"]))
     columns[3].metric("Low-Risk Projects", format_number(metrics["low_risk_projects"]))
-    columns[4].metric("Avg Risk Score", f"{float(metrics['average_risk_score']):.1f}")
+    columns[4].metric("Average Risk Score", f"{float(metrics['average_risk_score']):.1f}")
     st.caption(f"High-risk share: {format_percentage(metrics['high_risk_share'])}")
+
+
+def render_summary(insights: dict[str, object]) -> None:
+    st.subheader("Strategic Summary")
+
+    highest_risk_city = insights.get("highest_risk_city")
+    highest_risk_project = insights.get("highest_risk_project")
+    common_drivers = insights.get("most_common_risk_drivers", [])
+    observations = insights.get("observations", [])
+
+    if isinstance(highest_risk_city, dict):
+        st.markdown(
+            "- Highest-risk city: "
+            f"**{highest_risk_city['city']}** with average risk score "
+            f"**{highest_risk_city['average_risk_score']:.1f}** and high-risk share "
+            f"**{format_percentage(highest_risk_city['high_risk_share'])}**."
+        )
+    if isinstance(highest_risk_project, dict):
+        st.markdown(
+            "- Highest-risk project: "
+            f"**{highest_risk_project['project_name']} ({highest_risk_project['city']})** "
+            f"with risk score **{highest_risk_project['risk_score']:.1f}**."
+        )
+    if isinstance(common_drivers, list) and common_drivers:
+        st.markdown(f"- Most common risk drivers: **{', '.join(common_drivers[:3])}**.")
+    if isinstance(observations, list):
+        for observation in observations[:2]:
+            st.markdown(f"- {observation}")
 
 
 def render_risk_charts(project_df: pd.DataFrame, city_df: pd.DataFrame) -> None:
@@ -111,7 +136,7 @@ def render_risk_charts(project_df: pd.DataFrame, city_df: pd.DataFrame) -> None:
             orientation="h",
             color="risk_level",
             color_discrete_map={"High": "#d62728", "Medium": "#ff7f0e", "Low": "#2ca02c"},
-            labels={"risk_score": "Risk Score", "project_name": "Project", "risk_level": "Risk"},
+            labels={"risk_score": "Risk Score", "project_name": "Project", "risk_level": "Risk Level"},
             title="Highest-Risk Projects",
             hover_data={
                 "city": True,
@@ -158,8 +183,8 @@ def render_project_ranking_table(project_df: pd.DataFrame) -> None:
             "project_name",
             "city",
             "property_type",
-            "risk_score",
             "risk_level",
+            "risk_score",
             "top_risk_drivers",
             "current_sales",
             "projected_sales",
@@ -182,8 +207,8 @@ def render_project_ranking_table(project_df: pd.DataFrame) -> None:
                 "project_name": "Project",
                 "city": "City",
                 "property_type": "Property Type",
-                "risk_score": "Risk Score",
                 "risk_level": "Risk Level",
+                "risk_score": "Risk Score",
                 "top_risk_drivers": "Top Risk Drivers",
                 "current_sales": "Current Sales",
                 "projected_sales": "Projected Sales",
@@ -193,11 +218,12 @@ def render_project_ranking_table(project_df: pd.DataFrame) -> None:
         ),
         use_container_width=True,
         hide_index=True,
+        height=380,
     )
 
 
 def render_city_breakdown_table(city_df: pd.DataFrame) -> None:
-    st.subheader("Risk Breakdown by City")
+    st.subheader("City Risk Breakdown")
     table_df = city_df.copy()
     for column in [
         "project_count",
@@ -208,7 +234,6 @@ def render_city_breakdown_table(city_df: pd.DataFrame) -> None:
         "total_projected_sales",
     ]:
         table_df[column] = table_df[column].map(format_number)
-
     table_df["average_risk_score"] = table_df["average_risk_score"].map(
         lambda value: f"{float(value):.1f}"
     )
@@ -229,43 +254,13 @@ def render_city_breakdown_table(city_df: pd.DataFrame) -> None:
                 "high_risk_share": "High-Risk Share",
                 "total_unsold_inventory": "Total Unsold Inventory",
                 "total_projected_sales": "Total Projected Sales",
-                "average_projected_demand_score": "Avg Projected Demand Score",
+                "average_projected_demand_score": "Average Projected Demand Score",
             }
         ),
         use_container_width=True,
         hide_index=True,
+        height=320,
     )
-
-
-def render_summary(insights: dict[str, object]) -> None:
-    st.subheader("Business Summary")
-
-    highest_risk_city = insights.get("highest_risk_city")
-    highest_risk_project = insights.get("highest_risk_project")
-    common_drivers = insights.get("most_common_risk_drivers", [])
-    observations = insights.get("observations", [])
-
-    if isinstance(highest_risk_city, dict):
-        st.markdown(
-            "- Highest-risk city: "
-            f"**{highest_risk_city['city']}** with average risk score "
-            f"**{highest_risk_city['average_risk_score']:.1f}** and high-risk share "
-            f"**{format_percentage(highest_risk_city['high_risk_share'])}**."
-        )
-
-    if isinstance(highest_risk_project, dict):
-        st.markdown(
-            "- Highest-risk project: "
-            f"**{highest_risk_project['project_name']} ({highest_risk_project['city']})** "
-            f"at risk score **{highest_risk_project['risk_score']:.1f}**."
-        )
-
-    if isinstance(common_drivers, list) and common_drivers:
-        st.markdown(f"- Most common risk drivers: **{', '.join(common_drivers[:3])}**.")
-
-    if isinstance(observations, list):
-        for observation in observations[:2]:
-            st.markdown(f"- {observation}")
 
 
 def main() -> None:
@@ -286,7 +281,6 @@ def main() -> None:
         selected_property_types,
         selected_risk_levels,
     )
-
     if filtered_risk_df.empty:
         st.warning("No projects match the selected filters. Adjust the filters and try again.")
         return
@@ -309,4 +303,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
