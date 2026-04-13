@@ -3,8 +3,17 @@ from __future__ import annotations
 from pathlib import Path
 import pandas as pd
 
-# The BI layer only reads from the explicitly transformed Gold table
-BI_DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "project_metrics.csv"
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+DATASET_CANDIDATES: dict[str, Path] = {
+    "curated": PROJECT_ROOT / "data" / "curated" / "project_metrics.csv",
+    "bi_layer": PROJECT_ROOT / "05_BI" / "data" / "project_metrics.csv",
+}
+
+SOURCE_DISPLAY_NAMES: dict[str, str] = {
+    "curated": "Curated project metrics",
+    "bi_layer": "BI layer project metrics",
+}
 
 REQUIRED_COLUMNS = [
     "project_name",
@@ -21,15 +30,46 @@ REQUIRED_COLUMNS = [
     "avg_price",
 ]
 
-def load_projects_data() -> pd.DataFrame:
-    """Loads the curated BI layer dataset."""
-    if not BI_DATA_PATH.exists():
+
+def source_display_name(source: str) -> str:
+    return SOURCE_DISPLAY_NAMES.get(source, source)
+
+
+def _resolve_dataset_path() -> tuple[str, Path]:
+    """Resolve dataset path from known locations.
+
+    Preference:
+    1. Most recently updated candidate file.
+    2. If timestamps tie, favor curated.
+    """
+    existing_sources: list[tuple[str, Path, float]] = []
+    for source, path in DATASET_CANDIDATES.items():
+        if path.exists():
+            existing_sources.append((source, path, path.stat().st_mtime))
+
+    if not existing_sources:
+        expected_paths = "\n".join([f"- {path}" for path in DATASET_CANDIDATES.values()])
         raise FileNotFoundError(
-            f"BI dataset not found at '{BI_DATA_PATH}'. Please run the ELT pipeline first."
+            "BI dataset not found. Expected one of:\n"
+            f"{expected_paths}\n"
+            "Run the ingestion and transform scripts from project root first."
         )
 
+    existing_sources.sort(
+        key=lambda item: (item[2], item[0] == "curated"),
+        reverse=True,
+    )
+    source, path, _ = existing_sources[0]
+    return source, path
+
+
+def load_projects_data(*, dataset_path: Path | None = None) -> pd.DataFrame:
+    """Loads the curated BI layer dataset."""
+    if dataset_path is None:
+        _, dataset_path = _resolve_dataset_path()
+
     try:
-        df = pd.read_csv(BI_DATA_PATH, parse_dates=["launch_date"])
+        df = pd.read_csv(dataset_path)
     except Exception as exc:
         raise ValueError(f"Failed to read BI dataset: {exc}") from exc
 
@@ -57,6 +97,9 @@ def load_projects_data() -> pd.DataFrame:
     # Standardize column mappings that the dashboard expects
     df = df.rename(columns={"spend": "ad_spend", "total_leads": "leads"})
 
+    if "launch_date" in df.columns:
+        df["launch_date"] = pd.to_datetime(df["launch_date"], errors="coerce")
+
     # Validate numeric types
     numeric_columns = ["latitude", "longitude", "ad_spend", "leads", "qualified_leads", "visits", "reservations", "sales", "unsold_inventory", "avg_price"]
     for col in numeric_columns:
@@ -65,7 +108,8 @@ def load_projects_data() -> pd.DataFrame:
 
     return df
 
-def load_projects_data_with_metadata() -> tuple[pd.DataFrame, str, Path]:
-    df = load_projects_data()
-    return df, "Bi-Lakehouse", BI_DATA_PATH
 
+def load_projects_data_with_metadata() -> tuple[pd.DataFrame, str, Path]:
+    source, dataset_path = _resolve_dataset_path()
+    df = load_projects_data(dataset_path=dataset_path)
+    return df, source, dataset_path

@@ -9,7 +9,7 @@ from src.dashboard_ui import (
     render_sidebar_block,
     render_source_chip,
 )
-from src.data_loader import load_projects_data_with_metadata
+from src.data_loader import load_projects_data_with_metadata, source_display_name
 from src.decision_support import calculate_project_recommendations
 from src.presentation import (
     format_currency,
@@ -139,19 +139,13 @@ def configure_page() -> None:
     st.markdown(_MAP_LAYOUT_CSS, unsafe_allow_html=True)
 
 
-def source_display_name(source: str) -> str:
-    return "Curated project metrics" if source == "curated" else "Legacy projects dataset"
-
-
 def load_map_data() -> tuple[pd.DataFrame, str, str] | None:
     try:
         projects_df, source, source_path = load_projects_data_with_metadata()
         return projects_df, source, str(source_path)
     except (FileNotFoundError, ValueError, RuntimeError) as error:
         st.error(f"Unable to load project dataset: {error}")
-        st.info(
-            "Please verify `data/curated/project_metrics.csv` or `data/projects.csv` and try again."
-        )
+        st.info("Run ingestion and transform scripts from project root, then reload the page.")
         return None
 
 

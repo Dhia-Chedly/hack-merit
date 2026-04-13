@@ -1,15 +1,18 @@
 import duckdb
-import pandas as pd
 from pathlib import Path
 
 def main():
     root = Path(__file__).resolve().parents[1]
     
     db_path = root / "03_Storage_Raw" / "lakehouse.duckdb"
-    bi_data_dir = root / "05_BI" / "data"
-    bi_data_dir.mkdir(parents=True, exist_ok=True)
-    
-    output_path = bi_data_dir / "project_metrics.csv"
+    curated_data_dir = root / "data" / "curated"
+    curated_data_dir.mkdir(parents=True, exist_ok=True)
+
+    legacy_bi_dir = root / "05_BI" / "data"
+    legacy_bi_dir.mkdir(parents=True, exist_ok=True)
+
+    output_path = curated_data_dir / "project_metrics.csv"
+    legacy_output_path = legacy_bi_dir / "project_metrics.csv"
     
     if not db_path.exists():
         print(f"Error: Database {db_path} not found. Run 02_Ingestion first.")
@@ -57,10 +60,13 @@ def main():
     print("Executing ELT Transformation built on 'raw_projects' dataframe...")
     df = conn.execute(query).df()
     
-    # 2. Output to BI Layer
-    # Standard output table the dashboard expects
+    # 2. Output curated table and mirror to legacy BI path for backward compatibility.
+    df.to_csv(legacy_output_path, index=False)
     df.to_csv(output_path, index=False)
-    print(f"Successfully transformed and exported {len(df)} rows to BI layer: {output_path.name}.")
+    print(
+        "Successfully transformed and exported "
+        f"{len(df)} rows to:\n- {output_path}\n- {legacy_output_path}"
+    )
     
     conn.close()
 

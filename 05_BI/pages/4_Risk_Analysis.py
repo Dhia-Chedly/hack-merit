@@ -11,7 +11,7 @@ from src.dashboard_ui import (
     render_source_chip,
     style_plotly_figure,
 )
-from src.data_loader import load_projects_data_with_metadata
+from src.data_loader import load_projects_data_with_metadata, source_display_name
 from src.presentation import format_number, format_percentage, full_page_title, sorted_options
 from src.risk import (
     calculate_project_risk,
@@ -31,10 +31,6 @@ def configure_page() -> None:
     apply_dashboard_theme()
 
 
-def source_display_name(source: str) -> str:
-    return "Curated project metrics" if source == "curated" else "Legacy projects dataset"
-
-
 def load_risk_data() -> tuple[pd.DataFrame, str, str] | None:
     try:
         projects_df, source, source_path = load_projects_data_with_metadata()
@@ -42,9 +38,7 @@ def load_risk_data() -> tuple[pd.DataFrame, str, str] | None:
         return risk_df, source, str(source_path)
     except (FileNotFoundError, ValueError, RuntimeError) as error:
         st.error(f"Unable to load risk analysis data: {error}")
-        st.info(
-            "Please verify `data/curated/project_metrics.csv` or `data/projects.csv` and supporting calculation modules."
-        )
+        st.info("Run ingestion and transform scripts from project root, then reload the page.")
         return None
 
 

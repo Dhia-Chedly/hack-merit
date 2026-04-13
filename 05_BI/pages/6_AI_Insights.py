@@ -8,7 +8,7 @@ from src.dashboard_ui import (
     render_sidebar_block,
     render_source_chip,
 )
-from src.data_loader import load_projects_data_with_metadata
+from src.data_loader import load_projects_data_with_metadata, source_display_name
 from src.gemini_client import GEMINI_MODEL_NAME
 from src.insights_engine import (
     build_dashboard_context,
@@ -25,10 +25,6 @@ def configure_page() -> None:
         initial_sidebar_state="expanded",
     )
     apply_dashboard_theme()
-
-
-def source_display_name(source: str) -> str:
-    return "Curated project metrics" if source == "curated" else "Legacy projects dataset"
 
 
 @st.cache_data(show_spinner=False)
