@@ -86,9 +86,21 @@ def _render_chat_history() -> None:
 
 
 def _handle_chat_error(error: Exception) -> None:
+    message = str(error)
+    message_lower = message.lower()
     with st.chat_message("assistant"):
-        st.error(f"I could not generate a response: {error}")
-        st.caption("Set `GEMINI_API_KEY`/`GOOGLE_API_KEY` and verify `google-genai` installation.")
+        st.error(f"I could not generate a response: {message}")
+        if "quota exceeded" in message_lower or "resource_exhausted" in message_lower:
+            st.caption(
+                "Gemini quota is exhausted for this project. Wait for reset or use a key/project with available quota."
+            )
+            return
+        if "api key" in message_lower or "missing" in message_lower:
+            st.caption(
+                "Set a valid `GEMINI_API_KEY`/`GOOGLE_API_KEY` for a Gemini-enabled project."
+            )
+            return
+        st.caption("Verify `google-genai` installation and Gemini project permissions/billing.")
 
 
 def main() -> None:

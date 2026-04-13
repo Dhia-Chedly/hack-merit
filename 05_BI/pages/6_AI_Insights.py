@@ -112,8 +112,23 @@ def _render_structured_output(payload: dict[str, list[str]]) -> None:
 
 
 def _handle_ai_error(error: Exception) -> None:
-    st.error(f"AI generation failed: {error}")
-    st.info("Set `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) and ensure `google-genai` is installed.")
+    message = str(error)
+    message_lower = message.lower()
+    st.error(f"AI generation failed: {message}")
+
+    if "quota exceeded" in message_lower or "resource_exhausted" in message_lower:
+        st.info(
+            "Gemini quota is exhausted for the current API project. "
+            "Wait for quota reset or switch to a key/project with available quota "
+            "(https://ai.google.dev/gemini-api/docs/rate-limits)."
+        )
+        return
+
+    if "api key" in message_lower or "missing" in message_lower:
+        st.info("Set `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) and ensure the key belongs to an enabled Gemini project.")
+        return
+
+    st.info("Ensure `google-genai` is installed and verify Gemini project access/billing settings.")
 
 
 def main() -> None:

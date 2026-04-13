@@ -15,27 +15,29 @@ from __future__ import annotations
 import os
 from functools import lru_cache
 from pathlib import Path
+import re
 from typing import Any
 
-# Fast default model for dashboard insight generation and chat interactions.
-GEMINI_MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
+DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
+FALLBACK_GEMINI_MODEL = "gemini-2.5-flash"
+
+# Default model for dashboard insight generation and chat interactions.
+GEMINI_MODEL_NAME = os.getenv("GEMINI_MODEL", DEFAULT_GEMINI_MODEL)
 
 
-def _load_project_dotenv() -> None:
-    """Load `.env` from project root into `os.environ` if present.
-
-    This lightweight loader avoids an extra dependency and only sets variables
-    that are not already defined in the environment.
-    """
+def _read_project_dotenv() -> dict[str, str]:
+    """Read project-root `.env` into a dictionary without mutating `os.environ`."""
     project_root = Path(__file__).resolve().parent.parent.parent
     dotenv_path = project_root / ".env"
     if not dotenv_path.exists():
-        return
+        return {}
 
     try:
         raw_lines = dotenv_path.read_text(encoding="utf-8").splitlines()
     except OSError:
-        return
+        return {}
+
+    values: dict[str, str] = {}
 
     for raw_line in raw_lines:
         line = raw_line.strip()
@@ -52,7 +54,9 @@ def _load_project_dotenv() -> None:
         if not key:
             continue
 
-        os.environ.setdefault(key, value)
+        values[key] = value
+
+    return values
 
 
 def get_gemini_api_key() -> str:
@@ -61,8 +65,13 @@ def get_gemini_api_key() -> str:
     Raises:
         RuntimeError: when no supported environment variable is configured.
     """
-    _load_project_dotenv()
-    api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+    dotenv_values = _read_project_dotenv()
+    api_key = (
+        os.getenv("GEMINI_API_KEY")
+        or os.getenv("GOOGLE_API_KEY")
+        or dotenv_values.get("GEMINI_API_KEY")
+        or dotenv_values.get("GOOGLE_API_KEY")
+    )
     if not api_key:
         raise RuntimeError(
             "Gemini API key is missing. Set GEMINI_API_KEY or GOOGLE_API_KEY in your environment."
@@ -81,11 +90,17 @@ def _load_genai_module() -> Any:
     return genai
 
 
-@lru_cache(maxsize=1)
-def get_gemini_client() -> Any:
-    """Create and cache a reusable Gemini client instance."""
+@lru_cache(maxsize=8)
+def _get_gemini_client_for_key(api_key: str) -> Any:
+    """Create and cache Gemini client instances by API key."""
     genai = _load_genai_module()
-    return genai.Client(api_key=get_gemini_api_key())
+    return genai.Client(api_key=api_key)
+
+
+def get_gemini_client() -> Any:
+    """Return a Gemini client bound to the current configured API key."""
+    api_key = get_gemini_api_key()
+    return _get_gemini_client_for_key(api_key)
 
 
 def _extract_text_from_response(response: Any) -> str:
@@ -107,6 +122,52 @@ def _extract_text_from_response(response: Any) -> str:
     return "\n".join(collected_parts).strip()
 
 
+def _extract_retry_seconds(message: str) -> int | None:
+    """Extract retry delay in seconds from API error text when present."""
+    match = re.search(r"retry in\s+([0-9]+(?:\.[0-9]+)?)s", message, flags=re.IGNORECASE)
+    if not match:
+        return None
+    try:
+        return max(1, int(float(match.group(1))))
+    except (TypeError, ValueError):
+        return None
+
+
+def _is_resource_exhausted_error(exc: Exception) -> bool:
+    upper = str(exc).upper()
+    return "RESOURCE_EXHAUSTED" in upper or "QUOTA EXCEEDED" in upper
+
+
+def _to_friendly_request_error(exc: Exception) -> str:
+    """Convert raw SDK exceptions to concise actionable messages."""
+    raw = str(exc)
+    upper = raw.upper()
+
+    if "RESOURCE_EXHAUSTED" in upper or "QUOTA EXCEEDED" in upper:
+        retry_seconds = _extract_retry_seconds(raw)
+        retry_text = f" Retry after about {retry_seconds}s." if retry_seconds else ""
+        return (
+            "Gemini quota exceeded (HTTP 429 RESOURCE_EXHAUSTED). "
+            "The API key is valid, but the linked Google project has no remaining quota."
+            f"{retry_text} "
+            "Check quota/billing in Google AI Studio or switch to a key from a project with available quota."
+        )
+
+    if "API_KEY_INVALID" in upper or ("INVALID_ARGUMENT" in upper and "API KEY" in upper):
+        return (
+            "Gemini API key is invalid for this endpoint. "
+            "Use a valid key from Google AI Studio and set GEMINI_API_KEY or GOOGLE_API_KEY."
+        )
+
+    if "PERMISSION_DENIED" in upper:
+        return (
+            "Gemini access is denied for this project/key. "
+            "Enable Gemini API access for the project and verify key restrictions."
+        )
+
+    return f"Gemini request failed: {raw}"
+
+
 def generate_text(prompt: str, *, model_name: str | None = None) -> str:
     """Generate text from Gemini using the configured model.
 
@@ -120,8 +181,8 @@ def generate_text(prompt: str, *, model_name: str | None = None) -> str:
     if not isinstance(prompt, str) or not prompt.strip():
         raise ValueError("Prompt must be a non-empty string.")
 
-    _load_project_dotenv()
-    model = model_name or os.getenv("GEMINI_MODEL", GEMINI_MODEL_NAME)
+    dotenv_values = _read_project_dotenv()
+    model = model_name or os.getenv("GEMINI_MODEL") or dotenv_values.get("GEMINI_MODEL") or GEMINI_MODEL_NAME
     client = get_gemini_client()
 
     try:
@@ -130,7 +191,18 @@ def generate_text(prompt: str, *, model_name: str | None = None) -> str:
             contents=prompt,
         )
     except Exception as exc:  # pragma: no cover - depends on API/network
-        raise RuntimeError(f"Gemini request failed: {exc}") from exc
+        # Practical MVP resilience: if a chosen model is quota-exhausted,
+        # retry once on a known fallback model.
+        if model != FALLBACK_GEMINI_MODEL and _is_resource_exhausted_error(exc):
+            try:
+                response = client.models.generate_content(
+                    model=FALLBACK_GEMINI_MODEL,
+                    contents=prompt,
+                )
+            except Exception as fallback_exc:  # pragma: no cover - depends on API/network
+                raise RuntimeError(_to_friendly_request_error(fallback_exc)) from fallback_exc
+        else:
+            raise RuntimeError(_to_friendly_request_error(exc)) from exc
 
     output_text = _extract_text_from_response(response)
     if not output_text:
