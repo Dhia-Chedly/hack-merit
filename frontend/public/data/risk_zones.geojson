@@ -7,7 +7,7 @@
         "risk_type": "Flood Zone",
         "severity": "Critical",
         "name": "Medjerda River Basin",
-        "description": "Major flood-prone zone along Medjerda river. Historical flooding events in 2003, 2009, 2015."
+        "description": "Major flood-prone zone along Medjerda river. Historical flooding events in 2003, 2009, 2015, 2023."
       },
       "geometry": {
         "type": "Polygon",
@@ -51,7 +51,7 @@
         "risk_type": "Flood Zone",
         "severity": "High",
         "name": "Manouba Lowlands",
-        "description": "Low-lying agricultural land susceptible to Medjerda overflow."
+        "description": "Low-lying agricultural land susceptible to Medjerda overflow. Recurrent flooding affects property values."
       },
       "geometry": {
         "type": "Polygon",
@@ -87,7 +87,7 @@
         "risk_type": "Seismic Zone",
         "severity": "High",
         "name": "Cap Bon Seismic Belt",
-        "description": "Active tectonic zone on the Cap Bon Peninsula. Moderate earthquake risk from African-Eurasian plate boundary."
+        "description": "Active tectonic zone on the Cap Bon Peninsula. Moderate earthquake risk from African-Eurasian plate boundary. Last significant event: M4.9 in 2012."
       },
       "geometry": {
         "type": "Polygon",
@@ -127,7 +127,7 @@
         "risk_type": "Construction Disruption",
         "severity": "Medium",
         "name": "Tunis Metro Extension RFR",
-        "description": "Rapid Rail Network (RFR) extension corridor. Expected construction 2025-2028."
+        "description": "Rapid Rail Network (RFR) extension corridor. Construction 2024-2028. Temporary access disruption for adjacent properties."
       },
       "geometry": {
         "type": "Polygon",
@@ -163,7 +163,7 @@
         "risk_type": "Industrial Pollution",
         "severity": "Medium",
         "name": "Ben Arous Industrial Zone",
-        "description": "Heavy industrial area with environmental concerns. Impact on residential property value."
+        "description": "Heavy industrial area with environmental concerns. Impact on residential property value within 2km radius."
       },
       "geometry": {
         "type": "Polygon",
@@ -199,7 +199,7 @@
         "risk_type": "Coastal Erosion",
         "severity": "High",
         "name": "Hammamet-Nabeul Coast",
-        "description": "Accelerating coastal erosion threatening beachfront developments. 2-4m annual recession in some areas."
+        "description": "Accelerating coastal erosion threatening beachfront developments. 2-4m annual recession in some areas. ANPE monitoring active."
       },
       "geometry": {
         "type": "Polygon",
@@ -243,7 +243,7 @@
         "risk_type": "Flood Zone",
         "severity": "High",
         "name": "Sousse Oued Hamdoun",
-        "description": "Recurrent urban flooding from Oued Hamdoun. Major episodes in 2018, 2020."
+        "description": "Recurrent urban flooding from Oued Hamdoun. Major episodes in 2018, 2020, 2023. ONAS drainage upgrade pending."
       },
       "geometry": {
         "type": "Polygon",
@@ -340,6 +340,42 @@
             [
               10.05,
               33.88
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "risk_type": "Construction Disruption",
+        "severity": "High",
+        "name": "Sfax Taparura Project",
+        "description": "Major urban renewal project on former industrial coastline. 420-hectare development. Construction noise and dust impact 2024-2030."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.72,
+              34.74
+            ],
+            [
+              10.77,
+              34.76
+            ],
+            [
+              10.78,
+              34.74
+            ],
+            [
+              10.74,
+              34.73
+            ],
+            [
+              10.72,
+              34.74
             ]
           ]
         ]

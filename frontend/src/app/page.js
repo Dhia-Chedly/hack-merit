@@ -18,6 +18,7 @@ export default function Dashboard() {
   const [rightPanelOpen, setRightPanelOpen] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const syncViewport = () => {
@@ -55,6 +56,7 @@ export default function Dashboard() {
         activeCategory={activeCategory}
         activeLayer={activeLayer}
         onZoneClick={handleZoneClick}
+        searchQuery={searchQuery}
       />
 
       <TopBar
@@ -65,6 +67,7 @@ export default function Dashboard() {
         onToggleLeft={() => setLeftPanelOpen((value) => !value)}
         onToggleRight={() => setRightPanelOpen((value) => !value)}
         selectedData={selectedData}
+        onSearch={setSearchQuery}
       />
 
       <LeftPanel
@@ -88,40 +91,35 @@ export default function Dashboard() {
         activeLayer={activeLayer}
       />
 
-      <MapLegend activeCategory={activeCategory} activeLayer={activeLayer} />
+      <MapLegend activeCategory={activeCategory} activeLayer={activeLayer} leftPanelOpen={leftPanelOpen} />
 
       {!leftPanelOpen && (
         <button
           onClick={() => setLeftPanelOpen(true)}
-          className="floating-chip fixed left-4 top-[calc(var(--topbar-height)+18px)] z-40 flex h-12 w-12 items-center justify-center rounded-2xl transition-transform hover:scale-[1.03]"
+          className="floating-chip fixed left-4 top-[calc(var(--topbar-height)+8px)] z-40 flex h-10 w-10 items-center justify-center rounded-lg"
           aria-label="Open intelligence panel"
         >
-          <PanelLeftClose size={18} className="text-slate-700" />
+          <PanelLeftClose size={16} className="text-slate-500" />
         </button>
       )}
 
       {!rightPanelOpen && selectedData && (
         <button
           onClick={() => setRightPanelOpen(true)}
-          className="floating-chip fixed right-4 top-[calc(var(--topbar-height)+18px)] z-40 flex h-12 items-center gap-2 rounded-2xl px-4 transition-transform hover:scale-[1.02]"
+          className="floating-chip fixed right-4 top-[calc(var(--topbar-height)+8px)] z-40 flex h-10 items-center gap-2 rounded-lg px-3"
         >
-          <PanelRightClose size={18} className="text-slate-700" />
-          <span className="text-sm font-semibold text-slate-800">
-            Open insight
-          </span>
+          <PanelRightClose size={16} className="text-slate-500" />
+          <span className="text-[12px] font-semibold text-slate-600">Open insight</span>
         </button>
       )}
 
       <div className="pointer-events-none fixed bottom-4 right-4 z-30 hidden md:block">
-        <div className="floating-chip pointer-events-auto max-w-[360px] rounded-2xl px-4 py-3">
-          <div className="mb-1 flex items-center gap-2">
-            <Target size={14} style={{ color: categoryMeta.color }} />
-            <p className="text-overline text-slate-500">{activeLayerMeta?.label || categoryMeta.shortLabel}</p>
+        <div className="floating-chip pointer-events-auto max-w-[340px] rounded-lg px-3 py-2.5">
+          <div className="flex items-center gap-2">
+            <Target size={12} style={{ color: categoryMeta.color }} />
+            <p className="text-[10px] uppercase tracking-wider font-semibold text-slate-400">{activeLayerMeta?.label || categoryMeta.shortLabel}</p>
           </div>
-          <div className="mt-1 flex items-center gap-2">
-            <span className="text-sm font-semibold text-slate-900">{categoryMeta.headline}</span>
-            <ArrowRight size={15} className="text-slate-500" />
-          </div>
+          <p className="mt-1 text-[12px] font-medium text-slate-600 leading-snug">{categoryMeta.headline}</p>
         </div>
       </div>
     </main>

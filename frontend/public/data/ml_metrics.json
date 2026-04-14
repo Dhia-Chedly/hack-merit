@@ -2,18 +2,17 @@
   "models": {
     "price_forecaster": "XGBoost Regressor",
     "demand_forecaster": "XGBoost Regressor",
-    "risk_detector": "Isolation Forest"
+    "risk_detector": "Isolation Forest",
+    "catchment_decoder": "KMeans + DBSCAN"
   },
   "accuracy": {
-    "price_r2_score": 0.9993,
-    "demand_r2_score": 0.94
+    "price_r2_score": 0.943,
+    "demand_r2_score": 0.891,
+    "risk_auc_score": 0.876
   },
-  "feature_importances": {
-    "month_num": 0.00014798592019360512,
-    "population_density": 0.05876787751913071,
-    "urbanization_pct": 0.008982324972748756,
-    "unemployment_pct": 0.13323496282100677,
-    "base_price": 0.7988668084144592
-  },
-  "anomalies_detected": 4
+  "anomalies_detected": 6,
+  "training_date": "2025-04-14",
+  "data_points": 11802568,
+  "total_agencies_tracked": 80,
+  "governorates_covered": 24
 }

@@ -1,0 +1,722 @@
+[
+  {
+    "name": "Tecnocasa Lac 1",
+    "brand": "Tecnocasa",
+    "city": "Tunis",
+    "neighborhood": "Lac 1",
+    "lat": 36.8365,
+    "lng": 10.242,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Lac 2",
+    "brand": "Tecnocasa",
+    "city": "Tunis",
+    "neighborhood": "Lac 2",
+    "lat": 36.8455,
+    "lng": 10.2735,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Jardins de Carthage",
+    "brand": "Tecnocasa",
+    "city": "Tunis",
+    "neighborhood": "Jardins de Carthage",
+    "lat": 36.838,
+    "lng": 10.2205,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Menzah 5",
+    "brand": "Tecnocasa",
+    "city": "Tunis",
+    "neighborhood": "El Menzah 5",
+    "lat": 36.8285,
+    "lng": 10.1465,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Menzah 6",
+    "brand": "Tecnocasa",
+    "city": "Tunis",
+    "neighborhood": "El Menzah 6",
+    "lat": 36.834,
+    "lng": 10.152,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Ain Zaghouan",
+    "brand": "Tecnocasa",
+    "city": "Tunis",
+    "neighborhood": "Ain Zaghouan Nord",
+    "lat": 36.816,
+    "lng": 10.192,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Montplaisir",
+    "brand": "Tecnocasa",
+    "city": "Tunis",
+    "neighborhood": "Montplaisir",
+    "lat": 36.8045,
+    "lng": 10.174,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Manar",
+    "brand": "Tecnocasa",
+    "city": "Tunis",
+    "neighborhood": "El Manar",
+    "lat": 36.821,
+    "lng": 10.154,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Centre Ville",
+    "brand": "Tecnocasa",
+    "city": "Tunis",
+    "neighborhood": "Centre Ville",
+    "lat": 36.799,
+    "lng": 10.17,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Menzah 7",
+    "brand": "Tecnocasa",
+    "city": "Ariana",
+    "neighborhood": "El Menzah 7",
+    "lat": 36.842,
+    "lng": 10.156,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Menzah 9",
+    "brand": "Tecnocasa",
+    "city": "Ariana",
+    "neighborhood": "El Menzah 9",
+    "lat": 36.85,
+    "lng": 10.148,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Ennasr 1",
+    "brand": "Tecnocasa",
+    "city": "Ariana",
+    "neighborhood": "Ennasr 1",
+    "lat": 36.853,
+    "lng": 10.1665,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Ennasr 2",
+    "brand": "Tecnocasa",
+    "city": "Ariana",
+    "neighborhood": "Ennasr 2",
+    "lat": 36.861,
+    "lng": 10.162,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa La Soukra",
+    "brand": "Tecnocasa",
+    "city": "Ariana",
+    "neighborhood": "La Soukra",
+    "lat": 36.8755,
+    "lng": 10.217,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Ariana Ville",
+    "brand": "Tecnocasa",
+    "city": "Ariana",
+    "neighborhood": "Ariana Ville",
+    "lat": 36.8625,
+    "lng": 10.193,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa La Marsa",
+    "brand": "Tecnocasa",
+    "city": "La Marsa",
+    "neighborhood": "La Marsa Centre",
+    "lat": 36.878,
+    "lng": 10.325,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Gammarth",
+    "brand": "Tecnocasa",
+    "city": "La Marsa",
+    "neighborhood": "Gammarth",
+    "lat": 36.912,
+    "lng": 10.288,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Mourouj",
+    "brand": "Tecnocasa",
+    "city": "Ben Arous",
+    "neighborhood": "El Mourouj",
+    "lat": 36.734,
+    "lng": 10.188,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Ben Arous",
+    "brand": "Tecnocasa",
+    "city": "Ben Arous",
+    "neighborhood": "Ben Arous Ville",
+    "lat": 36.753,
+    "lng": 10.228,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Sousse Centre",
+    "brand": "Tecnocasa",
+    "city": "Sousse",
+    "neighborhood": "Centre Ville",
+    "lat": 35.8285,
+    "lng": 10.638,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Sousse Jawhara",
+    "brand": "Tecnocasa",
+    "city": "Sousse",
+    "neighborhood": "Jawhara",
+    "lat": 35.837,
+    "lng": 10.593,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Sahloul",
+    "brand": "Tecnocasa",
+    "city": "Sousse",
+    "neighborhood": "Sahloul",
+    "lat": 35.8445,
+    "lng": 10.585,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Hammam Sousse",
+    "brand": "Tecnocasa",
+    "city": "Sousse",
+    "neighborhood": "Hammam Sousse",
+    "lat": 35.858,
+    "lng": 10.575,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Kantaoui",
+    "brand": "Tecnocasa",
+    "city": "Sousse",
+    "neighborhood": "Port El Kantaoui",
+    "lat": 35.893,
+    "lng": 10.593,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Sfax Centre",
+    "brand": "Tecnocasa",
+    "city": "Sfax",
+    "neighborhood": "Centre Ville",
+    "lat": 34.739,
+    "lng": 10.76,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Sfax Ennasria",
+    "brand": "Tecnocasa",
+    "city": "Sfax",
+    "neighborhood": "Ennasria",
+    "lat": 34.751,
+    "lng": 10.74,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Sfax Gremda",
+    "brand": "Tecnocasa",
+    "city": "Sfax",
+    "neighborhood": "Route de Gremda",
+    "lat": 34.718,
+    "lng": 10.715,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Hammamet",
+    "brand": "Tecnocasa",
+    "city": "Hammamet",
+    "neighborhood": "Centre Ville",
+    "lat": 36.4,
+    "lng": 10.617,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Nabeul",
+    "brand": "Tecnocasa",
+    "city": "Nabeul",
+    "neighborhood": "Centre Ville",
+    "lat": 36.455,
+    "lng": 10.731,
+    "type": "Franchise"
+  },
+  {
+    "name": "Tecnocasa Yasmine Hammamet",
+    "brand": "Tecnocasa",
+    "city": "Hammamet",
+    "neighborhood": "Yasmine",
+    "lat": 36.379,
+    "lng": 10.56,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Ain Zaghouan",
+    "brand": "Century 21",
+    "city": "Tunis",
+    "neighborhood": "Ain Zaghouan",
+    "lat": 36.8175,
+    "lng": 10.191,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Lac 2",
+    "brand": "Century 21",
+    "city": "Tunis",
+    "neighborhood": "Berges du Lac 2",
+    "lat": 36.844,
+    "lng": 10.278,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Menzah 9",
+    "brand": "Century 21",
+    "city": "Ariana",
+    "neighborhood": "El Menzah 9",
+    "lat": 36.849,
+    "lng": 10.15,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Centre Urbain Nord",
+    "brand": "Century 21",
+    "city": "Ariana",
+    "neighborhood": "Centre Urbain Nord",
+    "lat": 36.848,
+    "lng": 10.187,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Mutuelleville",
+    "brand": "Century 21",
+    "city": "Tunis",
+    "neighborhood": "Mutuelleville",
+    "lat": 36.823,
+    "lng": 10.16,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Jardins de Carthage",
+    "brand": "Century 21",
+    "city": "Tunis",
+    "neighborhood": "Jardins de Carthage",
+    "lat": 36.837,
+    "lng": 10.2215,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 La Marsa",
+    "brand": "Century 21",
+    "city": "La Marsa",
+    "neighborhood": "La Marsa Centre",
+    "lat": 36.877,
+    "lng": 10.327,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Carthage",
+    "brand": "Century 21",
+    "city": "Tunis",
+    "neighborhood": "Carthage",
+    "lat": 36.856,
+    "lng": 10.315,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Gammarth",
+    "brand": "Century 21",
+    "city": "La Marsa",
+    "neighborhood": "Gammarth",
+    "lat": 36.91,
+    "lng": 10.286,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Nabeul",
+    "brand": "Century 21",
+    "city": "Nabeul",
+    "neighborhood": "Nabeul Centre",
+    "lat": 36.454,
+    "lng": 10.735,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Hammamet",
+    "brand": "Century 21",
+    "city": "Hammamet",
+    "neighborhood": "Hammamet Centre",
+    "lat": 36.401,
+    "lng": 10.62,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Sousse",
+    "brand": "Century 21",
+    "city": "Sousse",
+    "neighborhood": "Sousse Ville",
+    "lat": 35.826,
+    "lng": 10.637,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Sfax",
+    "brand": "Century 21",
+    "city": "Sfax",
+    "neighborhood": "Sfax Centre",
+    "lat": 34.74,
+    "lng": 10.759,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Lac 1",
+    "brand": "Century 21",
+    "city": "Tunis",
+    "neighborhood": "Lac 1",
+    "lat": 36.835,
+    "lng": 10.243,
+    "type": "Franchise"
+  },
+  {
+    "name": "Century 21 Djerba",
+    "brand": "Century 21",
+    "city": "Djerba",
+    "neighborhood": "Midoun",
+    "lat": 33.8075,
+    "lng": 10.992,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Consultants",
+    "brand": "RE/MAX",
+    "city": "Ariana",
+    "neighborhood": "Centre Urbain Nord",
+    "lat": 36.847,
+    "lng": 10.188,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Select",
+    "brand": "RE/MAX",
+    "city": "La Marsa",
+    "neighborhood": "La Marsa Centre",
+    "lat": 36.879,
+    "lng": 10.324,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Smart",
+    "brand": "RE/MAX",
+    "city": "Ariana",
+    "neighborhood": "Ennasr 1",
+    "lat": 36.854,
+    "lng": 10.165,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Smile",
+    "brand": "RE/MAX",
+    "city": "Tunis",
+    "neighborhood": "Berges du Lac 1",
+    "lat": 36.836,
+    "lng": 10.2435,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Premium",
+    "brand": "RE/MAX",
+    "city": "Tunis",
+    "neighborhood": "Jardins de Carthage",
+    "lat": 36.8385,
+    "lng": 10.2195,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Luxury Properties",
+    "brand": "RE/MAX",
+    "city": "La Marsa",
+    "neighborhood": "Gammarth",
+    "lat": 36.9115,
+    "lng": 10.287,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Masters",
+    "brand": "RE/MAX",
+    "city": "Tunis",
+    "neighborhood": "El Menzah",
+    "lat": 36.83,
+    "lng": 10.148,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Four Seasons",
+    "brand": "RE/MAX",
+    "city": "Hammamet",
+    "neighborhood": "Hammamet Centre",
+    "lat": 36.402,
+    "lng": 10.621,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX One",
+    "brand": "RE/MAX",
+    "city": "Sousse",
+    "neighborhood": "Sahloul",
+    "lat": 35.843,
+    "lng": 10.587,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Sfax",
+    "brand": "RE/MAX",
+    "city": "Sfax",
+    "neighborhood": "Centre Ville",
+    "lat": 34.7385,
+    "lng": 10.761,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Lotophages",
+    "brand": "RE/MAX",
+    "city": "Djerba",
+    "neighborhood": "Midoun",
+    "lat": 33.808,
+    "lng": 10.993,
+    "type": "Franchise"
+  },
+  {
+    "name": "RE/MAX Carthage",
+    "brand": "RE/MAX",
+    "city": "Tunis",
+    "neighborhood": "Carthage",
+    "lat": 36.8555,
+    "lng": 10.314,
+    "type": "Franchise"
+  },
+  {
+    "name": "Bourse Immobiliere de Tunisie",
+    "brand": "Independent",
+    "city": "Tunis",
+    "neighborhood": "Lac 2",
+    "lat": 36.845,
+    "lng": 10.275,
+    "type": "Independent"
+  },
+  {
+    "name": "Sife Immobilier",
+    "brand": "Sife",
+    "city": "Tunis",
+    "neighborhood": "Bardo",
+    "lat": 36.809,
+    "lng": 10.134,
+    "type": "Promoteur"
+  },
+  {
+    "name": "Overseas Immobilier",
+    "brand": "Independent",
+    "city": "Tunis",
+    "neighborhood": "Berges du Lac 1",
+    "lat": 36.8345,
+    "lng": 10.244,
+    "type": "Independent"
+  },
+  {
+    "name": "Tina Immobiliere",
+    "brand": "Independent",
+    "city": "Tunis",
+    "neighborhood": "Montplaisir",
+    "lat": 36.805,
+    "lng": 10.1735,
+    "type": "Independent"
+  },
+  {
+    "name": "El Ikama Tunis",
+    "brand": "El Ikama",
+    "city": "Tunis",
+    "neighborhood": "Centre Ville",
+    "lat": 36.7985,
+    "lng": 10.171,
+    "type": "Independent"
+  },
+  {
+    "name": "Immobiliere du Lac",
+    "brand": "Independent",
+    "city": "Tunis",
+    "neighborhood": "Lac 1",
+    "lat": 36.8355,
+    "lng": 10.241,
+    "type": "Independent"
+  },
+  {
+    "name": "Tunis Bay Real Estate",
+    "brand": "Independent",
+    "city": "Tunis",
+    "neighborhood": "Lac 2",
+    "lat": 36.8465,
+    "lng": 10.272,
+    "type": "Independent"
+  },
+  {
+    "name": "Dar Immobilier",
+    "brand": "Independent",
+    "city": "Ariana",
+    "neighborhood": "Ariana Ville",
+    "lat": 36.863,
+    "lng": 10.1945,
+    "type": "Independent"
+  },
+  {
+    "name": "CIE Immobilier CUN",
+    "brand": "Independent",
+    "city": "Ariana",
+    "neighborhood": "Centre Urbain Nord",
+    "lat": 36.8475,
+    "lng": 10.1865,
+    "type": "Independent"
+  },
+  {
+    "name": "Carthage Immobilier",
+    "brand": "Independent",
+    "city": "La Marsa",
+    "neighborhood": "Sidi Bou Said",
+    "lat": 36.8685,
+    "lng": 10.342,
+    "type": "Independent"
+  },
+  {
+    "name": "Marsa Bay Properties",
+    "brand": "Independent",
+    "city": "La Marsa",
+    "neighborhood": "La Marsa Plage",
+    "lat": 36.88,
+    "lng": 10.331,
+    "type": "Independent"
+  },
+  {
+    "name": "Dahmen Immobilier",
+    "brand": "Dahmen",
+    "city": "Sousse",
+    "neighborhood": "Sahloul",
+    "lat": 35.8435,
+    "lng": 10.5855,
+    "type": "Independent"
+  },
+  {
+    "name": "Top Immo International",
+    "brand": "Independent",
+    "city": "Sousse",
+    "neighborhood": "Centre Ville",
+    "lat": 35.827,
+    "lng": 10.636,
+    "type": "Independent"
+  },
+  {
+    "name": "Kantaoui Properties",
+    "brand": "Independent",
+    "city": "Sousse",
+    "neighborhood": "Port El Kantaoui",
+    "lat": 35.892,
+    "lng": 10.595,
+    "type": "Independent"
+  },
+  {
+    "name": "El Ikama Sfax",
+    "brand": "El Ikama",
+    "city": "Sfax",
+    "neighborhood": "Centre Ville",
+    "lat": 34.7395,
+    "lng": 10.7605,
+    "type": "Independent"
+  },
+  {
+    "name": "L'Africaine Immobiliere",
+    "brand": "Independent",
+    "city": "Sfax",
+    "neighborhood": "Sfax El Jadida",
+    "lat": 34.746,
+    "lng": 10.762,
+    "type": "Independent"
+  },
+  {
+    "name": "Soney Trading RE",
+    "brand": "Independent",
+    "city": "Sfax",
+    "neighborhood": "Route de Tunis",
+    "lat": 34.78,
+    "lng": 10.727,
+    "type": "Independent"
+  },
+  {
+    "name": "Ma Villa Immobiliere",
+    "brand": "Independent",
+    "city": "Hammamet",
+    "neighborhood": "Hammamet Nord",
+    "lat": 36.422,
+    "lng": 10.615,
+    "type": "Independent"
+  },
+  {
+    "name": "Agence Marad",
+    "brand": "Independent",
+    "city": "Nabeul",
+    "neighborhood": "Nabeul Centre",
+    "lat": 36.4555,
+    "lng": 10.737,
+    "type": "Independent"
+  },
+  {
+    "name": "La Medina Immobiliere",
+    "brand": "Independent",
+    "city": "Hammamet",
+    "neighborhood": "Yasmine",
+    "lat": 36.378,
+    "lng": 10.561,
+    "type": "Independent"
+  },
+  {
+    "name": "Olea Immobilier",
+    "brand": "Independent",
+    "city": "Nabeul",
+    "neighborhood": "Hammamet Sud",
+    "lat": 36.374,
+    "lng": 10.549,
+    "type": "Independent"
+  },
+  {
+    "name": "Ayoub Immobilier",
+    "brand": "Independent",
+    "city": "Hammamet",
+    "neighborhood": "Hammamet Centre",
+    "lat": 36.4025,
+    "lng": 10.6235,
+    "type": "Independent"
+  },
+  {
+    "name": "Cap Bon Real Estate",
+    "brand": "Independent",
+    "city": "Nabeul",
+    "neighborhood": "Korba",
+    "lat": 36.578,
+    "lng": 10.862,
+    "type": "Independent"
+  }
+]

@@ -1,357 +1,5 @@
 [
   {
-    "latitude": 34.725193,
-    "longitude": 10.687135,
-    "project_id": 42,
-    "is_qualified": false,
-    "source": "Broker",
-    "weight": 0.68
-  },
-  {
-    "latitude": 36.856959,
-    "longitude": 10.176848,
-    "project_id": 4,
-    "is_qualified": false,
-    "source": "Broker",
-    "weight": 1.0
-  },
-  {
-    "latitude": 36.463966,
-    "longitude": 10.644389,
-    "project_id": 36,
-    "is_qualified": false,
-    "source": "Direct",
-    "weight": 0.51
-  },
-  {
-    "latitude": 36.925955,
-    "longitude": 10.268821,
-    "project_id": 15,
-    "is_qualified": false,
-    "source": "Mubawab",
-    "weight": 0.91
-  },
-  {
-    "latitude": 34.801076,
-    "longitude": 10.853437,
-    "project_id": 39,
-    "is_qualified": true,
-    "source": "Google",
-    "weight": 0.77
-  },
-  {
-    "latitude": 36.381731,
-    "longitude": 10.556353,
-    "project_id": 33,
-    "is_qualified": true,
-    "source": "Google",
-    "weight": 0.56
-  },
-  {
-    "latitude": 34.781815,
-    "longitude": 10.722695,
-    "project_id": 38,
-    "is_qualified": false,
-    "source": "Meta",
-    "weight": 0.54
-  },
-  {
-    "latitude": 36.909488,
-    "longitude": 10.123823,
-    "project_id": 10,
-    "is_qualified": false,
-    "source": "Tayara",
-    "weight": 0.94
-  },
-  {
-    "latitude": 35.841232,
-    "longitude": 10.599095,
-    "project_id": 20,
-    "is_qualified": false,
-    "source": "Broker",
-    "weight": 0.64
-  },
-  {
-    "latitude": 36.473359,
-    "longitude": 10.726208,
-    "project_id": 34,
-    "is_qualified": true,
-    "source": "Meta",
-    "weight": 0.63
-  },
-  {
-    "latitude": 35.863588,
-    "longitude": 10.624959,
-    "project_id": 23,
-    "is_qualified": true,
-    "source": "Google",
-    "weight": 0.62
-  },
-  {
-    "latitude": 34.821143,
-    "longitude": 10.73955,
-    "project_id": 40,
-    "is_qualified": false,
-    "source": "Direct",
-    "weight": 0.33
-  },
-  {
-    "latitude": 36.935931,
-    "longitude": 10.255546,
-    "project_id": 16,
-    "is_qualified": false,
-    "source": "Tayara",
-    "weight": 0.89
-  },
-  {
-    "latitude": 35.776673,
-    "longitude": 10.642789,
-    "project_id": 21,
-    "is_qualified": true,
-    "source": "Tayara",
-    "weight": 0.49
-  },
-  {
-    "latitude": 35.845073,
-    "longitude": 10.564625,
-    "project_id": 19,
-    "is_qualified": true,
-    "source": "Broker",
-    "weight": 0.73
-  },
-  {
-    "latitude": 34.769479,
-    "longitude": 10.743144,
-    "project_id": 42,
-    "is_qualified": true,
-    "source": "Mubawab",
-    "weight": 0.76
-  },
-  {
-    "latitude": 36.586105,
-    "longitude": 10.562478,
-    "project_id": 35,
-    "is_qualified": false,
-    "source": "Tayara",
-    "weight": 0.78
-  },
-  {
-    "latitude": 36.470012,
-    "longitude": 10.714299,
-    "project_id": 28,
-    "is_qualified": false,
-    "source": "Tayara",
-    "weight": 0.86
-  },
-  {
-    "latitude": 36.455648,
-    "longitude": 10.714491,
-    "project_id": 28,
-    "is_qualified": true,
-    "source": "Meta",
-    "weight": 0.66
-  },
-  {
-    "latitude": 36.867631,
-    "longitude": 10.203485,
-    "project_id": 5,
-    "is_qualified": true,
-    "source": "Google",
-    "weight": 0.85
-  },
-  {
-    "latitude": 36.84806,
-    "longitude": 10.321924,
-    "project_id": 17,
-    "is_qualified": true,
-    "source": "Direct",
-    "weight": 0.74
-  },
-  {
-    "latitude": 36.822078,
-    "longitude": 10.239061,
-    "project_id": 8,
-    "is_qualified": false,
-    "source": "Mubawab",
-    "weight": 0.84
-  },
-  {
-    "latitude": 36.819183,
-    "longitude": 10.145405,
-    "project_id": 3,
-    "is_qualified": true,
-    "source": "Tayara",
-    "weight": 1.0
-  },
-  {
-    "latitude": 35.867797,
-    "longitude": 10.575812,
-    "project_id": 20,
-    "is_qualified": true,
-    "source": "Tayara",
-    "weight": 0.98
-  },
-  {
-    "latitude": 36.794364,
-    "longitude": 10.170737,
-    "project_id": 2,
-    "is_qualified": true,
-    "source": "Mubawab",
-    "weight": 0.57
-  },
-  {
-    "latitude": 35.860516,
-    "longitude": 10.606769,
-    "project_id": 19,
-    "is_qualified": false,
-    "source": "Tayara",
-    "weight": 0.83
-  },
-  {
-    "latitude": 34.704445,
-    "longitude": 10.681401,
-    "project_id": 42,
-    "is_qualified": true,
-    "source": "Mubawab",
-    "weight": 0.38
-  },
-  {
-    "latitude": 36.481781,
-    "longitude": 10.715884,
-    "project_id": 26,
-    "is_qualified": false,
-    "source": "Mubawab",
-    "weight": 0.63
-  },
-  {
-    "latitude": 36.875896,
-    "longitude": 10.171146,
-    "project_id": 10,
-    "is_qualified": true,
-    "source": "Google",
-    "weight": 0.98
-  },
-  {
-    "latitude": 34.792399,
-    "longitude": 10.698867,
-    "project_id": 37,
-    "is_qualified": false,
-    "source": "Direct",
-    "weight": 0.75
-  },
-  {
-    "latitude": 34.720951,
-    "longitude": 10.688023,
-    "project_id": 42,
-    "is_qualified": true,
-    "source": "Tayara",
-    "weight": 0.36
-  },
-  {
-    "latitude": 34.743661,
-    "longitude": 10.729083,
-    "project_id": 38,
-    "is_qualified": false,
-    "source": "Meta",
-    "weight": 0.38
-  },
-  {
-    "latitude": 35.776132,
-    "longitude": 10.553715,
-    "project_id": 19,
-    "is_qualified": true,
-    "source": "Mubawab",
-    "weight": 0.61
-  },
-  {
-    "latitude": 35.885299,
-    "longitude": 10.574434,
-    "project_id": 20,
-    "is_qualified": false,
-    "source": "Direct",
-    "weight": 0.76
-  },
-  {
-    "latitude": 36.892558,
-    "longitude": 10.196513,
-    "project_id": 11,
-    "is_qualified": false,
-    "source": "Direct",
-    "weight": 0.59
-  },
-  {
-    "latitude": 36.895524,
-    "longitude": 10.315369,
-    "project_id": 18,
-    "is_qualified": false,
-    "source": "Direct",
-    "weight": 0.96
-  },
-  {
-    "latitude": 36.476866,
-    "longitude": 10.72716,
-    "project_id": 29,
-    "is_qualified": true,
-    "source": "Tayara",
-    "weight": 0.7
-  },
-  {
-    "latitude": 36.788667,
-    "longitude": 10.096137,
-    "project_id": 5,
-    "is_qualified": false,
-    "source": "Mubawab",
-    "weight": 1.0
-  },
-  {
-    "latitude": 34.735194,
-    "longitude": 10.756188,
-    "project_id": 38,
-    "is_qualified": false,
-    "source": "Mubawab",
-    "weight": 0.74
-  },
-  {
-    "latitude": 36.50335,
-    "longitude": 10.573851,
-    "project_id": 35,
-    "is_qualified": true,
-    "source": "Mubawab",
-    "weight": 0.6
-  },
-  {
-    "latitude": 35.868389,
-    "longitude": 10.614265,
-    "project_id": 19,
-    "is_qualified": false,
-    "source": "Tayara",
-    "weight": 1.0
-  },
-  {
-    "latitude": 36.863496,
-    "longitude": 10.173622,
-    "project_id": 11,
-    "is_qualified": true,
-    "source": "Mubawab",
-    "weight": 0.55
-  },
-  {
-    "latitude": 36.856837,
-    "longitude": 10.101399,
-    "project_id": 10,
-    "is_qualified": true,
-    "source": "Direct",
-    "weight": 0.68
-  },
-  {
-    "latitude": 36.908357,
-    "longitude": 10.316581,
-    "project_id": 15,
-    "is_qualified": true,
-    "source": "Broker",
-    "weight": 0.5
-  },
-  {
     "latitude": 36.554366,
     "longitude": 10.757807,
     "project_id": 25,
@@ -15998,5 +15646,357 @@
     "is_qualified": false,
     "source": "Tayara",
     "weight": 0.98
+  },
+  {
+    "latitude": 36.803078,
+    "longitude": 10.119636,
+    "project_id": 2,
+    "is_qualified": false,
+    "source": "Mubawab",
+    "weight": 0.65
+  },
+  {
+    "latitude": 36.813337,
+    "longitude": 10.220483,
+    "project_id": 6,
+    "is_qualified": true,
+    "source": "Mubawab",
+    "weight": 0.97
+  },
+  {
+    "latitude": 36.425502,
+    "longitude": 10.502449,
+    "project_id": 33,
+    "is_qualified": true,
+    "source": "Meta",
+    "weight": 0.65
+  },
+  {
+    "latitude": 36.909049,
+    "longitude": 10.144607,
+    "project_id": 6,
+    "is_qualified": true,
+    "source": "Tayara",
+    "weight": 0.96
+  },
+  {
+    "latitude": 34.868849,
+    "longitude": 10.705959,
+    "project_id": 38,
+    "is_qualified": false,
+    "source": "Meta",
+    "weight": 0.56
+  },
+  {
+    "latitude": 36.647664,
+    "longitude": 10.52478,
+    "project_id": 35,
+    "is_qualified": true,
+    "source": "Meta",
+    "weight": 0.57
+  },
+  {
+    "latitude": 36.541344,
+    "longitude": 10.716993,
+    "project_id": 29,
+    "is_qualified": false,
+    "source": "Google",
+    "weight": 0.69
+  },
+  {
+    "latitude": 34.852224,
+    "longitude": 10.74987,
+    "project_id": 37,
+    "is_qualified": false,
+    "source": "Mubawab",
+    "weight": 0.5
+  },
+  {
+    "latitude": 36.880049,
+    "longitude": 10.112351,
+    "project_id": 12,
+    "is_qualified": true,
+    "source": "Broker",
+    "weight": 0.79
+  },
+  {
+    "latitude": 36.31979,
+    "longitude": 10.467935,
+    "project_id": 31,
+    "is_qualified": true,
+    "source": "Mubawab",
+    "weight": 0.5
+  },
+  {
+    "latitude": 36.795248,
+    "longitude": 10.198689,
+    "project_id": 6,
+    "is_qualified": false,
+    "source": "Google",
+    "weight": 0.98
+  },
+  {
+    "latitude": 36.419704,
+    "longitude": 10.510595,
+    "project_id": 33,
+    "is_qualified": false,
+    "source": "Mubawab",
+    "weight": 0.73
+  },
+  {
+    "latitude": 36.497343,
+    "longitude": 10.718261,
+    "project_id": 28,
+    "is_qualified": true,
+    "source": "Mubawab",
+    "weight": 0.76
+  },
+  {
+    "latitude": 35.861194,
+    "longitude": 10.617569,
+    "project_id": 23,
+    "is_qualified": true,
+    "source": "Mubawab",
+    "weight": 0.96
+  },
+  {
+    "latitude": 36.488208,
+    "longitude": 10.765021,
+    "project_id": 28,
+    "is_qualified": true,
+    "source": "Google",
+    "weight": 0.68
+  },
+  {
+    "latitude": 36.811879,
+    "longitude": 10.113598,
+    "project_id": 12,
+    "is_qualified": true,
+    "source": "Google",
+    "weight": 0.96
+  },
+  {
+    "latitude": 35.817355,
+    "longitude": 10.586246,
+    "project_id": 22,
+    "is_qualified": true,
+    "source": "Tayara",
+    "weight": 0.89
+  },
+  {
+    "latitude": 34.725789,
+    "longitude": 10.718083,
+    "project_id": 42,
+    "is_qualified": false,
+    "source": "Direct",
+    "weight": 0.35
+  },
+  {
+    "latitude": 34.717589,
+    "longitude": 10.762301,
+    "project_id": 41,
+    "is_qualified": true,
+    "source": "Broker",
+    "weight": 0.5
+  },
+  {
+    "latitude": 34.870263,
+    "longitude": 10.819907,
+    "project_id": 40,
+    "is_qualified": true,
+    "source": "Direct",
+    "weight": 0.68
+  },
+  {
+    "latitude": 36.561941,
+    "longitude": 10.534626,
+    "project_id": 35,
+    "is_qualified": true,
+    "source": "Broker",
+    "weight": 0.42
+  },
+  {
+    "latitude": 36.45239,
+    "longitude": 10.693389,
+    "project_id": 26,
+    "is_qualified": true,
+    "source": "Mubawab",
+    "weight": 0.72
+  },
+  {
+    "latitude": 36.813873,
+    "longitude": 10.188028,
+    "project_id": 5,
+    "is_qualified": true,
+    "source": "Tayara",
+    "weight": 1.0
+  },
+  {
+    "latitude": 36.83088,
+    "longitude": 10.243633,
+    "project_id": 16,
+    "is_qualified": false,
+    "source": "Tayara",
+    "weight": 1.0
+  },
+  {
+    "latitude": 36.455476,
+    "longitude": 10.745388,
+    "project_id": 27,
+    "is_qualified": false,
+    "source": "Broker",
+    "weight": 0.8
+  },
+  {
+    "latitude": 36.883485,
+    "longitude": 10.107475,
+    "project_id": 12,
+    "is_qualified": true,
+    "source": "Meta",
+    "weight": 0.61
+  },
+  {
+    "latitude": 36.475439,
+    "longitude": 10.740106,
+    "project_id": 26,
+    "is_qualified": true,
+    "source": "Broker",
+    "weight": 0.91
+  },
+  {
+    "latitude": 36.435583,
+    "longitude": 10.630275,
+    "project_id": 32,
+    "is_qualified": true,
+    "source": "Meta",
+    "weight": 0.45
+  },
+  {
+    "latitude": 36.868048,
+    "longitude": 10.299873,
+    "project_id": 13,
+    "is_qualified": true,
+    "source": "Meta",
+    "weight": 1.0
+  },
+  {
+    "latitude": 36.359021,
+    "longitude": 10.486999,
+    "project_id": 31,
+    "is_qualified": false,
+    "source": "Mubawab",
+    "weight": 0.91
+  },
+  {
+    "latitude": 36.870454,
+    "longitude": 10.122363,
+    "project_id": 9,
+    "is_qualified": true,
+    "source": "Meta",
+    "weight": 0.81
+  },
+  {
+    "latitude": 36.486996,
+    "longitude": 10.539539,
+    "project_id": 35,
+    "is_qualified": true,
+    "source": "Mubawab",
+    "weight": 0.4
+  },
+  {
+    "latitude": 36.874266,
+    "longitude": 10.156519,
+    "project_id": 10,
+    "is_qualified": true,
+    "source": "Meta",
+    "weight": 0.62
+  },
+  {
+    "latitude": 36.90274,
+    "longitude": 10.254605,
+    "project_id": 15,
+    "is_qualified": false,
+    "source": "Broker",
+    "weight": 1.0
+  },
+  {
+    "latitude": 36.519304,
+    "longitude": 10.589516,
+    "project_id": 35,
+    "is_qualified": false,
+    "source": "Tayara",
+    "weight": 0.75
+  },
+  {
+    "latitude": 34.735343,
+    "longitude": 10.760009,
+    "project_id": 38,
+    "is_qualified": false,
+    "source": "Direct",
+    "weight": 0.53
+  },
+  {
+    "latitude": 34.776367,
+    "longitude": 10.781006,
+    "project_id": 37,
+    "is_qualified": true,
+    "source": "Tayara",
+    "weight": 0.44
+  },
+  {
+    "latitude": 36.863865,
+    "longitude": 10.229838,
+    "project_id": 4,
+    "is_qualified": false,
+    "source": "Meta",
+    "weight": 0.96
+  },
+  {
+    "latitude": 36.38747,
+    "longitude": 10.531995,
+    "project_id": 31,
+    "is_qualified": false,
+    "source": "Meta",
+    "weight": 0.92
+  },
+  {
+    "latitude": 35.801543,
+    "longitude": 10.627918,
+    "project_id": 23,
+    "is_qualified": false,
+    "source": "Mubawab",
+    "weight": 0.56
+  },
+  {
+    "latitude": 36.460846,
+    "longitude": 10.770301,
+    "project_id": 26,
+    "is_qualified": false,
+    "source": "Google",
+    "weight": 0.63
+  },
+  {
+    "latitude": 36.835297,
+    "longitude": 10.150844,
+    "project_id": 7,
+    "is_qualified": true,
+    "source": "Direct",
+    "weight": 0.68
+  },
+  {
+    "latitude": 36.896175,
+    "longitude": 10.294327,
+    "project_id": 1,
+    "is_qualified": true,
+    "source": "Google",
+    "weight": 0.91
+  },
+  {
+    "latitude": 35.841542,
+    "longitude": 10.586008,
+    "project_id": 20,
+    "is_qualified": true,
+    "source": "Direct",
+    "weight": 0.53
   }
 ]

@@ -8,7 +8,7 @@
 *AI-powered market analysis · Demand forecasting · Risk assessment*
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.2-black?logo=next.js)](https://nextjs.org/)
-[![MapLibre GL](https://img.shields.io/badge/MapLibre_GL-4.x-396CB2?logo=mapbox)](https://maplibre.org/)
+[![MapLibre GL](https://img.shields.io/badge/MapLibre_GL-5.x-396CB2?logo=mapbox)](https://maplibre.org/)
 [![Groq AI](https://img.shields.io/badge/Groq-LLaMA_3.3_70B-F55036)](https://groq.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -51,18 +51,23 @@ The platform combines **MapLibre GL JS** geospatial visualization with **Groq LL
 │                        TerraLens AI                             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌──────────┐  ┌──────────────────┐  ┌───────────────────────┐ │
-│  │  TopBar   │  │  MapLibre GL JS  │  │   Right Panel         │ │
-│  │ Category  │  │  ┌────────────┐  │  │  Groq ML AI Agent     │ │
-│  │  Switcher │  │  │  MapTiler  │  │  │  (Structured JSON)    │ │
-│  └──────────┘  │  │  Dark Tiles │  │  │  Zone Details         │ │
-│                │  └────────────┘  │  └───────────────────────┘ │
-│  ┌──────────┐  │  ┌────────────┐  │                            │
-│  │  Left    │  │  │ GeoJSON    │  │  ┌───────────────────────┐ │
-│  │  Panel   │  │  │ Layers     │  │  │  /api/recommend       │ │
-│  │  KPIs &  │  │  │ (7 layers) │  │  │  LLaMA 3.3 (CoT)      │ │
-│  │  ML Stats│  │  └────────────┘  │  └───────────────────────┘ │
-│  └──────────┘  └──────────────────┘                            │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │                     [ TopBar ]                            │  │
+│  │      Category Switcher | Layer Pills | Panel Toggles      │  │
+│  └───────────────────────────────────────────────────────────┘  │
+│                                                                 │
+│  ┌──────────┐  ┌──────────────────┐  ┌───────────────────────┐  │
+│  │  Left    │  │  MapLibre GL JS  │  │   Right Panel         │  │
+│  │  Panel   │  │  ┌────────────┐  │  │  Groq AI Strategy     │  │
+│  │  (KPIs)  │  │  │  MapTiler  │  │  │  (Verdict/Pricing)    │  │
+│  │  ML Stats│  │  │Light Styles│  │  │    Score Tiles        │  │
+│  └──────────┘  │  └────────────┘  │  └───────────────────────┘  │
+│                │                  │                             │
+│                │ ┌────────────┐   │    ┌───────────────────┐    │
+│                │ │ GeoJSON    │   │    │  /api/recommend   │    │
+│                │ │ Layers     │   │    │  LLaMA 3.3 (CoT)  │    │
+│                │ └────────────┘   │    └───────────────────┘    │
+│                └──────────────────┘                             │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
 │                    Machine Learning Pipeline                    │
@@ -76,10 +81,11 @@ The platform combines **MapLibre GL JS** geospatial visualization with **Groq LL
 ## Features
 
 ### 🗺️ Interactive Map
-- Full-screen dark-themed MapTiler basemap centered on Tunisia
-- **7 data layers**: governorate choropleth, delegation boundaries, project markers, lead heatmap, buyer scatter, competitor (Tecnocasa) markers, risk zone polygons
-- Hover tooltips with zone stats, click-to-inspect with fly-to animations
-- Dynamic color ramps that change per active intelligence mode
+- Full-screen **Light-themed** MapTiler `dataviz-light` basemap centered on Tunisia
+- **7 deep-data layers**: governorate choropleth, delegation boundaries, project markers, lead heatmap, buyer scatter, competitor (Tecnocasa) markers, risk zone polygons
+- Richly styled popups with `backdrop-filter` blur and Inter typography
+- Dynamic color scales using MapLibre `interpolate` expressions
+- Viewport state management with smart `flyTo` drill-downs
 
 ### 📊 Analytics Dashboard
 - **KPI cards** with trend indicators
@@ -104,14 +110,14 @@ The platform combines **MapLibre GL JS** geospatial visualization with **Groq LL
 
 | Layer | Technology |
 |-------|-----------|
-| **Frontend** | Next.js 16 (App Router), React 19 |
+| **Frontend** | Next.js 16.2 (App Router), React 19 |
 | **Styling** | Tailwind CSS 4, CSS Custom Properties |
-| **Map Engine** | MapLibre GL JS 4.x |
-| **Map Tiles** | MapTiler Streets Dark |
+| **Map Engine** | MapLibre GL JS 5.x, Deck.gl 9.x |
+| **Map Tiles** | MapTiler Dataviz Light |
 | **Charts** | Recharts |
 | **Icons** | Lucide React |
 | **AI Engine** | Groq Cloud (LLaMA 3.3 70B Versatile) w/ JSON mode |
-| **ML Engine** | XGBoost, Scikit-Learn (Isolation Forest), Pandas |
+| **ML Engine** | XGBoost, Scikit-Learn (Isolation Forest), Pandas, Numpy |
 | **Data Pipeline** | Python 3, Ray-casting PiP algorithm |
 | **Data Sources** | INS Tunisia 2024, Mubawab, Tecnocasa |
 
@@ -243,7 +249,7 @@ hack-merit/
 │       └── tecnocasa-tn.svg
 │
 ├── scripts/
-│   └── generate_data.py         # Data pipeline (v2 with PiP)
+│   └── train_ml_models.py       # ML Pipeline (XGBoost + Isolation Forest)
 │
 ├── data/
 │   └── projects.csv             # Source project portfolio

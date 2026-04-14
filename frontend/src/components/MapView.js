@@ -7,7 +7,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 const MAPTILER_KEY = "2rJz6kffNiHH881P3PE2";
 const MAP_STYLE = `https://api.maptiler.com/maps/dataviz-light/style.json?key=${MAPTILER_KEY}`;
 
-export default function MapView({ activeCategory, activeLayer, onZoneClick }) {
+export default function MapView({ activeCategory, activeLayer, onZoneClick, searchQuery }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const popup = useRef(null);
@@ -44,6 +44,21 @@ export default function MapView({ activeCategory, activeLayer, onZoneClick }) {
       zaghouan: "Zaghouan",
       kairouan: "Kairouan",
       mahdia: "Mahdia",
+      monastir: "Monastir",
+      mednine: "Medenine",
+      medenine: "Medenine",
+      jandouba: "Jendouba",
+      jendouba: "Jendouba",
+      "le kef": "Le Kef",
+      kasserine: "Kasserine",
+      "sidi bouzid": "Sidi Bouzid",
+      gabes: "Gabes",
+      gafsa: "Gafsa",
+      tozeur: "Tozeur",
+      kebili: "Kebili",
+      tataouine: "Tataouine",
+      beja: "Beja",
+      siliana: "Siliana",
     };
 
     return aliases[normalized] || String(value).trim();
@@ -466,9 +481,13 @@ export default function MapView({ activeCategory, activeLayer, onZoneClick }) {
           return;
         }
         const zoneName = properties.name || properties.gouv_fr || properties.NAME_1 || "Governorate";
+        const pop = properties.population ? Number(properties.population).toLocaleString("en-US") : null;
+        const riskScore = properties.risk_score || "N/A";
+        const velocity = properties.velocity_index || "N/A";
         setPopupMarkup(`
           <p style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#64748B;font-weight:700;">Governorate</p>
           <p style="margin-top:6px;font-size:16px;font-weight:700;color:#0F172A;">${zoneName}</p>
+          ${pop ? `<p style="margin-top:4px;font-size:12px;color:#94A3B8;">Pop. ${pop} (INS 2024)</p>` : ""}
           <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
             <div style="border-radius:14px;background:#EFF6FF;padding:10px;">
               <p style="font-size:11px;color:#64748B;">Avg price</p>
@@ -478,9 +497,21 @@ export default function MapView({ activeCategory, activeLayer, onZoneClick }) {
               <p style="font-size:11px;color:#64748B;">Demand</p>
               <p style="margin-top:4px;font-size:14px;font-weight:700;color:#0F172A;">${properties.demand_score || "N/A"}/100</p>
             </div>
+            <div style="border-radius:14px;background:#FEF2F2;padding:10px;">
+              <p style="font-size:11px;color:#64748B;">Risk</p>
+              <p style="margin-top:4px;font-size:14px;font-weight:700;color:#DC2626;">${riskScore}/100</p>
+            </div>
+            <div style="border-radius:14px;background:#F5F3FF;padding:10px;">
+              <p style="font-size:11px;color:#64748B;">Velocity</p>
+              <p style="margin-top:4px;font-size:14px;font-weight:700;color:#7C3AED;">${velocity}/100</p>
+            </div>
           </div>
         `);
         popup.current.setLngLat(event.lngLat).addTo(currentMap);
+      });
+
+      currentMap.on("mousemove", "gov-fill", (event) => {
+        popup.current.setLngLat(event.lngLat);
       });
 
       currentMap.on("mouseleave", "gov-fill", () => {
@@ -507,9 +538,21 @@ export default function MapView({ activeCategory, activeLayer, onZoneClick }) {
               <p style="font-size:11px;color:#64748B;">Demand</p>
               <p style="margin-top:4px;font-size:14px;font-weight:700;color:#0F172A;">${properties.demand_score || "N/A"}/100</p>
             </div>
+            <div style="border-radius:14px;background:#FEF2F2;padding:10px;">
+              <p style="font-size:11px;color:#64748B;">Risk</p>
+              <p style="margin-top:4px;font-size:14px;font-weight:700;color:#DC2626;">${properties.risk_score || "N/A"}/100</p>
+            </div>
+            <div style="border-radius:14px;background:#F5F3FF;padding:10px;">
+              <p style="font-size:11px;color:#64748B;">Velocity</p>
+              <p style="margin-top:4px;font-size:14px;font-weight:700;color:#7C3AED;">${properties.velocity_index || "N/A"}/100</p>
+            </div>
           </div>
         `);
         popup.current.setLngLat(event.lngLat).addTo(currentMap);
+      });
+
+      currentMap.on("mousemove", "del-fill", (event) => {
+        popup.current.setLngLat(event.lngLat);
       });
 
       currentMap.on("mouseleave", "del-fill", () => {
@@ -530,6 +573,10 @@ export default function MapView({ activeCategory, activeLayer, onZoneClick }) {
           <p style="margin-top:10px;font-size:13px;line-height:1.5;color:#475569;">${properties.description || ""}</p>
         `);
         popup.current.setLngLat(event.lngLat).addTo(currentMap);
+      });
+
+      currentMap.on("mousemove", "risk-fill", (event) => {
+        popup.current.setLngLat(event.lngLat);
       });
 
       currentMap.on("mouseleave", "risk-fill", () => {
@@ -554,8 +601,8 @@ export default function MapView({ activeCategory, activeLayer, onZoneClick }) {
     map.current = new maplibregl.Map({
       container: mapContainer.current,
       style: MAP_STYLE,
-      center: [10.1815, 36.8065],
-      zoom: 10,
+      center: [9.5, 34.0],
+      zoom: 6,
       minZoom: 6,
       maxZoom: 17,
       pitch: 18,
@@ -592,6 +639,52 @@ export default function MapView({ activeCategory, activeLayer, onZoneClick }) {
       }
     };
   }, [applyActiveStyles, layersLoaded, loadGeoJsonLayers]);
+
+  useEffect(() => {
+    if (!map.current || !layersLoaded || !searchQuery) return;
+
+    const term = searchQuery.toLowerCase().trim();
+    if (!term) return;
+
+    Promise.all([
+      fetch("/data/geodata/governorates.geojson").then(r => r.json()),
+      fetch("/data/geodata/delegations.geojson").then(r => r.json())
+    ]).then(([govs, dels]) => {
+      let found = govs.features.find(f => {
+        const name = (f.properties.name || f.properties.gouv_fr || f.properties.NAME_1 || "");
+        return name.toLowerCase().includes(term);
+      });
+      let type = "governorate";
+
+      if (!found) {
+        found = dels.features.find(f => {
+          const name = (f.properties.del_fr || f.properties.name || "");
+          return name.toLowerCase().includes(term);
+        });
+        type = "delegation";
+      }
+
+      if (found && found.geometry && found.geometry.coordinates) {
+        let coords = found.geometry.coordinates[0];
+        if (found.geometry.type === "MultiPolygon") coords = found.geometry.coordinates[0][0];
+        
+        let minLng = 180, maxLng = -180, minLat = 90, maxLat = -90;
+        coords.forEach(p => {
+          minLng = Math.min(minLng, p[0]);
+          maxLng = Math.max(maxLng, p[0]);
+          minLat = Math.min(minLat, p[1]);
+          maxLat = Math.max(maxLat, p[1]);
+        });
+
+        // Add padding and fly
+        map.current.fitBounds([
+          [minLng, minLat],
+          [maxLng, maxLat]
+        ], { padding: { top: 100, bottom: 100, left: 450, right: 100 }, duration: 1500 });
+      }
+    }).catch(console.error);
+
+  }, [searchQuery, layersLoaded, normalizeSelection, onZoneClick]);
 
   useEffect(() => {
     if (!map.current || !layersLoaded) {

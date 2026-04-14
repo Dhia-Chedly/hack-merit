@@ -94,7 +94,7 @@ const LEGENDS = {
   },
 };
 
-export default function MapLegend({ activeCategory, activeLayer }) {
+export default function MapLegend({ activeCategory, activeLayer, leftPanelOpen }) {
   const legend = LEGENDS[activeCategory]?.[activeLayer];
   const categoryMeta = getCategoryMeta(activeCategory);
 
@@ -102,17 +102,21 @@ export default function MapLegend({ activeCategory, activeLayer }) {
     return null;
   }
 
+  const positionClasses = leftPanelOpen
+    ? "left-4 lg:left-[410px] xl:left-[440px] transition-all duration-300"
+    : "left-4 md:left-6 transition-all duration-300";
+
   return (
-    <div className="pointer-events-none fixed bottom-28 left-4 z-30 md:left-6 xl:bottom-36">
-      <div className="floating-chip pointer-events-auto w-[230px] rounded-[24px] px-4 py-4 animate-fade-in">
+    <div className={`pointer-events-none fixed bottom-28 z-30 xl:bottom-36 ${positionClasses}`}>
+      <div className="floating-chip pointer-events-auto w-[210px] rounded-lg px-3 py-3 animate-fade-in">
         <div className="mb-3 flex items-center justify-between">
           <div>
-            <p className="text-overline text-slate-500">{categoryMeta.shortLabel}</p>
-            <p className="text-sm font-semibold text-slate-900">{legend.title}</p>
+          <p className="text-[10px] uppercase tracking-wider font-semibold text-slate-400">{categoryMeta.shortLabel}</p>
+            <p className="text-[12px] font-semibold text-slate-900 mt-0.5">{legend.title}</p>
           </div>
           <div
-            className="h-9 w-9 rounded-2xl"
-            style={{ background: `linear-gradient(135deg, ${categoryMeta.tint}, #ffffff)` }}
+            className="h-7 w-7 rounded-lg"
+            style={{ background: categoryMeta.tint }}
           />
         </div>
 
