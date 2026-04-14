@@ -73,7 +73,7 @@ const LEGENDS = {
       type: "dots",
       items: [
         { color: "#FBBF24", label: "Competitor" },
-        { color: "#1D9E75", label: "TerraLens project" },
+        { color: "#1D9E75", label: "TuniDomicile project" },
       ],
     },
     oversupply: {

@@ -1,6 +1,6 @@
 
 
-# TerraLens AI — Design Reference Guide
+# TuniDomicile — Design Reference Guide
 
 ## Light Theme Dashboard
 
@@ -10,7 +10,7 @@
 
 ### Logo
 
-The TerraLens AI logo features a **map pin icon** containing a compass rose with a globe grid overlay and a green directional arrow, paired with the wordmark "TERRALENS" in dark navy and "·AI" in green. The logo communicates geospatial intelligence, navigation, and precision.
+The TuniDomicile logo features a **map pin icon** containing a compass rose with a globe grid overlay and a green directional arrow, paired with the wordmark "TERRALENS" in dark navy and "·AI" in green. The logo communicates geospatial intelligence, navigation, and precision.
 
 **Logo URL:** `https://www.genspark.ai/api/files/s/Wdpdf6m9`
 

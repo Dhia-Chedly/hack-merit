@@ -19,7 +19,7 @@ const SECTOR_PROMPTS = {
     focus: "Analyze lead density patterns and campaign source effectiveness. Identify which geographic zones generate the highest quality leads and recommend budget reallocation for Meta, Google, Mubawab, and broker channels.",
   },
   "marketing|buyer-origin": {
-    role: "Buyer Catchment Intelligence Analyst — the core expertise of TerraLens AI",
+    role: "Buyer Catchment Intelligence Analyst — the core expertise of TuniDomicile",
     focus: "Decode where real buyers physically live vs where campaigns are targeted. Identify catchment gaps (high spend, zero conversions) and recommend geographic budget shifts based on actual buyer origin data.",
   },
   "marketing|attribution": {
@@ -114,7 +114,7 @@ export async function POST(request) {
         messages: [
           {
             role: "system",
-            content: `You are a ${sectorPrompt.role}, powering TerraLens AI — a map-first decision intelligence platform for real estate developers and marketing agencies in Tunisia.
+            content: `You are a ${sectorPrompt.role}, powering TuniDomicile — a map-first decision intelligence platform for real estate developers and marketing agencies in Tunisia.
 
 YOUR EXPERTISE: ${sectorPrompt.focus}
 

@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "TerraLens AI - Real Estate Intelligence Platform",
+  title: "TuniDomicile - Real Estate Intelligence Platform",
   description:
     "Map-first real estate intelligence dashboard for Tunisia. AI-powered market analysis, demand forecasting, and risk assessment.",
   keywords: "real estate, Tunisia, AI, market intelligence, GeoAI, mapping",

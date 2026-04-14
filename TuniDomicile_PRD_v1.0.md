@@ -1,6 +1,6 @@
 **PRODUCT REQUIREMENTS DOCUMENT**
 
-**TerraLens AI**
+**TuniDomicile**
 
 Buyer Catchment Intelligence for MENA Real Estate
 
@@ -15,7 +15,7 @@ Buyer Catchment Intelligence for MENA Real Estate
 
 **1. Executive Summary**
 
-TerraLens AI is a map-first, AI-powered decision intelligence platform for real estate developers, marketers, and agencies operating in the MENA region. It transforms fragmented campaign data, lead records, and geographic signals into three unified views: Marketing Intelligence, Prediction and Planning, and Risk and Mitigation --- all anchored on an interactive map.
+TuniDomicile is a map-first, AI-powered decision intelligence platform for real estate developers, marketers, and agencies operating in the MENA region. It transforms fragmented campaign data, lead records, and geographic signals into three unified views: Marketing Intelligence, Prediction and Planning, and Risk and Mitigation --- all anchored on an interactive map.
 
 |                                                                                                                                                                                                                                                                                                                                            |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -70,7 +70,7 @@ No product in Tunisia or the broader MENA market combines campaign attribution d
 
 |                                                                                                                                                                                 |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| TerraLens AI is the operating system for spatial real estate intelligence in MENA --- the platform that makes geographic data causally actionable, not decoratively visualized. |
+| TuniDomicile is the operating system for spatial real estate intelligence in MENA --- the platform that makes geographic data causally actionable, not decoratively visualized. |
 
 **3.2 Product Goals**
 
@@ -106,7 +106,7 @@ No product in Tunisia or the broader MENA market combines campaign attribution d
 | **Role**                                           | Manages campaigns for 5--8 developer clients across Tunis                                        |
 | **Pain**                                           | Cannot explain spatially why campaigns underperform. Clients demand ROI proof he cannot produce. |
 | **Goal**                                           | Show clients a map that proves where their buyers came from and why next budget should shift.    |
-| **Frequency**                                      | Opens TerraLens every Monday morning to review the previous week and plan the coming one.        |
+| **Frequency**                                      | Opens TuniDomicile every Monday morning to review the previous week and plan the coming one.        |
 | **Tech comfort**                                   | Comfortable with Google Analytics and Meta Business Manager. Not a data scientist.               |
 | **Decision power**                                 | Full authority to sign SaaS contracts under 2,000 DT/month without board approval.               |
 
@@ -384,7 +384,7 @@ Shows where inquiries and qualified leads are geographically clustered. This is 
 
 **7.1.4 --- Buyer Origin Decoder (Core Innovation)**
 
-This is TerraLens\'s primary differentiator. It shows where confirmed buyers (leads that became reservations) physically lived at the time of purchase --- decoded from CRM address data and cross-referenced with spatial zones. This reveals the true catchment area of each project.
+This is TuniDomicile\'s primary differentiator. It shows where confirmed buyers (leads that became reservations) physically lived at the time of purchase --- decoded from CRM address data and cross-referenced with spatial zones. This reveals the true catchment area of each project.
 
 - Layer type: ScatterplotLayer for individual buyer origin points + HeatmapLayer for density
 
@@ -577,7 +577,7 @@ The primary risk view. A classified grid divides the map into H3 hexagonal cells
 
 **9.2.2 --- Competitor Pressure Map**
 
-Shows the geographic distribution of competing projects, their inventory levels, recent price moves, and estimated sales velocity. Identifies where competitor activity is increasing risk for TerraLens client projects.
+Shows the geographic distribution of competing projects, their inventory levels, recent price moves, and estimated sales velocity. Identifies where competitor activity is increasing risk for TuniDomicile client projects.
 
 - Layer type: ScatterplotLayer for competitor project locations, sized by estimated remaining inventory
 
@@ -913,18 +913,18 @@ Status: Done. The Streamlit MVP provides the data model, KPI logic, and CSV infr
 |                  |                                                                                                |                                                              |
 |------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
 | **Term**         | **Definition**                                                                                 | **Context**                                                  |
-| Buyer Origin     | The geographic home location of a lead at the time of their purchase or reservation            | Core data point of TerraLens --- decoded from CRM address    |
+| Buyer Origin     | The geographic home location of a lead at the time of their purchase or reservation            | Core data point of TuniDomicile --- decoded from CRM address    |
 | Catchment Area   | The geographic zone from which a project draws its buyers, modeled using drive-time isochrones | Spatial basis for budget allocation recommendations          |
 | Isochrone        | A polygon representing equal travel time from a central point (e.g., 15-minute drive zone)     | Computed by road network routing, not straight-line distance |
 | H3 Grid          | Uber\'s hexagonal hierarchical spatial indexing system used for zone-level aggregation         | Used for demand and risk grid layers at resolution 7         |
 | Demand Spillover | The geographic diffusion of buyer demand when a competing project sells out                    | Modeled using distance-decay function from sellout location  |
 | Qualified Lead   | A lead that meets minimum criteria: valid phone, real inquiry, financial pre-screening         | KPI inherited from Streamlit MVP (kpis.py)                   |
-| Atlas            | The accumulated buyer origin dataset built from all agency campaigns processed by TerraLens    | The core data flywheel and competitive moat                  |
+| Atlas            | The accumulated buyer origin dataset built from all agency campaigns processed by TuniDomicile    | The core data flywheel and competitive moat                  |
 | CORS             | Cross-Origin Resource Sharing --- configured in Flask to allow Next.js frontend requests       | Flask-CORS package required for local dev                    |
 | CPL              | Cost Per Lead in DT --- campaign spend divided by lead count                                   | Marketing intelligence KPI                                   |
 | CPQL             | Cost Per Qualified Lead in DT --- campaign spend divided by qualified lead count               | Higher-value marketing KPI from kpis.py                      |
 | VTR              | Visit-to-Reservation Rate --- % of site visits that result in a reservation                    | Sales funnel KPI from kpis.py                                |
 
-TerraLens AI --- Product Requirements Document --- v1.0
+TuniDomicile --- Product Requirements Document --- v1.0
 
 Confidential --- Internal use only --- April 2026

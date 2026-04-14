@@ -1,5 +1,5 @@
 """
-TerraLens AI — Real Data Generator v3 (MVP)
+TuniDomicile — Real Data Generator v3 (MVP)
 Uses verified INS 2024 Census data, Mubawab 2025 price ranges,
 ALL major real estate agencies in Tunisia (Tecnocasa, Century 21, RE/MAX, etc.),
 6-dimension risk model, and seasonal-adjusted metrics.

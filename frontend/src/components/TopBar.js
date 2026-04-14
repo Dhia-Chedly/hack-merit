@@ -34,6 +34,9 @@ export default function TopBar({
             >
               <PanelLeft size={15} />
             </button>
+            <div className="hidden sm:flex items-center">
+              <img src="/tunidomicile_logo.png" alt="TuniDomicile" className="h-[24px] w-auto drop-shadow-sm object-contain" />
+            </div>
           </div>
 
           {/* CENTER: Category Tabs */}

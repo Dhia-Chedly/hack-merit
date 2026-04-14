@@ -1,8 +1,8 @@
-# 🌍 TerraLens AI — Real Estate Intelligence Platform
+# 🌍 TuniDomicile — Real Estate Intelligence Platform
 
 <div align="center">
 
-![TerraLens AI](terralens_logo.png)
+![TuniDomicile](frontend/public/tunidomicile_logo.png)
 
 **Map-first real estate intelligence platform for Tunisia**
 *AI-powered market analysis · Demand forecasting · Risk assessment*
@@ -32,7 +32,7 @@
 
 ## Overview
 
-**TerraLens AI** is a GeoAI-powered platform that provides real estate developers, investors, and marketing teams with actionable spatial intelligence across Tunisia's 24 governorates, 264 delegations, and 2,084 sectors.
+**TuniDomicile** is a GeoAI-powered platform that provides real estate developers, investors, and marketing teams with actionable spatial intelligence across Tunisia's 24 governorates, 264 delegations, and 2,084 sectors.
 
 The platform combines **MapLibre GL JS** geospatial visualization with **Groq LLaMA 3.3 70B** AI recommendations to deliver three core intelligence modules:
 
@@ -48,7 +48,7 @@ The platform combines **MapLibre GL JS** geospatial visualization with **Groq LL
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        TerraLens AI                             │
+│                        TuniDomicile                             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌───────────────────────────────────────────────────────────┐  │
@@ -245,7 +245,7 @@ hack-merit/
 │       ├── data/                # ML Generated datasets
 │       │   ├── geodata/         # GeoJSON boundaries
 │       │   └── *.json           # Analytics & ML metrics
-│       ├── terralens_logo.png
+│       ├── tunidomicile_logo.png
 │       └── tecnocasa-tn.svg
 │
 ├── scripts/
@@ -254,8 +254,8 @@ hack-merit/
 ├── data/
 │   └── projects.csv             # Source project portfolio
 │
-├── design_terralens.md          # Design system reference
-├── TerraLens_AI_PRD_v1.0.md    # Product requirements
+├── design_tunidomicile.md          # Design system reference
+├── TuniDomicile_AI_PRD_v1.0.md    # Product requirements
 ├── TN-gouvernorats.geojson      # Source governorate boundaries
 ├── TN-delegations.geojson       # Source delegation boundaries
 └── geoBoundaries-TUN-ADM3.geojson  # ADM3 sector boundaries
@@ -304,6 +304,6 @@ Built during the **DEVIANT Hackathon** — 6-hour sprint.
 
 <div align="center">
 
-**TerraLens AI** — *See the market before the market sees you.*
+**TuniDomicile** — *See the market before the market sees you.*
 
 </div>
